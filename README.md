@@ -21,41 +21,31 @@ support@sdk.finance
 For API Postman Collection, please use:
 https://github.com/sdkfinance/postman
 
+
 # Backoffice
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+This project was generated with Angular CLI version 1.5.0.
 
-## Installation
+# Installation
 
-0 - System Setup
+Install curl
 
-Current instruction successfully works on clean Ubuntu 16.04 LTS. Please note, on another Linux distributive minor changes can appear.
+Run "sudo apt install curl" if curl is not installed in your system.
 
-https://www.ubuntu.com/server
+Install Node.js
 
-1 - Update APT
+Run "curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - and sudo apt-get install -y nodejs" to install Node.js.
 
-Run ''sudo apt-get update
+Install Angular CLI
 
-2 - Install curl
-Run `sudo apt install curl` if curl is not installed in your system.
+Run "sudo npm install --unsafe-perm -g @angular/cli@latest" to install Angular CLI.
 
-3 - Install Node.js
-Run `curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -` and `sudo apt-get install -y nodejs` to install Node.js.
+In the project folder run "npm install" to install local packages.
 
-4 - Install Angular CLI
-Run `sudo npm install --unsafe-perm -g @angular/cli@latest` to install Angular CLI.
+# Development Server
 
-5 - Download Project
+Run "npm start" to start a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-Run 'git clone https://github.com/sdkfinance/angular/'
+# Build
 
-Unzip file.
-
-6 - Setup Project
-
-In the project folder run `npm install` to install local packages.
-
-7 - Run Project
-
-Run `npm start` to start a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run "ng build" to build the project. The build artifacts will be stored in the dist/ directory. Use the -prod flag for a production build.
