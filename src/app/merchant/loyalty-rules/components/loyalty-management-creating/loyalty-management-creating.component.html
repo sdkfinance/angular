@@ -1,0 +1,103 @@
+<div class="ibox" style="background-color: white;">
+  <form [formGroup]="loyaltyRulesForm">
+    <div class="row">
+      <div class="col-sm-12" style="text-align: center"><h5>Add loyalty rule</h5></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6"><input type="text" placeholder="Name of rule (En)" class="form-control"
+                                   formControlName="nameEn"></div>
+      <div class="col-sm-6"><input type="text" placeholder="Name of rule (Uk)" class="form-control"
+                                   formControlName="nameUk"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6"><input type="text" placeholder="Description of rule (En)" class="form-control"
+                                   formControlName="descriptionEn"></div>
+      <div class="col-sm-6"><input type="text" placeholder="Description of rule (Uk)" class="form-control"
+                                   formControlName="descriptionUk"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text" >
+          <input type="checkbox" formControlName="active" style="width: 14px">
+          Activate</div>
+      </div>
+      <div class="col-sm-6">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text">Date of beginning</div>
+      </div>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" formControlName="startsAt">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text">Expiration date</div>
+      </div>
+      <div class="col-sm-6">
+        <input type="date" class="form-control" formControlName="endsAt">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text">Type of bonus earnings</div>
+      </div>
+      <div class="col-sm-6">
+        <app-loyalty-management-creating-select-value-type #selectedValueType (selectedItemUpdate)="updateValueType($event)">
+        </app-loyalty-management-creating-select-value-type>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="loyaltyRulesForm.get('valueType').value != 'NOT_SPECIFIED'">
+      <div class="col-sm-6">
+        <div class="text">Value</div>
+      </div>
+      <div class="col-sm-6">
+        <input type="number" step="0.1" class="form-control" formControlName="value">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text">Merchant's e-wallet</div>
+      </div>
+      <div class="col-sm-6">
+        <app-loyalty-management-creating-select-merchant-coin #selectCoin [coins]="coins" (selectedCoinUpdate)="updateCoin($event)">
+        </app-loyalty-management-creating-select-merchant-coin>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="text">Activation policy</div>
+      </div>
+      <div class="col-sm-6">
+        <app-loyalty-management-creating-select-activation-policy #selectActivationPolicy (selectedItemUpdate)="updateActivationPolicy($event)">
+        </app-loyalty-management-creating-select-activation-policy>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <input type="file" class="form-control" formControlName="files" [multiple]="true" accept="image/*" (change)="onChange($event)" style="outline: none">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <a type="button" class="btn btn-primary" [appInButtonLoader]="waiting" (click)="onCreate()">
+          <span>Add</span>
+        </a>
+      </div>
+    </div>
+  </form>
+</div>

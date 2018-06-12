@@ -1,0 +1,26 @@
+<form [formGroup]="form" (submit)="onNext()">
+  <div class="form-group">
+    <label for="fullName">{{'page.cashier.top_up.fio' | i18n}} ({{'hints.optional' | i18n}})</label>
+    <input id="fullName" type="text" class="form-control" formControlName="fullName">
+  </div>
+
+  <div class="form-group">
+    <label for="passportData">{{'page.cashier.top_up.doc' | i18n}} ({{'hints.optional' | i18n}})</label>
+    <input id="passportData" type="text" class="form-control" formControlName="passportData">
+  </div>
+
+  <div class="form-group">
+    <label for="contact">{{'page.cashier.top_up.user' | i18n}}</label>
+    <input id="contact" type="text" class="form-control" formControlName="contact"
+           (input)="resetErrors('contact.required', 'contact.notFound', 'contact.noCoins')">
+    <div class="error-msg" *ngIf="errors['contact.required']">{{'validator.required' | i18n}}</div>
+    <div class="error-msg" *ngIf="errors['contact.notFound']">{{'validator.user.incorect.login' | i18n}}</div>
+    <div class="error-msg" *ngIf="errors['contact.noCoins']">{{'page.cashier.top_up.exception.wallets_not_found' | i18n}}</div>
+  </div>
+
+  <div class="action-btns one-action-btn">
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" type="submit">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>

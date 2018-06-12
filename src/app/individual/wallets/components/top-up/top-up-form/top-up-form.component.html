@@ -1,0 +1,40 @@
+<div *ngIf="options?.length > 1" class="form-group">
+  <div class="options">
+    <div *ngFor="let option of options">
+      <button *ngIf="option !== selectedOption" class="btn btn-sm btn-primary" (click)="selectOption(option)">
+        {{option.name | paymentOptions | i18n}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="fields">
+
+  <app-existing-card
+    *ngIf="paymentMethod === paymentMethods.ExistingCard"
+    [waiting]="waiting"
+    (back)="onBack()"
+    (onSubmit)="makeTransaction($event)">
+  </app-existing-card>
+
+  <app-base-form
+    *ngIf="paymentMethod === paymentMethods.BaseForm"
+    [fields]="fields"
+    [serverErrors]="serverErrors"
+    [waiting]="waiting"
+    (back)="onBack()"
+    (onSubmit)="makeTransaction($event)">
+  </app-base-form>
+
+  <app-new-payment-card
+    *ngIf="paymentMethod === paymentMethods.NewPaymentCard"
+    [serverErrors]="serverErrors"
+    [waiting]="waiting"
+    (onSubmit)="makeTransaction($event)">
+  </app-new-payment-card>
+
+</div>
+
+<div *ngIf="!fields && !selectedOption " class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

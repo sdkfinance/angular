@@ -1,0 +1,64 @@
+
+<h3 style="text-align: left;">Check</h3>
+<div class="ibox" >
+  <div class="ibox-content" *ngIf="checks !== []">
+    <div class="container-fluid">
+
+      <div class="table-row header" >
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text">Number</div>
+            <div class="text">Name</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">Description</div>
+            <div class="text">Quantity</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">Unit of measurement</div>
+            <div class="text">Price</div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="table-row" *ngFor=" let check of checks;  let i = index" >
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text">
+             {{i+1}}
+            </div>
+            <div class="text">
+              <span *ngIf="check.product.name == ''"> - </span>{{check.product.name}}
+            </div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">
+            <span *ngIf="check.product.description == ''"> - </span>{{check.product.description}}
+            </div>
+            <div class="text">
+              <span *ngIf="check.quantity == ''"> - </span>  {{check.quantity}}
+
+            </div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">
+              <span *ngIf="check.measureUnit.description == ''"> - </span> {{check.measureUnit.description}}
+            </div>
+            <div class="text">
+              {{check.totalAmount}}
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+

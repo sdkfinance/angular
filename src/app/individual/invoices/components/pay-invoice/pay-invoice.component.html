@@ -1,0 +1,79 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.invoices.payment_invoice' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <div *ngIf="!finish">
+      <div *ngIf="!coin && !coinNotFound" class="loader-container is-divtable" style="margin: 15px 0">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <div *ngIf="coin">
+        <div class="m-b-15">
+          <span
+            [innerHTML]="'page.individual.invoices.cases.payment' | i18n: {'0': invoice.identifier, '1': invoice.merchantName, '2': invoice.name}"></span>
+        </div>
+
+        <div class="m-b-15">
+          <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+          <input id="amount" class="form-control" readonly type="text" value="{{invoice.totalPrice.toFixed(2)}}">
+        </div>
+
+        <div class="m-b-15" *ngIf="coin">
+          <label for="wallet">{{'entity.coin' | i18n}}</label>
+          <select id="wallet" class="form-control">
+            <option value="first">{{coin.name + ' (' + coin.amount + ' ' + coin.issuer.currency + ')'}}</option>
+          </select>
+        </div>
+
+        <div class="m-b-15" *ngIf="commission">
+          <div><b>{{'page.common.commission.system' | i18n}}: </b>{{commission.commissionAmountPush.toFixed(2)}}
+            {{commission.issuer.currency}}
+          </div>
+          <div><b>{{'page.common.commission.amount_with_commission' | i18n}}: </b>{{commission.recipientAmountPush.toFixed(2)}}
+            {{commission.issuer.currency}}
+          </div>
+        </div>
+
+      </div>
+
+      <div class="m-b-15" *ngIf="coinNotFound">
+        <span [innerHTML]="'page.individual.invoices.cases.no_safe' | i18n: {'0': invoice.issuer.currency}"></span>
+      </div>
+
+      <div *ngIf="coin || coinNotFound">
+        <div class="btns">
+          <button class="btn btn-primary btn-sm" (click)="onClose()">
+            <span><b>{{'page.common.action.close' | i18n}}</b></span>
+          </button>
+          <button *ngIf="!coinNotFound" class="btn btn-primary btn-sm" [appInButtonLoader]="waiting" (click)="onPay()">
+            <span>{{'page.common.action.pay' | i18n}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="finish">
+      <div *ngIf="result" class="m-b-15">
+        <span [innerHTML]="'page.individual.invoices.cases.paid_success' | i18n: {
+        '0': invoice.identifier,
+        '1': invoice.merchantName,
+        '2': invoice.totalPrice.toFixed(2),
+        '3': invoice.issuer.currency,
+        '4': invoice.name
+        }"></span>
+      </div>
+
+      <div class="m-b-15" *ngIf="coin.amount < commission.recipientAmountPush">
+        <span [innerHTML]="'page.individual.invoices.cases.no_money' | i18n: {'0': coin.serial}"></span>
+      </div>
+
+      <div class="btns">
+        <button class="btn btn-primary btn-sm" (click)="onClose()">
+          <span><b>{{'page.common.action.close' | i18n}}</b></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

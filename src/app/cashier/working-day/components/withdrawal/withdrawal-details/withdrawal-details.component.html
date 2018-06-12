@@ -1,0 +1,21 @@
+<div>
+  <div class="form-group">
+    <b>{{'entity.coin.amount' | i18n}}:</b> {{details.amount | number: '.2'}} {{details.currency.code}}
+  </div>
+
+  <div class="form-group">{{'page.cashier.withdraw_cash.alert_hint' | i18n}}</div>
+
+  <div class="error-msg" *ngIf="errors['not_accepted_or_not_today_opened_working_day']">
+    {{'exception.not_accepted_or_not_today_opened_working_day' | i18n}}
+  </div>
+
+  <div class="action-btns two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <b>{{'page.common.action.back' | i18n}}</b>
+    </button>
+
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" (click)="onCheck()">
+      <span>{{'page.cashier.withdraw_cash.checked' | i18n}}</span>
+    </button>
+  </div>
+</div>

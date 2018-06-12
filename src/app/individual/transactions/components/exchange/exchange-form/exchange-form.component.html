@@ -1,0 +1,31 @@
+<div>
+  <form [formGroup]="form">
+    <div class="m-b-15">
+      <label for="coin">{{'page.individual.exchange.currency.sell' | i18n}}</label>
+      <select id="coin" formControlName="coin" class="form-control">
+        <option *ngFor="let coin of coins" value="{{coin.serial}}">{{coin.name + " (" + coin.amount + " " +
+          coin.issuer.currency + ")"}}
+        </option>
+      </select>
+    </div>
+
+    <div class="m-b-15">
+      <label for="buy">{{'page.individual.exchange.currency.buy' | i18n}}</label>
+      <select id="buy" formControlName="issuer" class="form-control">
+        <option *ngFor="let issuer of issuers" value="{{issuer.id}}">{{issuer.currency + " (" + issuer.sn + ")"}}
+        </option>
+      </select>
+
+      <!--<div *ngIf="errors.amountIsEmpty" class="text-danger" style="margin-top: 10px">Please fill in this field</div>-->
+    </div>
+  </form>
+
+  <div>
+    <div class="action-btns one-action-btn">
+      <button class="btn btn-primary btn-sm action-btn" (click)="onNext()">
+        <span>{{'page.common.action.next' | i18n}}</span>
+      </button>
+    </div>
+  </div>
+
+</div>

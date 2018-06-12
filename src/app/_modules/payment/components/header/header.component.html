@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="header_in">
+      <div class="order">
+          <div class="order_in js_header_order_info">
+              <div class="order_title js_header_merchant_name">{{ order.shop }}</div>
+              <div class="order_row">
+                  <div class="order_left">
+                      <div class="order_gray">Amount:</div>
+                      <div class="order_price">{{ order.amount | currency: order.currency }}</div>
+                  </div>
+                  <div class="order_right">
+                      <div class="order_gray">Description:</div>
+                      <div class="order_text js_header_order_info_text">{{ order.description }}</div>
+                  </div>
+              </div>
+              <a href="#" class="order_more js_header_order_info_more" style="display: none;">More</a>
+              <a href="#" class="order_close js_header_order_info_close">Less</a>
+          </div>
+      </div>
+      <div class="logo_platron"></div>
+  </div>
+</header>

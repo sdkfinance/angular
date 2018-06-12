@@ -1,0 +1,9 @@
+<div class="form-group">
+  <!--<input type="text" placeholder="Поле 1" class="form-control">-->
+  <app-loyalty-rules-creating-select
+    [menuTitle]="selectedLoyaltyRule ? selectedLoyaltyRule.name : loyaltyRulesTitle"
+    [items]="loyaltyRules"
+    [doNotChangeMenuTitle]="true"
+    (selectedItemUpdate)="updateSelectedLoyaltyRule($event)">
+  </app-loyalty-rules-creating-select>
+</div>

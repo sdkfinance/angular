@@ -1,0 +1,47 @@
+<div *ngFor="let member of clientItem.members">
+  <div class="table-row" *ngIf="member.role ==='individual'">
+    <div class="wrapper text-4">
+      <div class="wrapper text-2">
+        <div class="text client-td">
+          <span><strong>ID: </strong>{{clientItem.id}}</span>
+          <span *ngIf="clientItem.name">Name: {{clientItem.name}}</span>
+          <span *ngIf="clientItem.contact.email">E-mail: {{clientItem.contact.email}}</span>
+          <span *ngIf="clientItem.contact.phoneNumber">Phone: {{clientItem.contact.phoneNumber}}</span>
+          <div *ngFor="let card of cards">
+              <span *ngFor=" let record of card.records">
+                {{record.cardNumber}}
+              </span>
+          </div>
+          <span>{{clientItem.createdAt | date:"dd.MM.yyyy"}}</span>
+
+
+        </div>
+        <div class="text">
+          <span *ngIf="clientItem.active" class="label label-primary">Active</span>
+          <span *ngIf="!clientItem.active" class="label">Blocked</span>
+        </div>
+      </div>
+      <div class="wrapper text-2">
+        <div class="text" title="">
+          <div *ngFor="let member of clientItem.members">
+            <span><strong>{{member.role}}</strong></span>
+            <div *ngIf="member.organization">
+              <div>in organization</div>
+              <div>{{member.organization.name}}</div>
+              <div>ID {{member.organization.id}}</div>
+            </div>
+
+          </div>
+          <div>
+
+          </div>
+
+        </div>
+        <div class="text actions-column">
+          <app-client-actions [client]="clientItem"></app-client-actions>
+          <!-- <app-pos-actions [pos]="pos" (onActionClick) = test($event)></app-pos-actions>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'entity.transaction.prepaid' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+
+    <div class="table" *ngIf="vouchers">
+
+      <div class="table-header">
+
+        <div class="table-cell text">{{'entity.date' | i18n}}</div>
+        <div class="table-cell text">{{'page.individual.voucher.list.voucher' | i18n}}</div>
+        <div class="table-cell text">{{'page.individual.voucher.list.amount' | i18n}}</div>
+        <div class="table-cell text">{{'page.individual.voucher.list.status' | i18n}}</div>
+      </div>
+
+      <div class="table-row" *ngFor="let voucher of vouchers">
+        <div class="table-cell text">{{ voucher.createdAt | date: 'dd/MM/yyyy HH:mm' }}</div>
+        <div class="table-cell text">{{ voucher.serial }}</div>
+        <div class="table-cell text">{{ voucher.amount.toFixed(2) }} {{ voucher.issuer.currency }}</div>
+        <div class="table-cell text">{{ voucher.status }}</div>
+      </div>
+
+      <p *ngIf="!vouchers.length" class="not-found-msg">{{'page.individual.voucher.list.not_found' | i18n}}</p>
+
+    </div>
+
+
+    <div *ngIf="!vouchers" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div class="pagination-btns" *ngIf="totalPages > 1">
+      <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)"></app-pagination-buttons>
+    </div>
+
+  </div>
+</div>

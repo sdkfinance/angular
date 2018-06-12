@@ -1,0 +1,9 @@
+<form #cardForm="ngForm" [ngClass]="{ 'submited': submited }" autocomplete="off">
+  <input style="display:none">
+  <input type="password" style="display:none">
+  <h3 class="title"><span class="ico ico_lock"></span>Secure bank card payment</h3>
+  <app-card [form]="form"></app-card>
+  <app-card-types-list></app-card-types-list>
+  <app-contact-info></app-contact-info>
+  <app-checkout (onCheckout)="onCheckout()" [waiting]="waiting"></app-checkout>
+</form>

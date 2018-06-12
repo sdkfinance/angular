@@ -1,0 +1,20 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.common.conversations.title' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="row">
+          <div class="col-lg-12" [class.col-lg-4]="!!openedConversation" [hidden]="openedConversation && width < 1200">
+            <app-conversations-list [openedConversation]="openedConversation" (openConversation)="openConversation($event)"></app-conversations-list>
+          </div>
+
+          <div class="col-lg-8" *ngIf="openedConversation">
+            <app-conversation [conversation]="openedConversation" (close)="closeConversation($event)"></app-conversation>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

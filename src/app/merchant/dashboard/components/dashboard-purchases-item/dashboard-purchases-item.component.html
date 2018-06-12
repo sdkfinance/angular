@@ -1,0 +1,21 @@
+<div class="table-body-row">
+  <div class="body-cell date">{{ purchase.date | date: 'd/MM/y' }}</div>
+  <div class="body-cell id">{{ purchase.identifier }}</div>
+  <div class="body-cell amount">{{ purchase.parameters.invoiceAmount + " " + purchase.issuer.currency}}</div>
+  <div class="body-cell status">
+          <span class="label" style="line-height: 1.5"
+                [ngClass]="{'label-primary': purchase.status == 'paid', 'label-warning': purchase.status == 'pending'}">
+            {{purchase.status}}
+          </span>
+  </div>
+  <div class="body-cell details"><a (click)="onToggle()">
+    <span *ngIf="!isCheckShown">View check</span>
+    <span *ngIf="isCheckShown" style="color: #ed5565;">Hide check</span>
+  </a></div>
+</div>
+
+<div class="table-body-row" *ngIf="isCheckShown">
+  <app-dashboard-purchases-item-check class="body-cell check" [purchase]="purchase">
+
+  </app-dashboard-purchases-item-check>
+</div>

@@ -1,0 +1,24 @@
+<ul class="pagination pull-right">
+  <!--<li class="footable-page-arrow disabled">
+    <a data-page="first" href="#first">«</a>
+  </li>
+  <li class="footable-page-arrow disabled">
+    <a data-page="prev" href="#prev">‹</a>
+  </li>-->
+  <!--<li class="footable-page active">
+    <a data-page="0" href="#">1</a>
+  </li><li class="footable-page">
+    <a data-page="1" href="#">2</a></li>
+  <li class="footable-page"><a data-page="2" href="#">3</a>
+  </li>-->
+  <app-pagination-item *ngFor="let item of pagination.itemsArray" [value]="item">
+
+
+  </app-pagination-item>
+  <!--<li class="footable-page-arrow">
+    <a data-page="next" href="#next">›</a>
+  </li>
+  <li class="footable-page-arrow">
+    <a data-page="last" href="#last">»</a>
+  </li>-->
+</ul>

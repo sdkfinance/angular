@@ -1,0 +1,32 @@
+<div class="coin">
+
+  <div *ngIf="!editCoin" title="{{coin.name}}">
+    <h2>{{coin.name}}</h2>
+  </div>
+
+  <div *ngIf="editCoin" class="coin-editor">
+    <input type="text" [(ngModel)]="newTitle">
+    <div>
+      <button class="btn-white btn btn-xs" (click)="onUpdateCoin()">{{'page.common.action.ok' | i18n}}</button>
+    </div>
+  </div>
+
+  <div class="coin__body">
+    <div class="btns">
+      <button class="btn-white btn btn-xs" (click)="onEdit()">
+        <span *ngIf="!editCoin">{{'page.common.action.edit' | i18n}}</span>
+        <span *ngIf="editCoin">{{'page.common.action.cancel' | i18n}}</span>
+      </button>
+
+      <button class="btn-white btn btn-xs" *ngIf="coin.amount === 0" (click)="onDelete()">{{'page.common.action.delete' | i18n}}</button>
+
+      <a *ngIf="coin.type == 'client'" [routerLink]="['top-up', coin.serial]" class="btn-white btn btn-xs">{{'page.common.charge' | i18n}}</a>
+    </div>
+
+    <div><h3>{{coin.serial}}</h3></div>
+    <div><h4>{{'entity.coin.balance' | i18n}}: {{coin.amount|number:'.2'}} {{coin.issuer.currency}}</h4></div>
+    <div><h4>{{'entity.coin.locket' | i18n}}: {{(coin.amount - coin.availableAmount)|number:'.2'}} {{coin.issuer.currency}}</h4></div>
+    <div><h4>{{'page.individual.coin.type_of_safe' | i18n}}: {{coin.type}}</h4></div>
+  </div>
+</div>
+

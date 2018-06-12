@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>{{'page.fin_spec.limit.edit.title' | i18n}}</h3>
+    <div *ngIf="profile">
+
+      <form [formGroup]="form">
+
+        <div class="form-group">
+          <label for="value">{{'entity.limit.value' | i18n}}</label>
+          <input id="value" type="text" formControlName="value" class="form-control"
+                 (input)="resetError('valueRequired', 'valueFormat')">
+          <div class="error-msg text-danger" *ngIf="errors.valueRequired">{{'validator.required' | i18n}}</div>
+          <div class="error-msg text-danger" *ngIf="errors.valueFormat">{{'validator.amount.format' | i18n: {'0':
+            limitProfile.qualifier === 'amount' ? '123.45' : '12345'} }}
+          </div>
+        </div>
+
+        <div class="action-btns two-action-btns">
+          <a routerLink="../../../../" class="btn btn-primary action-btn"><b>{{'page.common.action.back' | i18n}}</b></a>
+
+          <button class="btn btn-primary action-btn" [appInButtonLoader]="waiting" (click)="onSave()">
+            <span>{{'page.common.action.save' | i18n}}</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

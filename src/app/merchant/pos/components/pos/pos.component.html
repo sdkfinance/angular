@@ -1,0 +1,10 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <app-pos-table [posList]="posList"></app-pos-table>
+  </div>
+  <div class="col-lg-4">
+    <app-create-pos *ngIf="editedPos" [pos]="editedPos"></app-create-pos>
+    <app-create-pos></app-create-pos>
+  </div>
+
+</div>

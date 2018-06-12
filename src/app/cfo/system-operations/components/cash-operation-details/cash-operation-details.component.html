@@ -1,0 +1,29 @@
+<h3 *ngIf="operation.type == 'cash_investment'">{{'entity.transaction.investment' | i18n}}</h3>
+
+<div *ngIf="!acceptingResult">
+  <div><b>{{'page.cashier.system.request_number' | i18n}}:</b> {{operation.id}}</div>
+  <div><b>{{'page.cashier.system.full_name' | i18n}}:</b> {{operation.fullName}}</div>
+  <div><b>{{'page.cashier.withdraw_cash.amount' | i18n}}:</b> {{operation.amount | number: '.2'}} {{ '' }}</div>
+  <div><b>{{'entity.status' | i18n}}:</b> {{operation.processStatus}}</div>
+
+  <div class="action-btns two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <span>{{'page.common.action.back' | i18n}}</span>
+    </button>
+
+    <button *ngIf="operation.processStatus == 'pending'" class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" (click)="onAccept()">
+      <span>{{'page.common.action.approve' | i18n}}</span>
+    </button>
+  </div>
+</div>
+
+
+<div *ngIf="acceptingResult">
+  <div *ngIf="operation.type == 'cash_investment'">
+    {{'page.cashier.system.cash_investment.success' | i18n: {'0': operation.amount | number: '.2', '1': ''} }}
+  </div>
+
+  <div class="action-btns one-action-btn" (click)="onBack()">
+      <button class="btn btn-primary btn-sm"><b>{{'page.common.action.close' | i18n}}</b></button>
+  </div>
+</div>

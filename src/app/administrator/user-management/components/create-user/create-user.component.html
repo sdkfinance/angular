@@ -1,0 +1,76 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.supervisor.user.creation.title' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content">
+    <form [formGroup]="form">
+
+      <div class="form-group">
+        <label for="role">{{'entity.role' | i18n}}</label>
+        <select id="role" formControlName="role" class="form-control">
+          <option *ngFor="let role of getRoleKeys()" value="{{role}}">{{roles[role] | i18n}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>{{'entity.profile.name.last.plain' | i18n}}</label>
+        <input type="text" class="form-control" formControlName="lastName" (input)="resetError('lastNameRequired')">
+        <div class="error-msg text-danger" *ngIf="errors.lastNameRequired">{{'validator.required'}}</div>
+      </div>
+
+      <div class="form-group">
+        <label>{{'entity.profile.name.first.plain' | i18n}}</label>
+        <input type="text" class="form-control" formControlName="firstName" (input)="resetError('firstNameRequired')">
+        <div class="error-msg text-danger" *ngIf="errors.firstNameRequired">{{'validator.required'}}</div>
+      </div>
+
+      <div class="form-group">
+        <label>{{'entity.profile.name.middle.plain' | i18n}}</label>
+        <input type="text" class="form-control" formControlName="middleName">
+      </div>
+
+      <div class="form-group">
+        <label>{{'entity.contact.email' | i18n}}</label>
+        <input type="text" class="form-control" formControlName="email"
+               (input)="resetError('emailRequired', 'emailFormat', 'emailIsUsed')">
+        <div class="error-msg" *ngIf="errors.emailRequired">{{'validator.required'}}</div>
+        <div class="error-msg" *ngIf="errors.emailFormat">{{'org.hibernate.validator.constraints.Email.message' | i18n}}</div>
+        <div class="error-msg" *ngIf="errors.emailIsUsed">{{'exception.parameter.user_exists' | i18n}}</div>
+      </div>
+
+      <div class="form-group">
+        <label>{{'entity.person.description' | i18n}}</label>
+        <textarea cols="30" rows="2" class="form-control" formControlName="description"
+                  (input)="resetError('descriptionRequired')">
+        </textarea>
+        <div class="error-msg" *ngIf="errors.descriptionRequired">{{'validator.required'}}</div>
+      </div>
+
+      <div class="form-group" *ngIf="showCheckbox">
+        <input type="checkbox" formControlName="isLinkToOrg" id="isLinkToOrg">
+        <label for="isLinkToOrg">{{'page.supervisor.user.creation.show_relate_org' | i18n}}</label>
+      </div>
+
+      <div class="form-group" *ngIf="form.controls['isLinkToOrg'].value">
+        <label>{{'entity.org.id' | i18n}}</label>
+        <input type="text" class="form-control" formControlName="organizationId"
+               (input)="resetError('organizationIdRequired', 'organizationIdWrong')">
+        <div class="error-msg" *ngIf="errors.organizationIdRequired">{{'validator.required'}}</div>
+        <div class="error-msg" *ngIf="errors.organizationIdWrong">{{'exception.organization.not_found' | i18n}}</div>
+      </div>
+
+      <div class="form-group">
+        <div class="error-msg" *ngIf="errors.unknownError">{{'exception.member.attachment_forbidden' | i18n}}</div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-primary pull-right" [appInButtonLoader]="waiting" (click)="onCreate()">
+            <span>{{'page.common.action.save' | i18n}}</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

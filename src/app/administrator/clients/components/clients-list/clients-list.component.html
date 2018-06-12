@@ -1,0 +1,58 @@
+<!--<div style="background-color:white" *ngIf="list">
+  <p *ngFor="let elem of list">
+    <span>{{elem?.name}}</span>
+  </p>
+</div>-->
+<!--<div style="background-color:blue" *ngIf="!list">
+  Loading...
+</div>-->
+
+<div class="ibox">
+  <div class="ibox-content">
+    <div class="container-fluid">
+      <app-clients-search (onSearch)="searchClient($event)" [searchResValue]="searchResValue" (resetSearch)="resetSearch($event)"></app-clients-search>
+
+      <div class="table-row header">
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text">Client</div>
+            <div class="text">Status</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">Role</div>
+            <div class="text" style="text-align: right;">Action</div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="list">
+        <app-client-item *ngFor="let elem of list" [clientItem] = "elem" ></app-client-item>
+
+        <p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="!list.length">Clients not found</p>
+      </div>
+
+      <div *ngIf="!list" class="loader-container is-divtable">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <!--<div class="pagination-wrapper">
+        <app-pagination [currentPagination]="posPagination"></app-pagination>
+      </div>-->
+    </div>
+  </div>
+  <!--<div style="background-color:white">
+    <span *ngIf="canPrev"   (click)="prevPage()">PREV</span>
+
+    <span *ngIf="canNext" (click)="nextPage()"> NEXT</span>
+  </div>-->
+  <div style="padding-right: 20px; background: white; display: inline-block; width: 100%;">
+    <ul class="pagination pull-right" *ngIf="pagination.totalPages > 1">
+      <li *ngIf="canPrev" class="footable-page-arrow"><a (click)="prevPage()">‹</a></li>
+      <li *ngIf="canNext" class="footable-page-arrow"><a (click)="nextPage()">›</a></li>
+    </ul>
+  </div>
+
+
+  <app-pagination [currentPagination]="pagination">
+
+  </app-pagination>
+</div>

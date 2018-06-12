@@ -1,0 +1,29 @@
+<div class="ibox" *ngIf="!selectedMethod">
+  <div class="ibox-content no-border">
+
+    <a routerLink="../" class="btn btn-primary m-b-15"><b>{{'page.common.action.back' | i18n}}</b></a>
+
+    <div *ngIf="!attachmentMethods" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="attachmentMethods">
+      <div class="row">
+        <div *ngFor="let method of attachmentMethods" class="col-sm-3">
+          <div (click)="selectMethod(method)">
+            <div class="category">
+              <img src="../../../../../../assets/img/ic-cashbox_2x.png" alt="">
+              <div>{{method.account.provider.name}}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 not-found-msg" *ngIf="!attachmentMethods.length">
+          {{'page.individual.settings.payment_cards.no_attachment_methods' | i18n}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-adding-card-form *ngIf="selectedMethod" [attachmentMethod]="selectedMethod"></app-adding-card-form>

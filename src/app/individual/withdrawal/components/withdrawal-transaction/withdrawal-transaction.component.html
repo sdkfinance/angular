@@ -1,0 +1,22 @@
+<a routerLink="../../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+<div class="ibox" style="margin-bottom: 0;">
+  <div class="ibox-title">
+    <h5>{{'page.common.redeem' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+    <app-withdrawal-amount
+      *ngIf="step == steps.First"
+      (getTransaction)="setTransaction($event)">
+    </app-withdrawal-amount>
+    <app-withdrawal-form
+      *ngIf="step == steps.Second"
+      [transaction]="transaction"
+      (getResult)="setResult($event)"
+      (back)="back($event)">
+    </app-withdrawal-form>
+    <app-withdrawal-result
+      *ngIf="step == steps.Third"
+      [result]="result">
+    </app-withdrawal-result>
+  </div>
+</div>

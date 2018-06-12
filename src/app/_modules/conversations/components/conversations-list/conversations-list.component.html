@@ -1,0 +1,17 @@
+<div *ngIf="!conversations" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>
+
+<div *ngIf="conversations">
+  <div *ngFor="let conversation of conversations" (click)="setOpenedConversation(conversation)">
+    <app-conversations-list-item [conversation]="conversation" [selected]="conversation.id == openedConversation?.id">
+    </app-conversations-list-item>
+  </div>
+
+  <div class="not-found-msg" *ngIf="!conversations.length">{{'page.common.conversation.conversations.not_found' | i18n}}</div>
+
+  <div class="pagination-btns" *ngIf="totalPages > 1">
+    <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)">
+    </app-pagination-buttons>
+  </div>
+</div>

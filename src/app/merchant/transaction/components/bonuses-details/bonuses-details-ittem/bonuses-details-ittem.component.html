@@ -1,0 +1,102 @@
+<div class="table-row">
+  <div class="wrapper text-4">
+    <div class="wrapper text-2">
+      <div class="text">
+        <div *ngIf="bonus.rule">
+          <h4>Loyalty rule</h4>
+          <p><span><strong>id: </strong> {{bonus.rule.id}}<!--6c39480e-22b7-4f7c-918a-4e3b1382a1c9--></span></p>
+          <p><span><strong>Type: </strong>{{bonus.rule.type}}</span></p>
+          <p><span><strong>Name: </strong>{{bonus.rule.name}}</span></p>
+          <p><span><strong>Description: </strong>{{bonus.rule.description}}</span></p>
+          <p><span><strong>valueType: </strong>{{bonus.rule.valueType}}</span></p>
+          <p><span><strong>value: </strong>{{bonus.rule.value | isEmpty:'-'}}</span></p>
+        </div>
+      </div>
+      <div class="text" *ngIf="bonus.purchase">
+        <div>
+          <h4>Purchases</h4>
+          <p><span><strong>id: </strong>{{bonus.purchase.id}}</span></p>
+          <p><span><strong>products:</strong></span></p>
+          <div class="sub">
+            <ul>
+              <li><p><span><strong>id: </strong>{{bonus.purchase.product.id}}</span></p></li>
+              <li><p><span><strong>externalCode: </strong>{{bonus.purchase.product.externalCode}}</span></p></li>
+              <li><p><span><strong>Name: </strong>{{bonus.purchase.product.name}}</span></p></li>
+              <li><p><span><strong>Description: </strong>{{bonus.purchase.product.description}}</span></p></li>
+            </ul>
+          </div>
+          <p><span><strong>Quantity: </strong>{{bonus.purchase.quantity}}</span></p>
+
+          <div class="sub">
+            <ul>
+              <li><p><span><strong>id: </strong>{{bonus.purchase.product.id}}</span></p></li>
+              <li><p><span><strong>externalCode: </strong>{{bonus.purchase.product.externalCode}}</span></p></li>
+              <li><p><span><strong>Name: </strong>{{bonus.purchase.product.name}}</span></p></li>
+              <li><p><span><strong>Description: </strong>{{bonus.purchase.product.description}}</span></p></li>
+            </ul>
+          </div>
+          <p><span><strong>Unit of measurement:</strong></span></p>
+          <div class="sub">
+            <ul>
+              <li><p><span><strong>id: </strong>{{bonus.purchase.measureUnit.id}}</span></p></li>
+              <li><p><span><strong>externalCode: </strong>{{bonus.purchase.measureUnit.externalCode}}</span></p></li>
+              <li><p><span><strong>code: </strong>{{bonus.purchase.measureUnit.code}}</span></p></li>
+              <li><p><span><strong>Description: </strong>{{bonus.purchase.measureUnit.description}}</span></p></li>
+            </ul>
+          </div>
+          <p><span><strong>Price: </strong>{{bonus.purchase.price}}</span></p>
+          <p><span><strong>Amount: </strong>{{bonus.purchase.totalAmount}}</span></p>
+
+
+        </div>
+      </div>
+      <div class="wrapper text-2">
+        <div class="text" *ngIf="bonus.category">
+          <div>
+            <h4>Category</h4>
+            <p><span><strong>Category:</strong></span></p>
+            <div class="sub">
+              <ul>
+                <li><p><span><strong>id: </strong>{{bonus.category.category.id}}</span></p></li>
+                <li><p><span><strong>externalCode: </strong>{{bonus.category.category.externalCode}}</span></p></li>
+                <li><p><span><strong>Name: </strong>{{bonus.category.category.name}}</span></p></li>
+                <li><p><span><strong>Description: </strong>{{bonus.category.category.description}}</span></p></li>
+              </ul>
+            </div>
+            <p><span><strong>Bonus type: </strong>{{bonus.category.valueType}}</span></p>
+            <p><span><strong>Value: </strong>{{bonus.category.value}}</span></p>
+          </div>
+        </div>
+        <div class="text" *ngIf="bonus.product">
+          <h4>Продукт</h4>
+          <p><span><strong>id: </strong>{{bonus.product.product.id}}</span></p>
+          <p><span><strong>externalCode: </strong>{{bonus.product.product.externalCode}}</span></p>
+          <p><span><strong>Name: </strong>{{bonus.product.product.name}}</span></p>
+          <p><span><strong>Description: </strong>{{bonus.product.product.description}}</span></p>
+
+          <p><span><strong>Unit of measurement:</strong></span></p>
+          <div class="sub">
+            <ul>
+              <li><p><span><strong>id: </strong>{{bonus.product.product.measureUnit.id}}</span></p></li>
+              <li><p><span><strong>externalCode: </strong>{{bonus.product.product.measureUnit.externalCode}}</span></p>
+              </li>
+              <li><p><span><strong>code: </strong>{{bonus.product.product.measureUnit.code}}</span></p></li>
+              <li><p><span><strong>Description: </strong>{{bonus.product.product.measureUnit.description}}</span></p>
+              </li>
+            </ul>
+          </div>
+          <p><span><strong>valueType: </strong>{{bonus.product.valueType}}</span></p>
+          <p><span><strong>value: </strong>{{bonus.product.value}}</span></p>
+
+        </div>
+      </div>
+      <div class="wrapper text-2">
+        <div class="text">
+          <h4>Value</h4>
+          <p><span>{{bonus.value}}</span></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>

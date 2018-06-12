@@ -1,0 +1,12 @@
+<div class="table-row">
+  <div class="table-cell text">
+    <div>{{'page.fin_spec.contract.view.name_col' | i18n: {'0': contract.personType | firstIsUpper, '1':
+      (orgTypes[contract.organizationType] | i18n) || contract.organizationType | firstIsUpper} }}
+    </div>
+    <div>{{contract.name}}</div>
+    <div>{{contract.active ? ('entity.status.active' | i18n) : ('entity.status.inactive' | i18n)}}</div>
+  </div>
+  <div class="table-cell text">
+    <div><a [routerLink]="[contract.id]">{{'page.common.action.details' | i18n}}</a></div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div *ngIf="organizations">
+  <div class="table-wrapper" *ngIf="organizations.length">
+    <div class="table contracts-table">
+      <div class="table-header">
+        <div class="table-cell text">{{'entity.cash_desk' | i18n}}</div>
+        <div class="table-cell text">{{'page.common.action.actions' | i18n}}</div>
+      </div>
+      <app-cash-desks-item *ngFor="let organization of organizations" [organization]="organization"></app-cash-desks-item>
+    </div>
+  </div>
+
+  <div class="not-found-msg" *ngIf="!organizations.length">{{'page.accountant.cash_desks.not_found' | i18n}}</div>
+
+  <div class="pagination-btns" *ngIf="totalPages > 1">
+    <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)">
+    </app-pagination-buttons>
+  </div>
+</div>
+
+<div *ngIf="!organizations" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

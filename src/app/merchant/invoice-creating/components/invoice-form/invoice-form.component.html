@@ -1,0 +1,120 @@
+<form [formGroup]="form">
+  <div class="row">
+
+    <div class="form-group col-sm-12" *ngIf="templates.length">
+      <label for="template">{{'page.common.templates.choose' | i18n}}</label>
+      <select id="template" class="form-control" formControlName="template">
+        <option value="{{'null'}}">{{'page.common.templates.choose' | i18n}}</option>
+        <option *ngFor="let t of templates" value="{{t.id}}">{{t.name}}</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="name">{{'page.merchant.invoice.service' | i18n}}</label>
+      <input type="text" id="name" class="form-control" formControlName="name" (input)="resetError('nameRequired')">
+      <div class="error-msg text-danger" *ngIf="errors.nameRequired">{{'validator.required_field' | i18n}}</div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="payerContact">{{'page.merchant.invoice.payer' | i18n}}</label>
+      <input type="text" id="payerContact" class="form-control" formControlName="payerContact"
+             (input)="resetError('payerContactRequired', 'payerContactNotFound')">
+      <div class="error-msg text-danger" *ngIf="errors.payerContactRequired">{{'validator.required_field' | i18n}}</div>
+      <div class="error-msg text-danger" *ngIf="errors.payerContactNotFound">{{'validator.transfer.contact_not_foun' | i18n}}</div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="recipientCoin">{{'entity.coin' | i18n}}</label>
+      <select id="recipientCoin" class="form-control" formControlName="recipientCoin">
+        <option *ngFor="let c of coins" value="{{c.serial}}">{{c.name}} ({{c.issuer.currency}})</option>
+      </select>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="expiresAt">{{'page.merchant.invoice.expired_at' | i18n}}</label>
+      <input id="expiresAt" type="text" readonly class="form-control" formControlName="expiresAt" #dp="bsDatepicker"
+             [minDate]="tomorrow" [bsConfig]="bsConfig" bsDatepicker (input)="resetError('expiresAtRequired, expiresAtFuture')">
+      <div class="error-msg text-danger" *ngIf="errors.expiresAtRequired">{{'validator.required_field' | i18n}}</div>
+      <div class="error-msg text-danger" *ngIf="errors.expiresAtFuture">{{'javax.validation.constraints.Future.message' | i18n}}</div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="productCode">{{'page.merchant.invoice.product_code' | i18n}}</label>
+      <input type="text" id="productCode" class="form-control" formControlName="productCode"
+             (input)="resetError('productCodeRequired')">
+      <div class="error-msg text-danger" *ngIf="errors.productCodeRequired">{{'validator.required_field' | i18n}}</div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="count">{{'page.merchant.invoice.product_count' | i18n}}</label>
+      <input type="text" id="count" class="form-control" formControlName="count"
+             (input)="resetError('countRequired', 'countFormat')">
+      <div class="error-msg text-danger" *ngIf="errors.countRequired">{{'validator.required_field' | i18n}}</div>
+      <div class="error-msg text-danger" *ngIf="errors.countFormat">{{'validator.amount.format' | i18n: {'0': '12345'} }}</div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="productPrice">{{'page.merchant.invoice.product_price' | i18n}}</label>
+      <input type="text" id="productPrice" class="form-control" formControlName="productPrice"
+             (input)="resetError('productPriceRequired', 'productPriceFormat')">
+      <div class="error-msg text-danger" *ngIf="errors.productPriceRequired">{{'validator.required_field' | i18n}}</div>
+      <div class="error-msg text-danger" *ngIf="errors.productPriceFormat">{{'validator.amount.format' | i18n: {'0': '12345.67'} }}</div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label for="amount">{{'page.merchant.invoice.total_price' | i18n}}</label>
+      <input type="text" id="amount" class="form-control" readonly formControlName="amount">
+    </div>
+
+    <div class="form-group col-sm-12" *ngIf="commission">
+      <div class="row">
+        <!--<div class="col-sm-6"><b>Transaction Amount:</b> {{commission.transactionAmount}} {{commission.issuer.currency}}</div>-->
+        <!--<div class="col-sm-6"><b>Sender Amount Push:</b> {{commission.senderAmountPush}} {{commission.issuer.currency}}</div>-->
+        <div class="col-sm-6"><b>{{'entity.commission' | i18n}}:</b> {{commission.commissionAmountPush | number: '.2'}} {{commission.issuer.currency}}</div>
+        <div class="col-sm-6"><b>{{'page.common.commission.amount_without_commission' | i18n}}:</b> {{commission.recipientAmountPush| number: '.2'}} {{commission.issuer.currency}}</div>
+        </div>
+    </div>
+
+    <!--<div class="form-group col-sm-12">-->
+    <!--<label for="description">Description</label>-->
+    <!--<textarea type="text" id="description" class="form-control" formControlName="description" rows="2"></textarea>-->
+    <!--<div class="error-msg text-danger" *ngIf="errors.descriptionRequired">Description is required</div>-->
+    <!--</div>-->
+
+    <div class="col-sm-12" *ngIf="form.get('template').value === 'null'">
+      <div class="checkbox">
+        <input type="checkbox" id="saveTemplate" formControlName="saveTemplate">
+        <label for="saveTemplate">{{'page.common.templates.save' | i18n}}</label>
+      </div>
+    </div>
+
+    <div class="form-group col-sm-12" *ngIf="form.get('saveTemplate').value">
+      <label for="templateName">{{'page.common.templates.name' | i18n}}</label>
+      <input type="text" id="templateName" class="form-control" formControlName="templateName"
+             (input)="resetError('templateNameRequired')">
+      <div class="error-msg text-danger" *ngIf="errors.templateNameRequired">{{'validator.required_field' | i18n}}</div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="checkbox">
+        <input type="checkbox" id="addSettings" formControlName="addSettings">
+        <label for="addSettings">{{'page.merchant.invoice.add_hold_settings' | i18n}}</label>
+      </div>
+    </div>
+
+    <div class="form-group col-sm-12" *ngIf="form.get('addSettings').value">
+      <label for="paymentSettings">{{'page.merchant.invoice.hold_settings'| i18n}}</label>
+      <select id="paymentSettings" class="form-control" formControlName="paymentSettings">
+        <option *ngFor="let type of settingsTypes" value="{{type.type}}">{{type.name}}</option>
+      </select>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="action-btns one-action-btn" style="margin: 0">
+        <button class="btn btn-primary action-btn" [appInButtonLoader]="waiting" (click)="onCreate()">
+          <span>{{'page.common.action.save' | i18n}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

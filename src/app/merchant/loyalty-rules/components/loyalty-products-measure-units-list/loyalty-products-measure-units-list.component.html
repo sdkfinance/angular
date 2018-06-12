@@ -1,0 +1,10 @@
+<div class="btn-group" [class.open]="showMeasureUnits" style="width: 100%">
+  <a class="btn btn-default dropdown-toggle" (click)="onMenuTitleClick()" data-toggle="dropdown" style="width: 100%">
+    {{ menuTitle}}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" style="margin-top: 5px" *ngIf="measureUnitsList">
+    <li *ngFor="let measureUnit of measureUnitsList"><a (click)="onItemClick(measureUnit)">{{ measureUnit.code}}</a></li>
+  </ul>
+</div>
+

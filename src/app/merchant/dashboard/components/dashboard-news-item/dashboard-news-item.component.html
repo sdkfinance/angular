@@ -1,0 +1,27 @@
+<div class="ibox-content" [routerLink]="['/merchant/news', newsItem.name, newsItem.id]">
+  <div class="dropdown-messages-box" *ngIf="messageOfNews">
+    <a class="pull-left" style="border-radius: 0; margin-right: 10px">
+      <img alt="image" class="img-circle" *ngIf="smallPictureUrl" [src]="smallPictureUrl" style="border-radius: 0;">
+    </a>
+    <div class="media-body ">
+      <strong>{{ newsItem.name }}</strong> <br>
+      <small class="text-muted">{{countDaysDiff(newsItem.createdAt)}} {{ newsItem.createdAt | date: 'h:mm a - d.MM.y'
+        }}
+      </small>
+    </div>
+  </div>
+
+  <div *ngIf="!messageOfNews">
+    <div class="loader-container is-item">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ibox-content:hover {
+    background: #eeeeee;
+    outline: none;
+    cursor: pointer
+  }
+</style>

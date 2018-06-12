@@ -1,0 +1,15 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.transfer.title' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content">
+    <div *ngIf="!coins" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+    <app-transfer-form *ngIf="!result && coins && coins.length > 0" (result)="setResult($event)" (currency)="setCurrency($event)" [coins]="coins"></app-transfer-form>
+    <app-transfer-result *ngIf="result" (resetResult)="resetResult($event)" [currency]="currency" [result]="result"></app-transfer-result>
+    <div *ngIf="coins && !coins.length" [innerHTML]="'page.individual.coin.first_visit' | i18n"></div>
+  </div>
+
+</div>

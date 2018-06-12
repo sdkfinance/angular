@@ -1,0 +1,26 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+    <div *ngIf="!userProfile" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="userProfile">
+      <h3>{{'entity.profile.name_plain' | i18n}}</h3>
+      <p>{{userProfile.person.namePlain.first}} {{userProfile.person.namePlain.middle}}
+        {{userProfile.person.namePlain.last}}</p>
+      <h3>{{'entity.profile.name_intl' | i18n}}</h3>
+      <p>{{userProfile.person.nameIntl.first}} {{userProfile.person.nameIntl.middle}}
+        {{userProfile.person.nameIntl.last}}</p>
+      <h3>{{'entity.contact.email' | i18n}}</h3>
+      <p>
+        <span>{{ userProfile.contact.email }}</span>
+        <span *ngIf="userProfile.contact.emailVerified" style="margin-left: 20px">{{'page.individual.profile.verify.yes' | i18n}}</span>
+      </p>
+
+      <div>
+        <button class="btn btn-danger" (click)="onDeleteUser()">{{'page.common.action.archive' | i18n}}</button>
+        <button class="btn btn-warning" (click)="onChangePassword()">{{'page.common.action.change_password' | i18n}}</button>
+      </div>
+    </div>
+  </div>
+</div>

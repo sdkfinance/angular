@@ -1,0 +1,18 @@
+<div *ngIf="requests">
+  <div class="table-wrapper" *ngIf="requests.length">
+    <div class="table contracts-table">
+      <div class="table-header">
+        <div class="table-cell text">{{'page.cashier.system.request_number' | i18n}}</div>
+        <div class="table-cell text">{{'entity.coin.amount' | i18n}}</div>
+        <div class="table-cell text">{{'page.common.action.actions' | i18n}}</div>
+      </div>
+      <app-withdrawal-requests-item *ngFor="let request of requests" [request]="request" (updateList)="getRequests($event)"></app-withdrawal-requests-item>
+    </div>
+  </div>
+
+  <div class="not-found-msg" *ngIf="!requests.length">{{'page.accountant.cash_desk.redeem.requests.not_found' | i18n}}</div>
+</div>
+
+<div *ngIf="!requests" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

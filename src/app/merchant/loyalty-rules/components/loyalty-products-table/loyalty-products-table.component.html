@@ -1,0 +1,52 @@
+<div class="ibox">
+  <div class="row">
+    <div class="col-sm-12" style="text-align: center"><h5>List of products</h5></div>
+  </div>
+  <div class="row">
+    <div class="container-fluid">
+
+      <div class="table-row header">
+        <div class="wrapper">
+          <div class="num-wrapper">
+            <div class="num">№</div>
+            <div class="num">Id</div>
+          </div>
+
+          <div class="text-wrapper">
+            <div class="text">External code</div>
+            <div class="text">Name</div>
+            <div class="text">Description</div>
+            <div class="text last">Unit of measurement</div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="products">
+        <div class="table-row" *ngFor="let product of products; let i = index;">
+          <app-loyalty-products-table-item
+            [product]="product"
+            [number]="i+(currentPage*pageSize)"
+            class="wrapper">
+          </app-loyalty-products-table-item>
+        </div>
+
+        <p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="!products.length">There is no products</p>
+      </div>
+
+      <div *ngIf="!products" class="loader-container is-divtable" style="margin: 25px">
+        <div class="loading-spinner"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="totalPages > 1" style="padding-right: 20px; background: white; display: inline-block; width: 100%;">
+  <ul class="pagination pull-right" style="margin-bottom: 0">
+    <li *ngIf="currentPage != 0" class="footable-page-arrow"><a (click)="onPreviousPage()">‹</a></li>
+    <li *ngIf="currentPage != (totalPages - 1)" class="footable-page-arrow"><a (click)="onNextPage()">›</a></li>
+  </ul>
+</div>
+
+

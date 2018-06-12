@@ -1,0 +1,43 @@
+<div class="table-cell text">
+  <div>{{ transaction.createdAt | date: 'dd.MM.yyyy'}}</div>
+  <div>{{ transaction.createdAt | date: 'HH:mm' }}</div>
+</div>
+
+<div class="table-cell text">
+  <div>{{ transaction.type | transactionType | i18n }}</div>
+  <div>
+    <b>{{'entity.transaction.code' | i18n}}:</b>
+    {{ transaction.id }}
+  </div>
+  <div *ngIf="transaction.description">
+    <b>{{ 'page.common.description' | i18n }}:</b>
+    {{ transaction.description }}
+  </div>
+</div>
+
+<div class="table-cell text">
+  <div *ngFor="let t of transactionAmounts">
+    {{ t.amount.toFixed(2) + ' ' + t.currency}}
+  </div>
+</div>
+
+<div class="table-cell text">
+  <div *ngFor="let c of transactionCommissions">
+    {{ c.amount.toFixed(2) + ' ' + c.currency }}
+  </div>
+</div>
+
+<div class="table-cell text">
+  <div *ngIf="coins.clientCoin">{{coins.clientCoin.name}} {{coins.clientCoin.serial}}</div>
+  <div *ngIf="coins.fromCoin"><b>{{'page.common.transactions.with_coin' | i18n}}</b> {{coins.fromCoin.name}} {{coins.fromCoin.serial}}</div>
+  <div *ngIf="coins.toCoin"><b>{{'page.common.transactions.on_coin' | i18n}}</b> {{coins.toCoin.name}} {{coins.toCoin.serial}}</div>
+</div>
+
+<div class="table-cell status"
+     [class.text-processed]="selectedTransaction.status == 'processed'"
+     [class.text-pending]="selectedTransaction.status == 'pending'"
+     [class.text-limited]="selectedTransaction.status == 'limited'"
+     [class.text-declined]="selectedTransaction.status == 'declined' || selectedTransaction.status == 'error'">
+  {{ selectedTransaction.status | transactionStatus | i18n }}
+  <div><a [routerLink]="['./bill', selectedTransaction.id]">{{'page.common.action.print' | i18n}}</a></div>
+</div>

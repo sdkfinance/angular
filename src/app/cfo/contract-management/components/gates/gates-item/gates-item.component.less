@@ -1,0 +1,44 @@
+.table-header, .table-row {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-cell {
+  padding: 8px;
+}
+
+.table-cell.text {
+  flex: 1 1 100px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.commission-profiles {
+  flex: 5 5 500px;
+
+  .item {
+
+    div:nth-child(2) {
+      flex: 3 3 300px;
+    }
+
+    div:nth-child(3) {
+      flex: 1 1 100px;
+    }
+
+    display: flex;
+
+    border-bottom: 1px solid #e0e0e0;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  .limit {
+    text-align: center;
+  }
+}
+

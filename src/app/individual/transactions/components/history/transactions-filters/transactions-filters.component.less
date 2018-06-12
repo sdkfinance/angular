@@ -1,0 +1,68 @@
+.filter-form {
+  display: flex;
+  align-items: flex-end;
+
+  & > div {
+    display: flex;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .code > div, .date-from, .date-to, .filter-btns button:first-child {
+    margin-right: 15px;
+  }
+
+  .code > div {
+    width: 100%;
+  }
+
+  .code {
+    flex: 1;
+  }
+
+  & > div:last-child {
+    flex: 2;
+  }
+
+  .filter-date {
+    display: flex;
+  }
+
+  .filter-btns {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  @media screen and (max-width: 900px) {
+    & {
+      flex-direction: column;
+    }
+
+    .code > div {
+      margin-right: 0;
+    }
+
+    & > div {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 460px) {
+    & > div:last-child {
+      flex-direction: column;
+    }
+
+    .filter-btns {
+      margin-top: 10px;
+      justify-content: flex-end;
+    }
+
+    .date-to {
+      margin-right: 0;
+    }
+  }
+
+
+}

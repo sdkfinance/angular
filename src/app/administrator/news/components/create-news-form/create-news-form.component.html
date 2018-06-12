@@ -1,0 +1,36 @@
+<form [formGroup]="createNews" novalidate>
+  <h3>Add news</h3>
+  <div class="form-group ">
+    <label>Title</label>
+    <input type="text" placeholder="Title" class="form-control" formControlName="title">
+  </div>
+  <div class="form-group">
+    <label>Text</label>
+    <textarea  id="" cols="30" rows="10" class="form-control" formControlName="text"  style="width: 100%; padding: 12px; resize: none;"></textarea>
+
+  </div>
+  <div class="btn-group" style="width: 100%;">
+    <label title="Upload image file" for="inputImage" class="btn btn-primary" (change)="addFile()">
+      <input #fileInput type="file" accept="image/*" name="file"  id="inputImage" class="hide" >
+      Upload a picture
+    </label>
+   <!-- <label title="Donload image" id="download" class="btn btn-primary">Download</label>-->
+  </div>
+
+  <div *ngIf="isImageAdded">
+    <app-result-img *ngFor="let item of imagesArray" [imgItem]="item"></app-result-img>
+        <!--<div  class="live-image-container">
+          <img src="{{item}}" alt="">
+          <div class="close-btn">
+            <i class="fa fa-times"></i>
+          </div>
+        </div>-->
+
+  </div>
+  <div class="pull-right">
+    <input type="submit" class="btn btn-primary block full-width m-b" hidden="{{!isImageAdded}}" value="Create"
+           (click)="onSubmitForm(createNews)"/>
+  </div>
+</form>
+
+

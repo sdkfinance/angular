@@ -1,0 +1,39 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.common.action.create' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content">
+    <form [formGroup]="bundleForm">
+      <div class="m-b-15">
+        <label for="key">{{'page.administrator.i18n.key' | i18n}}</label>
+        <input id="key" class="form-control" type="text" formControlName="key">
+        <div *ngIf="keyError" style="padding-top: 5px !important;">
+          <span class="text-danger">Can include only "a-z", "." and "_"</span>
+        </div>
+      </div>
+
+      <div class="m-b-15">
+        <label for="valueEn">{{'page.common.languages.en' | i18n}}</label>
+        <input id="valueEn" class="form-control" type="text" formControlName="valueEn">
+      </div>
+
+      <div class="m-b-15">
+        <label for="valueRu">{{'page.common.languages.ru' | i18n}}</label>
+        <input id="valueRu" class="form-control" type="text" formControlName="valueRu">
+      </div>
+
+      <div class="m-b-15">
+        <label for="valueUk">{{'page.common.languages.uk' | i18n}}</label>
+        <input id="valueUk" class="form-control" type="text" formControlName="valueUk">
+      </div>
+
+      <div style="display: flex; justify-content: flex-end">
+        <button class="btn btn-primary" (click)="onCreate()" [appInButtonLoader]="waiting">
+          <span>{{'page.common.action.create' | i18n}}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

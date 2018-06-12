@@ -1,0 +1,22 @@
+<div *ngIf="!exchangers" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>
+
+<div *ngIf="exchangers">
+
+  <h4>{{'page.individual.exchange.exchangers.title' | i18n: {'0': issuersIsd.outIssuerCode, '1': issuersIsd.inIssuerCode} }}</h4>
+
+  <div class="exchanger m-b-15" *ngFor="let exchanger of exchangers" (click)="onNext(exchanger)">
+    <b>{{'page.common.name' | i18n}}:</b> {{exchanger.exchanger.name}}<br>
+    <b>{{'page.individual.exchange.exchangers.course' | i18n}}:</b> {{exchanger.rate }}<br>
+    <b>{{'page.individual.exchange.exchangers.reserve' | i18n}}:</b> {{exchanger.reserve.toFixed(2)}} {{ exchanger.outIssuer.currency }}
+  </div>
+
+  <div *ngIf="!exchangers.length" class="m-b-15">{{'page.individual.exchange.exchangers.not_found' | i18n}}</div>
+
+  <div class=".action-btns.two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <b>{{'page.common.action.back' | i18n}}</b>
+    </button>
+  </div>
+</div>

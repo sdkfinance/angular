@@ -1,0 +1,62 @@
+<div class="ibox">
+  <div class="ibox-content" style="border: none">
+
+    <div *ngIf="!profile" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+
+    <div *ngIf="profile">
+      <h3>{{'page.common.notification' | i18n}}</h3>
+      <div class="row">
+        <div class="col-sm-6">
+          <h4>{{'page.common.notification.transaction' | i18n}}</h4>
+          <div>
+            <div *ngIf="profile.profile.contact.emailVerified">
+              <input type="checkbox" name="transactionEmail" [(ngModel)]="security.transactionNotification.email">
+              {{'page.individual.profile.confirm.send_email' | i18n}}
+            </div>
+            <div *ngIf="profile.profile.contact.phoneVerified">
+              <input type="checkbox" name="transactionPhone" [(ngModel)]="security.transactionNotification.phone">
+              {{'page.individual.profile.confirm.send_sms' | i18n}}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <h4>{{'page.common.notification.authentication' | i18n}}</h4>
+          <div>
+            <div *ngIf="profile.profile.contact.emailVerified">
+              <input type="checkbox" name="authenticationEmail" [(ngModel)]="security.authorizationNotification.email">
+              {{'page.individual.profile.confirm.send_email' | i18n}}
+            </div>
+            <div *ngIf="profile.profile.contact.phoneVerified">
+              <input type="checkbox" name="authenticationPhone" [(ngModel)]="security.authorizationNotification.phone">
+              {{'page.individual.profile.confirm.send_sms' | i18n}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>{{'page.common.security.two-factor-authenticate' | i18n}}</h3>
+      <p *ngIf="!profile.profile.contact.phoneVerified">
+        {{'page.common.security.phone_not_verify' | i18n}}
+      </p>
+      <div *ngIf="profile.profile.contact.phoneVerified">
+        <input type="checkbox" name="twoFactorsAuth" [(ngModel)]="security.twoFactorsAuthEnabled">
+        {{'page.common.security.two-factor-authenticate' | i18n}}
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-primary pull-right" [appInButtonLoader]="waiting" (click)="saveChanges()">
+            <span>{{'page.common.action.save_changes' | i18n}}</span>
+          </button>
+        </div>
+      </div>
+
+      <app-settings-password></app-settings-password>
+    </div>
+
+  </div>
+</div>

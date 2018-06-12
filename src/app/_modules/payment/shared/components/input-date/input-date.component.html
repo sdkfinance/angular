@@ -1,0 +1,24 @@
+<div class="form_col form_col_small" [formGroup]="parent">
+  <label *ngIf="label" class="form_label">{{ label }}</label>
+  <br>
+  <div class="form_field">
+    <input
+      class="exp_date"
+      [mask]="'00'"
+      [formControlName]="name"
+      [name]="name"
+      type="text"
+      [placeholder]="placeholder">
+  </div>
+  <span>
+    /
+  </span>
+  <input
+    class="exp_date"
+    [mask]="'00'"
+    [formControlName]="secondName"
+    [name]="secondName"
+    type="text"
+    [placeholder]="secondPlaceholder">
+  <app-info [message]="description"></app-info>
+</div>

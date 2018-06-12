@@ -1,0 +1,28 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="requestNumber">{{'page.cashier.withdraw_cash.number_request' | i18n}}</label>
+    <input id="requestNumber" type="text" class="form-control" formControlName="requestNumber"
+           (input)="resetErrors('requestNumber.required', 'requestNumber.pattern', 'processed', 'pending', 'not_found')">
+    <div class="error-msg" *ngIf="this.errors['requestNumber.required']">
+      {{'validator.required' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="this.errors['requestNumber.pattern']">
+      {{'validator.request.invalid' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="this.errors['processed']">
+      {{'page.cashier.withdraw_cash.processed' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="this.errors['pending']">
+      {{'page.cashier.withdraw_cash.not_approved_by_accountant' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="this.errors['not_found']">
+      {{'page.cashier.system.request_number.not_found' | i18n}}
+    </div>
+  </div>
+
+  <div class="action-btns one-action-btn">
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" type="submit">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>

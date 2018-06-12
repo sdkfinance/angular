@@ -1,0 +1,35 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.exchange.currency.create_safe' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content" style="margin-top: 15px; padding-top: 25px">
+    <form [formGroup]="coinForm">
+      <div class="m-b-15">
+        <label for="name">{{'page.individual.coin.name' | i18n}}</label>
+        <input id="name" placeholder="Type coin name..." class="form-control" type="text" formControlName="name">
+      </div>
+
+      <div class="m-b-15">
+        <label for="currency">{{'entity.coin.currency' | i18n}}</label>
+        <select id="currency" class="form-control" type="text" formControlName="currency">
+          <option value="null">{{'entity.coin.currency' | i18n}}</option>
+          <option *ngFor="let issuer of issuers" value="{{issuer.id}}">{{issuer.name + " (" + issuer.currency.code +
+            ")"}}
+          </option>
+        </select>
+      </div>
+
+      <div *ngIf="showError" class="m-b-15">
+        <span class="text-danger">{{'validator.required' | i18n}}</span>
+      </div>
+
+      <div class="action-btns one-action-btn">
+        <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" (click)="onCreate()">
+          <span>{{'page.common.action.create' | i18n}}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+</div>

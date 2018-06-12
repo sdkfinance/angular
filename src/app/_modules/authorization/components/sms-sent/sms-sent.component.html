@@ -1,0 +1,31 @@
+<div>
+  <div style="margin-bottom: 10px">
+    {{'page.anonym.signup.confirmation_code' | i18n: {'0': phone} }}
+  </div>
+
+  <div style="display: flex; align-items: center; margin-bottom: 10px; justify-content: center">
+    <input type="text" class="form-control" style="width: 100px; margin-right: 10px" name="code" [(ngModel)]="code" (focus)="wrongCode = false">
+    <button class="btn btn-primary" [appInButtonLoader]="waiting" (click)="confirmPhoneWithOtp()">
+      <span>{{'page.common.action.confirm' | i18n}}</span>
+    </button>
+  </div>
+
+  <div *ngIf="wrongCode" style="margin-bottom: 10px" class="error">
+    {{'validator.confirm_code.incorrect' | i18n}}
+  </div>
+
+  <div *ngIf="codeResent" style="color: #3ab549; margin-bottom: 10px">
+    {{'page.anonym.signup.resend_code.success' | i18n}}
+  </div>
+
+  <div style="margin-bottom: 10px">
+    {{'page.anonym.signup.resend_code.not_come_sms' | i18n}}
+    <a (click)="resendCode()">{{'page.anonym.signup.resend_code' | i18n}}</a>
+  </div>
+</div>
+
+
+
+
+
+

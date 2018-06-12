@@ -1,0 +1,18 @@
+<div class="list">
+  <div class="list__content">
+    <div style="margin-bottom: 10px">
+      <span (click)="onSelect()"
+            style="cursor: pointer; color: green">{{'page.common.transactions.select' | i18n}}</span> /
+      <span (click)="onCancel()"
+            style="cursor: pointer; color: red">{{'page.common.transactions.select.cancel' | i18n}}</span>
+      {{'page.common.transactions.select.all' | i18n}}
+    </div>
+
+    <div *ngFor="let item of items">
+      <input type="checkbox" [(ngModel)]="item.selected"> {{ (item.description | i18n) || item.type}}
+    </div>
+  </div>
+
+  <button (click)="onOk()" class="btn btn-sm btn-primary" style="margin: 15px">{{'page.common.action.ok' | i18n}}
+  </button>
+</div>

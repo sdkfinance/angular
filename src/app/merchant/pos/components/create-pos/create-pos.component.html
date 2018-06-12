@@ -1,0 +1,32 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5 *ngIf="!pos">{{'page.merchant.pos.creating' | i18n}}</h5>
+    <h5 *ngIf="pos">{{'page.merchant.pos.edit_pos' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content">
+    <form [formGroup]="createPosForm">
+      <div class="form-group">
+        <input type="text" placeholder="Name" class="form-control" formControlName="posName">
+        <div class="error-msg" *ngIf="createPosForm.get('posName').invalid && formSubmitted">
+          {{'validator.required' | i18n}}
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="text" placeholder="Description" class="form-control" formControlName="posDescription">
+        <div class="error-msg" *ngIf="createPosForm.get('posDescription').invalid && formSubmitted">
+          {{'validator.required' | i18n}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"
+                  (click)="onCreate(createPosForm)">
+            <strong *ngIf="!pos">{{'page.common.action.create' | i18n}}</strong>
+            <strong *ngIf="pos">{{'page.common.action.edit' | i18n}}</strong>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

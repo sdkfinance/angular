@@ -1,0 +1,60 @@
+<div style="margin: 10px">
+  <div class="m-b-15">
+    <h5>Description:</h5>
+    <span>{{ loyaltyRule.description }}</span>
+  </div>
+
+  <div class="m-b-15">
+    <h5>Type:</h5>
+    <span>{{ loyaltyRule.valueType }}</span>
+    <span *ngIf="loyaltyRule.valueType != 'NOT_SPECIFIED'"> {{ loyaltyRule.value }}</span>
+  </div>
+
+  <div class="m-b-15">
+    <h5>POS:</h5>
+    <span *ngIf="loyaltyRule.activationPolicy == 'ALL_POINTS_OF_SALE'">All POS</span>
+    <div *ngIf="loyaltyRule.activationPolicy == 'SELECTED_POINTS_OF_SALE' && posList">
+      <div *ngFor="let pos of posList">
+        {{ pos.name }}
+      </div>
+      <div *ngIf="posList.length == 0">No POS</div>
+    </div>
+  </div>
+
+  <div class="m-b-15" *ngIf="loyaltyGroupsList">
+    <h5>Loyalty groups:</h5>
+    <div *ngFor="let group of loyaltyGroupsList">
+      {{ group.name }}
+    </div>
+    <div *ngIf="loyaltyGroupsList.length == 0">No groups</div>
+  </div>
+
+  <div class="m-b-15" *ngIf="productsList">
+    <h5>Products:</h5>
+    <div *ngFor="let product of productsList">
+      {{ product.product.name }} ({{product.valueType}}, {{product.value}})
+    </div>
+    <div *ngIf="productsList.length == 0">No products</div>
+  </div>
+
+  <div class="m-b-15" *ngIf="categoriesList">
+    <h5>Product categories:</h5>
+    <div *ngFor="let category of categoriesList">
+      {{ category.category.name }} ({{category.valueType}}, {{category.value}})
+    </div>
+    <div *ngIf="categoriesList.length == 0">No categories </div>
+  </div>
+
+  <div class="m-b-15" *ngIf="issuersList">
+    <h5>Issuer:</h5>
+    <div *ngFor="let issuer of issuersList">
+      {{ issuer.name }}
+    </div>
+    <div *ngIf="issuersList.length == 0">No issuers</div>
+  </div>
+
+  <div class="loader-container is-divtable"
+       *ngIf="!issuersList || !categoriesList || !productsList || !loyaltyGroupsList" style="margin: 10px">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

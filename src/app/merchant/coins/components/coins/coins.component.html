@@ -1,0 +1,14 @@
+<div class="wrapper wrapper-content">
+  <div class="ibox" style="margin-bottom: 0">
+    <div class="ibox-title">
+      <h5>E-wallets</h5>
+    </div>
+  </div>
+  <div *ngIf="coins" class="row">
+      <app-coin *ngFor="let coin of coins" [coin]="coin" class="col-md-4" style="padding: 0px"></app-coin>
+  </div>
+
+  <div *ngIf="!coins" class="loader-container is-divtable" style="margin: 25px">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

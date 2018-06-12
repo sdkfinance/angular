@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>{{'page.fin_spec.commission.edit.title' | i18n}}</h3>
+    <div *ngIf="profile">
+
+      <form [formGroup]="form">
+
+        <div class="form-group">
+          <label for="type">{{'entity.commission.type' | i18n}}</label>
+          <select id="type" type="text" formControlName="type" class="form-control">
+            <option *ngFor="let key of commissionTypesKeys()" value="{{key}}">{{commissionTypes[key].name | i18n}}</option>
+          </select>
+        </div>
+
+        <div class="form-group" *ngIf="commissionTypes[form.controls['type'].value].percent">
+          <label for="valuePercent">{{'entity.commission.value_percent' | i18n}}</label>
+          <input id="valuePercent" type="text" formControlName="valuePercent" class="form-control"
+                 (input)="resetError('valuePercentRequired', 'valuePercentFormat')">
+          <div class="error-msg text-danger" *ngIf="errors.valuePercentRequired">{{'validator.required' | i18n}}</div>
+          <div class="error-msg text-danger" *ngIf="errors.valuePercentFormat">{{'validator.amount.format' | i18n: {'0': '12.34'} }}</div>
+        </div>
+
+        <div class="form-group" *ngIf="commissionTypes[form.controls['type'].value].fixed">
+          <label for="valueFixed">{{'entity.commission.value_fixed' | i18n}}</label>
+          <input id="valueFixed" type="text" formControlName="valueFixed" class="form-control"
+                 (input)="resetError('valueFixedRequired', 'valueFixedFormat')">
+          <div class="error-msg text-danger" *ngIf="errors.valueFixedRequired">{{'validator.required' | i18n}}</div>
+          <div class="error-msg text-danger" *ngIf="errors.valueFixedFormat">{{'validator.amount.format' | i18n: {'0': '123.45'} }}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="direction">{{'entity.commission.direction' | i18n}}</label><br>
+          <span><input id="direction" type="radio" formControlName="direction" value="IN">{{'entity.commission.direction.in' | i18n}}</span>
+          <span style="margin-left: 15px"><input type="radio" formControlName="direction" value="OUT">{{'entity.commission.direction.out' | i18n}}</span>
+        </div>
+
+        <div class="action-btns two-action-btns">
+          <a routerLink="../../../" class="btn btn-primary action-btn"><b>{{'page.common.action.back' | i18n}}</b></a>
+
+          <button class="btn btn-primary action-btn" [appInButtonLoader]="waiting" (click)="onSave()">
+            <span>{{'page.common.action.save' | i18n}}</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

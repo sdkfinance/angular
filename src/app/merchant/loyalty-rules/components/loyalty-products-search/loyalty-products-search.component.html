@@ -1,0 +1,42 @@
+<div class="ibox">
+  <div class="row">
+    <div class="col-sm-12" style="text-align: center"><h5 style="font-size: 15px">Product search</h5></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8" style="margin-bottom: 10px">
+      <input type="text" placeholder="Enter external code" class="form-control" [(ngModel)]="externalCode">
+    </div>
+
+    <div class="col-sm-4">
+      <button class="btn btn-primary" [appInButtonLoader]="waiting" (click)="onSearch()">
+        <span>Search</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="products" class="row">
+    <div class="col-sm-12">
+      <div style="padding: 20px; border: 1px solid #e0e0e0;">
+        <div *ngIf="products.length == 0">Not found.</div>
+        <div *ngFor="let product of products" style="font-size: 14px;">
+          <div style="margin-bottom: 10px"><span style="font-size: 14px; font-weight: bold;">ID: </span>{{ product.id }}
+          </div>
+          <div style="margin-bottom: 10px"><span style="font-size: 14px; font-weight: bold;">External code: </span>{{
+            product.externalCode }}
+          </div>
+          <div style="margin-bottom: 10px"><span style="font-size: 14px; font-weight: bold;">Name: </span>{{
+            product.name }}
+          </div>
+          <div style="margin-bottom: 10px"><span style="font-size: 14px; font-weight: bold;">Description: </span>{{
+            product.description }}
+          </div>
+          <div style="margin-bottom: 10px"><span
+            style="font-size: 14px; font-weight: bold;">Unit of measurement: </span>
+            {{ product.measureUnit.code }} ({{ product.measureUnit.description }})
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

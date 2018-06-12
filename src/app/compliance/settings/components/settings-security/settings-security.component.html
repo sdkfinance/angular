@@ -1,0 +1,12 @@
+<div class="ibox">
+  <div class="ibox-content" style="border: none">
+
+    <div *ngIf="!profile" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="profile">
+      <app-settings-password></app-settings-password>
+    </div>
+  </div>
+</div>

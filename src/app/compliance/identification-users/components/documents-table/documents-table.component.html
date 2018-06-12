@@ -1,0 +1,37 @@
+<a routerLink="../../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.supervisor.manage_docs' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <div *ngIf="!profileDocuments" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="profileDocuments">
+      <div class="table-wrapper">
+        <div class="table">
+          <div class="table-header">
+            <div class="table-cell date">{{'entity.date' | i18n}}</div>
+            <div class="table-cell text">{{'entity.user' | i18n}}</div>
+            <div class="table-cell text">{{'entity.doc' | i18n}}</div>
+            <div class="table-cell text">{{'entity.status' | i18n}}</div>
+            <div class="table-cell text">{{'page.common.action' | i18n}}</div>
+          </div>
+
+          <app-documents-table-item *ngFor="let document of profileDocuments"
+                                    [document]="document" (updateList)="getProfileDocuments()"></app-documents-table-item>
+        </div>
+      </div>
+
+      <p *ngIf="!profileDocuments.length" class="not-found-msg">{{'page.supervisor.manage_docs.not_found' | i18n}}</p>
+    </div>
+
+    <div class="pagination-btns" *ngIf="totalPages > 1">
+      <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)">
+      </app-pagination-buttons>
+    </div>
+  </div>
+</div>

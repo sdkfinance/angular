@@ -1,0 +1,39 @@
+<a routerLink="../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+<div class="ibox" style="margin-bottom: 0;">
+  <div class="ibox-title">
+    <h5>{{'page.common.redeem' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <div *ngIf="providers">
+      <div class="row">
+        <div class="col-sm-3">
+          <a class="provider" [routerLink]="['bank-transfer']">
+            <img src="../../../../../../assets/img/bank-icon-5.png" alt="Bank">
+            <div>{{'page.individual.tx.ways.bank' | i18n}}</div>
+          </a>
+        </div>
+
+        <div class="col-sm-3" *ngFor="let provider of providers">
+          <a class="provider" [routerLink]="[provider.way, provider.accountId]">
+            <img *ngIf="provider.way == 'CARD'" src="../../../../../../assets/img/ic-visa_2x.png" alt="Card">
+            <img *ngIf="provider.way == 'BANK'" src="../../../../../../assets/img/bank-icon-5.png" alt="Bank">
+            <div>{{provider.account.provider.name}}</div>
+          </a>
+        </div>
+
+        <div class="col-sm-3">
+          <a class="provider" [routerLink]="['cashbox']">
+            <img src="../../../../../../assets/img/ic-vip-cashbox_2x.png" alt="Cashbox">
+            <div>{{'page.individual.tx.ways.cashbox' | i18n}}</div>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="!providers" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+</div>

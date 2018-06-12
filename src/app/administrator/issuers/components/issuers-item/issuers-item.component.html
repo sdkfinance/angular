@@ -1,0 +1,20 @@
+<div class="table-row">
+  <div class="table-cell text">
+    <div>{{issuer.sn}}</div>
+    <div>{{issuer.name}}</div>
+  </div>
+  <div class="table-cell text">
+    <div>{{issuer.currency.name}} ({{issuer.currency.code}})</div>
+    <div>{{'entity.emitent.order_number' | i18n}}: {{issuer.orderNumber}}</div>
+    <div>{{'entity.emitent.order_quote' | i18n}}: {{issuer.orderQuote}}</div>
+  </div>
+  <div class="table-cell text">
+    <div *ngIf="issuer.active">{{'entity.status.active' | i18n}}</div>
+    <div *ngIf="!issuer.active">{{'entity.status.inactive' | i18n}}</div>
+  </div>
+  <div class="table-cell text">
+    <div *ngIf="issuer.active" (click)="updateIssuer(false)"><a>{{'page.common.action.deactivate' | i18n}}</a></div>
+    <div *ngIf="!issuer.active" (click)="updateIssuer(true)"><a>{{'page.common.action.activate' | i18n}}</a></div>
+    <div (click)="onEdit()"><a>{{'page.common.action.edit' | i18n}}</a></div>
+  </div>
+</div>

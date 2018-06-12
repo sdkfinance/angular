@@ -1,0 +1,38 @@
+<form [formGroup]="form" (submit)="submitForm()">
+  <div class="form-group">
+    <label for="organization">{{'entity.cash_desk' | i18n}}</label>
+    <select id="organization" formControlName="organization" class="form-control">
+      <option *ngFor="let org of organizations" [value]="org.id">{{org.name}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="serial">{{'page.accountant.cash_input.select_coin' | i18n}}</label>
+    <select id="serial" formControlName="serial" class="form-control">
+      <option *ngFor="let coin of coins" [value]="coin.serial">{{coin.name}} ({{coin.amount | number: '.2'}} {{coin.issuer.currency}})</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+    <input type="tel" id="amount" formControlName="amount" class="form-control"
+           (input)="resetErrors('amount.required', 'amount.pattern', 'amount.max', 'amount.min', 'amount.greater')">
+    <div class="error-msg" *ngIf="errors['amount.required']">{{'validator.required' | i18n}}</div>
+    <div class="error-msg" *ngIf="errors['amount.pattern']">{{'validator.amount.format' | i18n: {'0': 123.45} }}</div>
+    <div class="error-msg" *ngIf="errors['amount.max']">{{'validator.amount.max_value' | i18n: {'0': getSelectedCoinAmount().toFixed(2)} }}</div>
+    <div class="error-msg" *ngIf="errors['amount.min']">{{'validator.amount.min_value' | i18n: {'0': 0.01} }}</div>
+    <div class="error-msg" *ngIf="errors['amount.greater']">{{'page.accountant.validator.greater_amount' | i18n}}</div>
+  </div>
+
+  <div class="form-group">
+    <label for="fullName">{{'page.common.system.full_name' | i18n}}</label>
+    <input type="text" id="fullName" formControlName="fullName" class="form-control"
+           (input)="resetErrors('fullName.required')">
+    <div class="error-msg" *ngIf="errors['fullName.required']">{{'validator.required' | i18n}}</div>
+  </div>
+
+  <div class="action-btns one-action-btn">
+    <button class="btn btn-primary" type="submit" [appInButtonLoader]="waiting"><span>{{operationName | i18n}}</span></button>
+  </div>
+
+</form>

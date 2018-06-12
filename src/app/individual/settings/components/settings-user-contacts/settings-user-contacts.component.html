@@ -1,0 +1,96 @@
+<h4>Contacts</h4>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label>{{'entity.contact.email' | i18n}}</label>
+      <input type="text" placeholder="" name="email" [readonly]="profile.profile.contact.emailVerified"
+             [(ngModel)]="email" class="form-control" [class.hasError]="errors.emailRequired"
+             (focus)="errors.emailIsUsed = false; errors.emailFormat = false">
+      <span class="error" *ngIf="errors.emailFormat">
+        {{'org.hibernate.validator.constraints.Email.message' | i18n}}
+      </span>
+
+      <span class="error" *ngIf="errors.emailIsUsed">
+        {{'validator.credential.email.duplication' | i18n}}
+      </span>
+      <a style="margin-top: 10px; display: block" (click)="confirmEmail()"
+         *ngIf="email && !profile.profile.contact.emailVerified">{{'page.individual.profile.confirm.send_email' | i18n}}</a>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="margin-top: 28px;">
+    <span *ngIf="profile.profile.contact.emailVerified" class="confirmed">{{'page.individual.profile.verify.yes' | i18n}}</span>
+    <span *ngIf="!profile.profile.contact.emailVerified" class="not-confirmed">{{'page.individual.profile.verify.no' | i18n}}</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8" style="margin-bottom: 25px">
+    <div *ngIf="emailSent" class="m-b-15">
+      <span [innerHTML]="'page.anonym.signup.resend_desc' | i18n: {'0': sentEmail}"></span>
+      {{'page.anonym.signup.resend_code.not_come_email' | i18n}}
+      <a (click)="resendEmail()">{{'page.anonym.signup.resend_code' | i18n}}</a>
+    </div>
+    <div *ngIf="emailResent" style="color: #3ab549; margin-bottom: 15px">
+      {{'page.anonym.signup.resend_code.success' | i18n}}
+    </div>
+
+    <div *ngIf="errors.resendEmailLimit" class="m-b-15 error">
+      {{'validator.confirm_code.sending_limit' | i18n}}
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="form-group">
+      <label>{{'entity.contact.phone' | i18n}}</label>
+      <input type="text" placeholder="" name="phone" [readonly]="profile.profile.contact.phoneVerified"
+             [(ngModel)]="phone" class="form-control" [class.hasError]="errors.phoneRequired">
+      <span class="error" *ngIf="errors.phoneFormat">
+        {{'validator.contact.phone_invalid' | i18n}}
+      </span>
+      <a style="margin-top: 10px; display: block" (click)="confirmPhone()"
+         *ngIf="phone && !profile.profile.contact.phoneVerified">{{'page.individual.profile.confirm.send_sms' | i18n}}</a>
+    </div>
+  </div>
+
+  <div class="col-sm-4" style="margin-top: 28px;">
+    <span *ngIf="profile.profile.contact.phoneVerified" class="confirmed">{{'page.individual.profile.verify.yes' | i18n}}</span>
+    <span *ngIf="!profile.profile.contact.phoneVerified" class="not-confirmed">{{'page.individual.profile.verify.no' | i18n}}</span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <div *ngIf="codeSent" class="m-b-15">
+      <span [innerHTML]="'page.anonym.signin.sent_confirmation_sms' | i18n: {'0': sentPhone}"></span>
+    </div>
+
+    <div *ngIf="codeSent" style="display: flex; align-items: center; margin-bottom: 15px">
+      <input type="text" class="form-control" style="width: 100px; margin-right: 10px" name="code" [(ngModel)]="code"
+             (focus)="errors.wrongCode = false">
+      <button class="btn btn-primary" [appInButtonLoader]="waiting" (click)="confirmPhoneWithOtp()">
+        <span>{{'page.common.action.confirm' | i18n}}</span>
+      </button>
+    </div>
+
+    <div *ngIf="errors.wrongCode" class="m-b-15 error">
+      <span [innerHTML]="'validator.confirm_code.incorrect' | i18n: {'0': attempts}"></span>
+    </div>
+
+    <div *ngIf="errors.resendCodeLimit" class="m-b-15 error">
+      You have exceeded the number of resend confirmation SMS.
+    </div>
+
+    <div *ngIf="codeResent" style="color: #3ab549; margin-bottom: 15px">
+      {{'page.anonym.signup.resend_code.success' | i18n}}
+    </div>
+
+    <div *ngIf="codeSent" class="m-b-15">
+      {{'page.anonym.signup.resend_code.not_come_sms' | i18n}} <a (click)="resendCode()">{{'page.common.action.resend' | i18n}}</a>
+    </div>
+  </div>
+</div>

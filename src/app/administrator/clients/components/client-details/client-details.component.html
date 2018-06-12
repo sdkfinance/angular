@@ -1,0 +1,56 @@
+<div style="padding: 0 10px">
+  <a routerLink="../" class="btn btn-primary  right" style="margin-top: 25px; margin-bottom: 20px; margin-right: 15px;">Back</a>
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div style="font-size: 14px" *ngIf="clientProfile">
+            <div style="margin-bottom: 10px"><span class="t-spn">ID: </span>{{ clientId }}</div>
+
+            <div style="margin-bottom: 10px"><span class="t-spn">Name: </span>{{
+              clientProfile.profile.person.namePlain.first }}
+            </div>
+
+            <div style="margin-bottom: 10px"><span class="t-spn">Surname: </span>{{
+              clientProfile.profile.person.namePlain.last }}
+            </div>
+
+            <div style="margin-bottom: 10px"><span class="t-spn">Middle name: </span>{{
+              clientProfile.profile.person.namePlain.middle }}
+            </div>
+
+            <div style="margin-bottom: 10px">
+              <span class="t-spn">Phone: </span>
+              <span *ngIf="clientProfile.profile.contact.phoneNumber">
+            {{ clientProfile.profile.contact.phoneNumber
+          + " (" + (clientProfile.profile.contact.phoneVerified ? "verified" : "not verified") +")"}}
+          </span>
+            </div>
+
+            <div style="margin-bottom: 10px">
+              <span class="t-spn">E-mail: </span>
+              <span *ngIf="clientProfile.profile.contact.email">
+            {{ clientProfile.profile.contact.email
+          + " (" + (clientProfile.profile.contact.email ? "verified" : "not verified") +")"}}
+          </span>
+            </div>
+
+            <div style="margin-bottom: 10px"><span class="t-spn">Type: </span>{{ clientProfile.profile.type }}</div>
+
+            <div style="margin-bottom: 10px"><span class="t-spn">Status: </span>{{ clientProfile.profile.status }}</div>
+          </div>
+
+          <div *ngIf="!clientProfile" class="loader-container is-divtable">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .t-spn {
+    font-weight: bold;
+  }
+</style>

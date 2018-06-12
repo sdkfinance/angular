@@ -1,0 +1,72 @@
+<div class="login-wrapper">
+
+  <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+      <a class="logo-link" target="_blank" [href]="logoLink">
+        <img [src]="logoUrl" alt="Logo" width="100%">
+      </a>
+
+      <h3 style="margin: 15px 0;">{{'page.anonym.welcome' | i18n}}</h3>
+
+      <form *ngIf="!action" class="m-t" (ngSubmit)="onSignup()" [formGroup]="form">
+
+        <div class="form-group">
+          <input type="email" class="form-control" (input)="resetErrors()"
+                 placeholder="{{'page.anonym.signup.email_or_phone' | i18n}}" formControlName="login">
+          <p class="error-msg" *ngIf="errorMessage">{{errorMessage}}</p>
+          <p class="error-msg" *ngIf="errors['loginRequired']">{{'validator.required' | i18n}}</p>
+        </div>
+
+        <div class="form-group">
+          <select type="email" class="form-control" formControlName="role">
+            <option value="individual">{{'entity.role.individual' | i18n}}</option>
+            <option value="merchant">{{'entity.role.merchant' | i18n}}</option>
+          </select>
+        </div>
+
+        <div class="role-description">
+          <div *ngIf="form.get('role').value == 'individual'">
+            <div [innerHTML]="'page.anonym.signup.individual_description' | i18n"></div>
+          </div>
+
+          <div *ngIf="form.get('role').value == 'merchant'">
+            <div [innerHTML]="'page.anonym.signup.merchant_description' | i18n"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <select *ngIf="form.get('role').value == 'merchant'" type="email" class="form-control"
+                  formControlName="legalType">
+            <option value="individual">{{'entity.type.individual_person' | i18n}}</option>
+            <option value="corporation">{{'entity.type.corporate_entity' | i18n}}</option>
+          </select>
+        </div>
+
+        <div class="sign-up-buttons">
+          <button type="submit" class="btn btn-primary block full-width m-b" [appInButtonLoader]="waiting">
+            <span>{{'page.anonym.signup.onward' | i18n}}</span>
+          </button>
+
+          <a routerLink="../login">
+            <small>{{'page.anonym.signup.have_already_account' | i18n}} {{'page.anonym.signin' | i18n}}</small>
+          </a>
+        </div>
+
+        <div class="sign-up-buttons-v2">
+          <a routerLink="../login">{{'page.anonym.signin' | i18n}}</a>
+          <button type="submit" class="btn btn-primary block" [appInButtonLoader]="waiting">
+            <span>{{'page.anonym.signup.onward' | i18n}}</span>
+          </button>
+        </div>
+
+      </form>
+
+      <app-email-sent *ngIf="action == 'EMAIL_SENT'" [email]="login"></app-email-sent>
+      <app-sms-sent *ngIf="action == 'SMS_SENT'" [phone]="login"></app-sms-sent>
+
+      <p class="m-t copyrighted">
+        <small>Made by SDK.finance © 2017</small>
+      </p>
+    </div>
+  </div>
+</div>

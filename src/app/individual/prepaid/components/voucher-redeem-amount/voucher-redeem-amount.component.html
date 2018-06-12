@@ -1,0 +1,55 @@
+<div class="ibox-content" *ngIf="!result">
+  <div class="m-b-15">
+    {{'page.individual.voucher.activation.activation_noun' | i18n}} <b>{{number}}</b>
+    <!--from the user individual Default-->
+  </div>
+
+  <form [formGroup]="form">
+    <div class="m-b-15">
+      <label for="wallet">{{'entity.coin' | i18n}}</label>
+      <select class="form-control" id="wallet" formControlName="wallet">
+        <option *ngFor="let coin of availableCoins" [value]="coin.serial">{{coin.name}}</option>
+      </select>
+    </div>
+
+    <div class="m-b-15">
+      <label for="amount">{{'page.individual.voucher.activation.amount' | i18n}}</label>
+      <input type="text" id="amount" readonly class="form-control" formControlName="amount">
+    </div>
+  </form>
+
+  <div>
+    {{'page.credit.create_request.system_commission' | i18n}}:
+    <b>{{ commission.commissionAmountPush.toFixed(2) }} {{ commission.issuer.currency }}</b>
+  </div>
+  <div>
+    {{'page.common.commission.amount_with_commission' | i18n}}:
+    <b>{{ commission.recipientAmountPush.toFixed(2) }} {{ commission.issuer.currency }}</b>
+  </div>
+
+  <div class="m-b-15">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <span><b>{{'page.common.action.back' | i18n}}</b></span>
+    </button>
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" (click)="redeemVoucher()">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+
+</div>
+
+<div class="ibox-content" *ngIf="result">
+  <div [innerHTML]="'page.individual.voucher.activation.success_content' | i18n: {
+  '0': number,
+  '1': commission.transactionAmount.toFixed(2),
+  '2': commission.issuer.currency,
+  '3': ''}">
+    <p>{{'page.individual.voucher.activation.success_info' | i18n}}</p>
+  </div>
+
+  <div class="action-btns two-action-btns m-t-25">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onClose()">
+      <span><b>Close</b></span>
+    </button>
+  </div>
+</div>

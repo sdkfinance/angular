@@ -1,0 +1,38 @@
+li.is_active .link {
+  background: white;
+}
+
+li.is_active .link:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+.link:hover .link:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+.link {
+  position: relative;
+  padding: 20px 12px 20px;
+  color: #797a7b;
+  border-bottom: 1px solid #e5e7ea;
+  background: #f6f7f8;
+  display: block;
+}
+
+.link:hover {
+  background: white;
+}
+
+.link:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: -1px;
+  bottom: 0;
+  width: 1px;
+  opacity: 0;
+  visibility: hidden;
+  background: white;
+}

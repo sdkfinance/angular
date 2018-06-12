@@ -1,0 +1,39 @@
+<div class="row" style="margin-top:15px; margin-bottom: 15px;">
+  <div class="col-lg-12">
+    <a [routerLink]="['/merchant/transactions']" class="btn btn-primary"><i class="fa fa-arrow-left"
+                                                                          style="margin-right: 10px; font-size: 24px; color: white;"></i><span>Back to transactions</span></a>
+  </div>
+</div>
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-content">
+        <div class="container-fluid" *ngIf="bonuses">
+
+          <!--<div class="table-row header" >
+
+            <div class="wrapper text-4">
+              <div class="wrapper text-2">
+                <div class="text">Правило лояльности</div>
+                <div class="text">Покупки</div>
+              </div>
+              <div class="wrapper text-2">
+                <div class="text">Категория</div>
+                <div class="text">Продукт</div>
+              </div>
+              <div class="wrapper text-2">
+                <div class="text">Значение</div>
+              </div>
+            </div>
+          </div>-->
+          <app-bonuses-details-ittem *ngFor="let item of bonuses" [bonus]="item"></app-bonuses-details-ittem>
+        </div>
+
+        <div *ngIf="!bonuses" class="loader-container is-divtable" style="margin: 25px">
+          <div class="loading-spinner"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

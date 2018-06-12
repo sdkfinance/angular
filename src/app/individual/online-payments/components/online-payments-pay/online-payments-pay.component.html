@@ -1,0 +1,18 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <a routerLink="../../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5 [innerHTML]="'page.individual.product.pay_for' | i18n: {'0': service ? service.name : ''}"></h5>
+      </div>
+      <div class="ibox-content">
+
+        <app-online-payments-amount *ngIf="!transaction && !result" [service]="service"
+                                    (create)="createTransaction($event)"></app-online-payments-amount>
+        <app-online-payments-fields *ngIf="transaction" [transaction]="transaction" (back)="goBack($event)"
+                                    (result)="getResult($event)"></app-online-payments-fields>
+        <app-online-payments-result *ngIf="result" [result]="result" [service]="service"></app-online-payments-result>
+      </div>
+    </div>
+  </div>
+</div>

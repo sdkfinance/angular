@@ -1,0 +1,42 @@
+.card-types {
+  margin-top: 12px;
+  font-size: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 420px) {
+  .card-types {
+    margin-top: 5px;
+  }
+}
+
+.card-types__text, .card-types__list {
+  display: flex;
+  align-items: center;
+}
+
+.card-types__text {
+  font-size: 13px;
+  line-height: 26px;
+  color: #9b9b9b;
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 420px) {
+  .card-types__text {
+    margin-bottom: 3px;
+  }
+}
+
+.card-types__list {
+  margin-left: 10px;
+}
+
+.card-types__list li {
+  margin-left: 8px;
+}
+
+.card-types__list li:first-child {
+  margin-left: 0;
+}

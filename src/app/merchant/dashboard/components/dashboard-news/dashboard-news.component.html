@@ -1,0 +1,27 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5 routerLink="/merchant/news" style="cursor: pointer; outline: none;">News</h5>
+  </div>
+
+  <div *ngIf="!newsList" class="loader-container is-divtable ibox-content">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <div *ngIf="newsList">
+    <div *ngFor="let news of newsList">
+      <app-dashboard-news-item [newsItem]="news"></app-dashboard-news-item>
+    </div>
+
+    <div class="ibox-content" *ngIf="!newsList.length" style="text-align: center">
+      No news
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  h5:hover {
+    color: #555555;
+  }
+</style>

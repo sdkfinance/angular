@@ -1,0 +1,19 @@
+<div *ngIf="!redirectFormIsExist">
+  <div class="m-b-15">
+    <app-transaction-state [transaction]="result.transaction"></app-transaction-state>
+  </div>
+
+  <a class="btn btn-sm btn-primary" routerLink="../../"><b>{{'page.common.action.close' | i18n}}</b></a>
+</div>
+
+<div *ngIf="redirectFormIsExist">
+  <div hidden>
+    <form [action]="result.form.url" [method]="result.form.method" ngNoForm #redirectForm>
+      <input *ngFor="let field of getRedirectFormFields()" [name]="field" [value]="result.form.parameters[field]">
+    </form>
+  </div>
+
+  <div class="loader-container is-divtable">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

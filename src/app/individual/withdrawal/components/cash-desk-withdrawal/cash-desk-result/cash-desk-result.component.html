@@ -1,0 +1,15 @@
+<div [innerHTML]="'page.individual.tx.ways.cashbox.title' | i18n: {
+  '0': result.cashAmount,
+  '1': result.clientCoin.issuer.currency,
+  '2': result.clientCoin.serial
+}"></div>
+
+<div [innerHTML]="'page.individual.tx.ways.cashbox.hint' | i18n: {
+  '0': result.requestIdentifier,
+  '1': cashDesk.name,
+  '2': ''
+}"></div>
+
+<div>
+  <a routerLink="../../">{{'page.individual.tx.ways.cashbox.to_safes' | i18n}}</a>
+</div>

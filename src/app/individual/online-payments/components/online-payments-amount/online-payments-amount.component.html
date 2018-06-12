@@ -1,0 +1,62 @@
+<div *ngIf="coins">
+
+  <form [formGroup]="form">
+
+    <div class="m-b-15">
+      <label for="wallet">{{'page.individual.product.choose_coin' | i18n}}</label>
+      <select id="wallet" formControlName="wallet" class="form-control">
+        <option *ngFor="let coin of coins" value="{{coin.serial}}">{{coin.name + " (" + coin.amount + " " +
+          coin.issuer.currency + ")"}}
+        </option>
+      </select>
+    </div>
+
+    <div class="m-b-15">
+      <label for="amount">{{'page.individual.product.amount_to_pay' | i18n}}</label>
+      <input type="text" id="amount" class="form-control" placeholder="0" formControlName="amount" autocomplete="off">
+
+      <div *ngIf="errorMsg.length" class="text-danger error-msg">
+        {{errorMsg}}
+      </div>
+    </div>
+
+    <div *ngIf="commission" class="m-b-15">
+
+      <div>
+        {{'entity.commission' | i18n}}:
+        <b>{{commission.commissionAmount.toFixed(2)}} {{commission.currency.code}}</b>
+      </div>
+
+      <div>
+        {{'page.common.commission.amount_with_commission' | i18n}}:
+        <b>{{commission.sourceAmount.toFixed(2)}} {{commission.currency.code}}</b>
+      </div>
+    </div>
+
+    <div>
+
+      <div>
+        <b>{{'page.individual.product.provider_min_amount' | i18n}}</b> {{selectedCurrency.minAmount.toFixed(2)}} {{selectedCurrency.currency.code}}
+      </div>
+
+      <div *ngIf="selectedCurrency.maxAmount">
+        <b>{{'page.individual.product.provider_max_amount' | i18n}}:</b> {{selectedCurrency.maxAmount.toFixed(2)}} {{selectedCurrency.currency.code}}
+      </div>
+
+      <div>{{'page.individual.product.commission_by_third_faces' | i18n}}</div>
+
+    </div>
+
+  </form>
+
+  <div class="btns">
+    <button class="btn btn-primary btn-sm " [appInButtonLoader]="waiting" (click)="createPurchase()">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+
+</div>
+
+<div *ngIf="!coins" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

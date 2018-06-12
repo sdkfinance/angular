@@ -1,0 +1,40 @@
+<div class="table-row" >
+  <div class="wrapper text-4">
+    <div class="wrapper text-2">
+      <div class="text">
+        {{transactionItem.date | date:"dd-MM-yyyy H:mm:ss"}}
+      </div>
+      <div class="text">
+        {{transactionItem.pos.id}}
+      </div>
+    </div>
+    <div class="wrapper text-2">
+      <div class="text">
+        {{transactionItem.pos.name}}
+      </div>
+      <div class="text">
+        {{transactionItem.identifier}}
+      </div>
+    </div>
+    <div class="wrapper text-2">
+      <div class="text">
+        {{transactionItem.parameters.invoiceAmount}} {{transactionItem.issuer.currency}}
+
+      </div>
+      <div class="text">
+        <span class="label" [ngClass]="{'label-primary': transactionItem.status == 'paid', 'label-warning': transactionItem.status == 'pending'}">
+
+        {{transactionItem.status}}
+        </span>
+      </div>
+      <div class="text">
+        <a (click)="toogleCheck()">
+          <span *ngIf="!isCheckShown">View check</span>
+          <span *ngIf="isCheckShown" style="color: #ed5565;">Hide check</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+<app-transaction-check [identifier]="transactionItem.identifier" *ngIf="isCheckShown"></app-transaction-check>

@@ -1,0 +1,22 @@
+<div class="table-row">
+  <div class="table-cell text id">{{ hold.id }}</div>
+
+  <div class="table-cell date">
+    <div>{{ hold.date | date: 'dd.MM.yyyy' }}</div>
+    <div>{{ hold.date | date: 'HH:mm' }}</div>
+  </div>
+
+  <div class="table-cell text">
+    <div><b>{{'page.common.id' | i18n}}:</b> {{hold.invoice.identifier}}</div>
+    <div>{{hold.invoice.name}}</div>
+    <div><b>{{'entity.payment.payer' | i18n}}:</b> {{hold.invoice.payer.name}} {{hold.invoice.payerContact}}</div>
+    <div><b>{{'entity.org.type.merchant' | i18n}}:</b> {{hold.invoice.merchantName}}</div>
+    <div><b>{{'entity.coin.amount' | i18n}}:</b> {{hold.invoice.totalPrice | number: '.2'}} {{hold.invoice.issuer.currency}}</div>
+  </div>
+
+  <div class="table-cell status">{{hold.status}}</div>
+  <div class="table-cell status">
+    <div><a (click)="onCapture()" *ngIf="hold.status == 'PENDING'">{{'page.common.action.capture' | i18n}}</a></div>
+    <div><a (click)="onRelease()" *ngIf="hold.status == 'PENDING'">{{'page.common.action.release' | i18n}}</a></div>
+  </div>
+</div>

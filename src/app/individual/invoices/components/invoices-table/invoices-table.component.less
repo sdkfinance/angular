@@ -1,0 +1,87 @@
+.sort-btns {
+  transform: rotate(90deg);
+  font-stretch: ultra-condensed;
+  display: inline-block;
+  font-size: 8px;
+
+  div {
+    display: inline-block;
+  }
+}
+
+.table-header, .table-row {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-cell.text {
+  flex: 1;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.table-cell {
+  padding: 8px;
+}
+
+.table-header {
+  font-size: 13px;
+  font-weight: bold;
+
+  .table-cell.date {
+    cursor: pointer;
+    width: 100px;
+  }
+
+  .table-cell.amount {
+    cursor: pointer;
+    // width: 120px;
+  }
+
+  .table-cell.status {
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    position: relative;
+
+    span {
+      cursor: pointer;
+      border-bottom: 1px dotted #dddddd;
+    }
+
+    div {
+      position: absolute;
+      z-index: 10;
+      text-align: start;
+    }
+  }
+}
+
+.search-group {
+  display: flex;
+  align-items: flex-end;
+
+  div {
+    margin-right: 15px;
+  }
+
+  button {
+    margin-right: 15px;
+  }
+
+  button:last-child {
+    margin-right: 0px;
+  }
+}
+
+.table {
+  margin-top: 10px;
+  min-width: 500px;
+}
+
+.table-wrapper {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}

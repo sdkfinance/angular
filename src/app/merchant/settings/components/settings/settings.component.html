@@ -1,0 +1,21 @@
+<!--<form [formGroup]="settingsForm" action="">-->
+<!---->
+<!--</form>-->
+<div class="ibox" style="margin-bottom: 0">
+  <div class="ibox-title">
+    <h5>Settings</h5>
+  </div>
+</div>
+<div *ngIf="profile">
+  <app-settings-person [profile]="profile" [currentProfile]="currentProfile" (saveNameChanges)="saveNameChanges()"></app-settings-person>
+  <app-settings-contact [profile]="profile"></app-settings-contact>
+</div>
+
+
+<div *ngIf="!profile" class="row white-bg dashboard-header" style="margin: 0; margin-top: 25px">
+  <div class="loader-container is-divtable" style="margin: 25px">
+    <div class="loading-spinner"></div>
+  </div>
+</div>
+
+

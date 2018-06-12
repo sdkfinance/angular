@@ -1,0 +1,69 @@
+<div class="app-office">
+  <div class="app-menu" [class.app-menu-is-shown]="!menuIsHidden">
+    <nav class="navbar-default " role="navigation">
+      <ul class="nav metismenu" id="side-menu">
+        <li class="nav-header" (click)="hideMenu()">
+          <div class="dropdown profile-element" style="text-align: center;">
+            <a target="_blank" [href]="logoLink" style="margin: 20px 0;display: block;">
+              <img [src]="logoUrl" alt="Logo" width="100%">
+            </a>
+            <a *ngIf="profile" data-toggle="dropdown" class="dropdown-toggle" routerLink="./profile">
+              <span class="clear">
+                <span class="block m-t-xs">
+                  <strong class="font-bold">{{profile.profile.person.namePlain.first}} {{profile.profile.person.namePlain.last}}</strong>
+                </span>
+                <span>{{profile.profile.contact.email}}</span>
+                <span>{{profile.profile.contact.phoneNumber}}</span>
+              </span>
+            </a>
+          </div>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="contracts" routerLinkActive="activeMenuItem">
+            <i class="fa fa-id-card-o" aria-hidden="true"></i>
+            <span class="nav-label">{{'page.fin_spec.contract.view.title' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="management" routerLinkActive="activeMenuItem">
+            <i class="fa fa-user-o"></i>
+            <span class="nav-label">{{'page.supervisor.manage_users' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="system-operations" routerLinkActive="activeMenuItem">
+            <i class="fa fa-briefcase" aria-hidden="true"></i>
+            <span class="nav-label">{{'page.cashier.system' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="conversations" routerLinkActive="activeMenuItem">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <span class="nav-label">{{'page.common.conversations.title' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="profile" routerLinkActive="activeMenuItem">
+            <i class="icon-profile" aria-hidden="true"></i>
+            <span class="nav-label">{{'page.common.my_account' | i18n}}</span></a>
+        </li>
+      </ul>
+
+    </nav>
+  </div>
+
+  <div class="app-content" (click)="hideMenu()">
+    <div>
+      <app-search-box (menuTrigger)="showMenu($event)"></app-search-box>
+    </div>
+
+    <div class="app-content__wrapper">
+      <div class="app-content__board">
+        <router-outlet></router-outlet>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>

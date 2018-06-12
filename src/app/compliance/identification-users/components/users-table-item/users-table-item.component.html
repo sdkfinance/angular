@@ -1,0 +1,24 @@
+<div class="table-row">
+  <div class="table-cell text">
+    <div><span>{{(user.active ? 'entity.status.active' : 'entity.status.blocked') | i18n}}</span></div>
+    <div>{{(roles[user.members[0].role] | i18n) || user.members[0].role}} (ID {{user.id}})</div>
+    <div>{{user.name}}</div>
+    <div>{{user.contact.email}}</div>
+    <div>{{user.contact.phone}}</div>
+  </div>
+  <div class="table-cell text">
+    <div *ngIf="profile">{{identificationStatuses[profile.status] | i18n}}</div>
+    <div><a [routerLink]="['./documents', user.members[0].organization.id]">{{'entity.doc.docs' | i18n}}</a></div>
+  </div>
+  <div class="table-cell text">
+    <div *ngIf="!approvingError && profile?.status == 'pending'">
+      <a (click)="onApprove()">{{'page.compliance.identification.approved' | i18n}}</a>
+    </div>
+    <div *ngIf="approvingError">{{'exception.profile_document.required_for_approval' | i18n}}</div>
+    <div *ngIf="profile?.status == 'none' || profile?.status == 'pending'">
+      <a (click)="onDecline()">{{'page.compliance.identification.decline' | i18n}}</a>
+    </div>
+    <!--<div><a>History</a></div>-->
+    <!--<div><a>Start conversation</a></div>-->
+  </div>
+</div>

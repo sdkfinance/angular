@@ -1,0 +1,85 @@
+<div class="app-office">
+  <div class="app-menu" [class.app-menu-is-shown]="!menuIsHidden">
+    <nav class="navbar-default " role="navigation">
+      <ul class="nav metismenu" id="side-menu">
+        <li class="nav-header" (click)="hideMenu()">
+          <div class="dropdown profile-element" style="text-align: center;">
+            <a target="_blank" [href]="logoLink" style="margin: 20px 0;display: block;">
+              <img [src]="logoUrl" alt="Logo" width="100%">
+            </a>
+            <a *ngIf="profile" data-toggle="dropdown" class="dropdown-toggle" routerLink="./profile">
+                <span class="clear">
+                  <span class="block m-t-xs">
+                    <strong class="font-bold">{{profile.profile.person.namePlain.first}} {{profile.profile.person.namePlain.last}}</strong>
+                  </span>
+                  <span>{{profile.profile.contact.email}}</span>
+                  <span>{{profile.profile.contact.phoneNumber}}</span>
+                </span>
+            </a>
+          </div>
+        </li>
+
+        <!--<li>
+          <a routerLink="dashboard" routerLinkActive="activeMenuItem"><i class="icon-home"> </i><span class="nav-label">Главная</span></a>
+        </li>-->
+        <!--<li>-->
+        <!--<a routerLink="clients" routerLinkActive="activeMenuItem"><i class="fa fa-user-o"></i> <span-->
+        <!--class="nav-label">Clients</span></a>-->
+        <!--</li>-->
+        <!--<li (click)="hideMenu()">-->
+        <!--<a routerLink="news" routerLinkActive="activeMenuItem"><i class="fa fa-newspaper-o"></i> <span-->
+        <!--class="nav-label">News</span></a>-->
+        <!--</li>-->
+
+        <li (click)="hideMenu()">
+          <a routerLink="management" routerLinkActive="activeMenuItem"><i class="fa fa-user-o"></i> <span
+            class="nav-label">{{'page.supervisor.manage_users' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="issuers" routerLinkActive="activeMenuItem"><i class="fa fa-usd"></i> <span
+            class="nav-label">{{'page.administrator.emitent.view.title' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="coins" routerLinkActive="activeMenuItem"><i class="fa fa-credit-card"></i> <span
+            class="nav-label">{{'entity.coin.coins' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="i18n" routerLinkActive="activeMenuItem"><i class="fa fa-language"></i> <span
+            class="nav-label">{{'page.administrator.i18n' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="monitoring" routerLinkActive="activeMenuItem"><i class="fa fa-circle-o-notch"></i> <span
+            class="nav-label">{{'Monitoring' | i18n}}</span></a>
+        </li>
+
+        <li (click)="hideMenu()">
+          <a routerLink="profile" routerLinkActive="activeMenuItem">
+            <i class="icon-profile" aria-hidden="true"></i>
+            <span class="nav-label">{{'page.common.my_account' | i18n}}</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="app-content" (click)="hideMenu()">
+    <div>
+      <app-search-box (menuTrigger)="showMenu($event)"></app-search-box>
+    </div>
+
+    <div class="app-content__wrapper">
+      <div class="app-content__board">
+        <router-outlet></router-outlet>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+</div>
+
+
+

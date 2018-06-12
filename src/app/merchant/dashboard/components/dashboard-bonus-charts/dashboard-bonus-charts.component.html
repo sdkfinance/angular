@@ -1,0 +1,44 @@
+<div class="ibox-title" style="padding: 0;">
+  <style type="text/css">
+    .graph-header{
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin: 0;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+  </style>
+
+  <div class="row graph-header">
+    <h5 class="col-lg-4" style="margin: 15px 0;">Bonus earnings </h5>
+    <!-- <div class="col-sm-3">
+    <label>Тип графика</label>
+    <select class="form-control m-b"  id="select-type-graph" name="account">
+                    <option>Бонусы</option>
+                    <option>Литры</option>
+                </select>
+    </div> -->
+    <style type="text/css">
+      .agzs-select{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+    </style>
+    <div class="col-sm-7 agzs-select">
+      <label style="margin: 0;width: 22%;">POS</label>
+      <app-dashboard-pos-select (changeSelect)="test($event)" [posListItems]="posList"></app-dashboard-pos-select>
+    </div>
+  </div>
+</div>
+<div class="ibox-content" style="padding-top: 0;padding-bottom: 0; margin-bottom: 25px">
+  <app-line-statistic-graph></app-line-statistic-graph>
+</div>

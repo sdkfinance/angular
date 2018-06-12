@@ -1,0 +1,16 @@
+.table-row {
+  display: flex;
+
+  &>div {
+    padding: 8px;
+    flex: 1 1 100px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+
+    &:first-child {
+      flex: 0.5 0.5 50px;
+    }
+  }
+}

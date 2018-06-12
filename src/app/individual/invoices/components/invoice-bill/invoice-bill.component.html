@@ -1,0 +1,71 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.individual.invoices.print.invoice' | i18n}} #{{id}}</h5>
+      </div>
+      <div class="ibox-content">
+
+        <div *ngIf="invoice">
+          <div id="print">
+            <table>
+              <tr>
+                <td>{{'page.individual.invoices.print.date_time' | i18n}}:</td>
+                <td>{{ invoice.createdAt | date: 'HH:mm dd.MM.yyyy'}}</td>
+              </tr>
+              <tr>
+                <td>{{'page.individual.invoices.print.seller' | i18n}}:</td>
+                <td>{{ invoice.merchantName }}</td>
+              </tr>
+              <!--<tr>-->
+              <!--<td>Safe seller:</td>-->
+              <!--<td></td>-->
+              <!--</tr>-->
+              <tr>
+                <td>{{'page.individual.invoices.print.receiver' | i18n}}:</td>
+                <td>{{ invoice.payer.name }}</td>
+              </tr>
+              <tr>
+                <td>{{'page.individual.invoices.print.naming' | i18n}}:</td>
+                <td>{{invoice.name }}</td>
+              </tr>
+              <tr *ngIf="invoice.data">
+                <td>{{'page.individual.invoices.print.product_code' | i18n}}:</td>
+                <td>{{ invoice.data.productCode }}</td>
+              </tr>
+              <tr *ngIf="invoice.data">
+                <td>{{'page.individual.invoices.print.count' | i18n}}:</td>
+                <td>{{ invoice.data.count }}</td>
+              </tr>
+              <tr *ngIf="invoice.data">
+                <td>{{'page.individual.invoices.print.price_by_one' | i18n}}:</td>
+                <td>{{ invoice.data.productPrice }} {{ invoice.issuer.currency }}</td>
+              </tr>
+              <tr>
+                <td>{{'page.individual.invoices.print.total_price' | i18n}}:</td>
+                <td>{{ invoice.totalPrice }} {{ invoice.issuer.currency }}</td>
+              </tr>
+              <tr>
+                <td>{{'entity.status' | i18n}}:</td>
+                <td>{{ invoice.status | firstIsUpper }}</td>
+              </tr>
+            </table>
+
+          </div>
+
+          <div class="btns">
+            <a class="btn btn-sm btn-primary" routerLink="../">{{'page.common.action.close' | i18n}}</a>
+            <button class="btn btn-sm btn-primary" (click)="onPrint()">{{'page.common.action.print' | i18n}}</button>
+          </div>
+        </div>
+
+        <div *ngIf="!invoice" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

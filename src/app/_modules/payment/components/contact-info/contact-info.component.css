@@ -1,0 +1,212 @@
+.checkbox {
+  position: relative;
+  color: #4a4a4a;
+  cursor: pointer;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@media only screen and (max-width: 420px) {
+  .checkbox {
+    font-size: 12px;
+  }
+}
+
+.checkbox:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  margin-top: -9px;
+  height: 16px;
+  width: 16px;
+  background: white;
+  border: 1px solid #cdd0d4;
+  -moz-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+@media only screen and (max-width: 420px) {
+  .checkbox:before {
+    top: 0;
+    margin: 0;
+  }
+}
+
+.checkbox input {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -9px;
+  height: 16px;
+  width: 16px;
+  z-index: 2;
+  cursor: pointer;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+
+@media only screen and (max-width: 420px) {
+  .checkbox input {
+    top: 0;
+    margin: 0;
+  }
+}
+
+.checkbox input:checked + span:after, .checkbox input:checked + span:before {
+  display: block;
+}
+
+.checkbox span {
+  position: relative;
+  padding-left: 26px;
+}
+
+.checkbox span:before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  left: 4px;
+  top: 9px;
+  width: 15px;
+  background: #cdd0d4;
+  z-index: 1;
+  -ms-transform: rotate(-54deg);
+  -webkit-transform: rotate(-54deg);
+  transform: rotate(-54deg);
+  display: none;
+}
+
+.checkbox span:after {
+  position: absolute;
+  content: "";
+  top: 13px;
+  left: 2px;
+  height: 2px;
+  width: 7px;
+  background: #cdd0d4;
+  z-index: 1;
+  -ms-transform: rotate(36deg);
+  -webkit-transform: rotate(36deg);
+  transform: rotate(36deg);
+  display: none;
+}
+
+.checkout {
+  margin-top: 30px;
+  padding: 10px 10px 10px 25px;
+  color: #666666;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background: #fff9df;
+  *zoom: 1;
+}
+
+.checkout:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (max-width: 720px) {
+  .checkout {
+    padding-left: 10px;
+  }
+}
+
+.checkout .checkout_left {
+  float: left;
+  max-width: 400px;
+  line-height: 50px;
+}
+
+@media only screen and (max-width: 865px) {
+  .checkout .checkout_left {
+    margin-top: 0;
+    line-height: 25px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .checkout .checkout_left {
+    margin-top: 6px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .checkout .checkout_left {
+    margin-top: 0;
+  }
+}
+
+.checkout .checkout_text {
+  display: inline-block;
+}
+
+@media only screen and (max-width: 865px) {
+  .checkout .checkout_text {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .checkout .checkout_text {
+    display: inline-block;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .checkout .checkout_text {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .checkout .checkout_text {
+    display: inline-block;
+  }
+}
+
+.checkout .price {
+  margin: 0 5px;
+  vertical-align: top;
+}
+
+@media only screen and (max-width: 940px) {
+  .checkout .price {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  .checkout .price img {
+    display: inline-block;
+    height: 12px;
+  }
+}
+
+.checkout .checkout_text, .checkout .currency {
+  vertical-align: middle;
+}
+
+@media only screen and (max-width: 865px) {
+  .checkout .checkout_text, .checkout .currency {
+    vertical-align: initial;
+  }
+}
+
+.checkout .btn {
+  float: right;
+}
+
+@media only screen and (max-width: 640px) {
+  .checkout .btn {
+    margin-top: 5px;
+  }
+}

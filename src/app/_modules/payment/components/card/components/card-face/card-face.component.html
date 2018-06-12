@@ -1,0 +1,27 @@
+<section class="bg_card">
+  <app-input-number
+    [parent]="parent"
+    [name]="'cardNumber'"
+    [label]="'Card number'"
+    [placeholder]="'XXXX XXXX XXXX XXXX'"
+    [description]="'14 digits on card face'"
+    [maxLength]="19">
+  </app-input-number>
+  <app-input-date
+    [parent]="parent"
+    [name]="'month'"
+    [secondName]="'year'"
+    [label]="'Period valid'"
+    [placeholder]="'01'"
+    [secondPlaceholder]="'19'"
+    [maxLength]="2"
+    [description]="'Month and year of validity period'">
+  </app-input-date>
+  <app-input-text
+    [parent]="parent"
+    [name]="'nameOnCard'"
+    [label]="'Name on card'"
+    [placeholder]="'NAME'"
+    [description]="'Name on card if isset or your name and surname latin'">
+  </app-input-text>
+</section>

@@ -1,0 +1,33 @@
+<!--<ul class="pagination pull-right" style="margin-bottom: 0">-->
+  <!--<li *ngIf="page != 0" class="footable-page-arrow"><a (click)="onPrev()">‹</a></li>-->
+  <!--<li *ngIf="page != (totalPages - 1)" class="footable-page-arrow"><a (click)="onNext()">›</a></li>-->
+<!--</ul>-->
+
+
+<ul class="pagination pull-right" style="margin-bottom: 0">
+  <li class="footable-page-arrow" [class.active]="page <= 0" (click)="onClick(-page, page > 0)"><a>«</a></li>
+  <li class="footable-page-arrow" [class.active]="page <= 0" (click)="onClick(-1, page > 0 )"><a>‹</a></li>
+
+  <li class="footable-page" *ngIf="page == totalPage - 1 && totalPage > 4" (click)="onClick(-4)"><a>{{ page - 3}}</a></li>
+  <li class="footable-page" *ngIf="page == totalPage - 2 && totalPage > 4 || page == totalPage - 1 && totalPage > 3" (click)="onClick(-3)"><a>{{ page - 2}}</a></li>
+
+  <li class="footable-page" *ngIf="page > 1" (click)="onClick(-2)"><a>{{ page - 1}}</a></li>
+  <li class="footable-page" *ngIf="page > 0" (click)="onClick(-1)"><a>{{ page}}</a></li>
+
+  <li class="footable-page active"><a>{{ page + 1}}</a></li>
+
+  <li class="footable-page" *ngIf="page < totalPage - 1" (click)="onClick(1)"><a>{{ page + 2}}</a></li>
+  <li class="footable-page" *ngIf="page < totalPage - 2" (click)="onClick(2)"><a>{{ page + 3}}</a></li>
+
+  <li class="footable-page" *ngIf="page < 2 && totalPage > 4 || page < 1 && totalPage > 3" (click)="onClick(3)"><a>{{ page + 4}}</a></li>
+  <li class="footable-page" *ngIf="page < 1 && totalPage > 4" (click)="onClick(4)"><a>{{ page + 5}}</a></li>
+
+  <li class="footable-page-arrow" [class.active]="page >= totalPage - 1" (click)="onClick(1, page < totalPage - 1)"><a>›</a></li>
+  <li class="footable-page-arrow" [class.active]="page >= totalPage - 1" (click)="onClick(totalPage - page - 1, page < totalPage - 1)"><a>»</a></li>
+</ul>
+
+<style>
+  .pagination > li:not(.active) > a:hover {
+    background-color: #FFFFFF;
+  }
+</style>

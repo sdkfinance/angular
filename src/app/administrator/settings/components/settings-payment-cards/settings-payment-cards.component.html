@@ -1,0 +1,25 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+    <a routerLink="attach" class="btn btn-primary"><b>{{'page.individual.settings.payment_cards.add' | i18n}}</b></a>
+
+    <div *ngIf="cards">
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let card of cards">
+          <div class="card">
+            <h3> **** **** **** {{card.last4Digits}}</h3>
+            <div>{{'page.common.id' | i18n}}: {{card.id}}</div>
+            <button class="btn btn-sm btn-primary" (click)="onDelete(card.id)">{{'page.common.action.delete' | i18n}}</button>
+          </div>
+        </div>
+
+        <div class="col-sm-12 not-found-msg" *ngIf="!cards.length">
+          {{'age.individual.settings.payment_cards.not_found' | i18n}}
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!cards" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+</div>

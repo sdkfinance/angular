@@ -1,0 +1,52 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <a class="btn btn-primary" routerLink="../" style="margin-bottom: 20px;">{{'page.common.action.back' | i18n}}</a>
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.administrator.emitent.edit.title' | i18n}}</h5>
+      </div>
+
+      <div class="ibox-content">
+        <form [formGroup]="form" *ngIf="form">
+          <div class="form-group">
+            <label for="name">{{'page.common.name' | i18n}}</label>
+            <input id="name" formControlName="name" type="text" class="form-control"
+                   (input)="resetError('nameRequired')">
+            <div class="error-msg text-danger" *ngIf="errors.nameRequired">{{'validator.required' | i18n}}</div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">{{'page.common.description' | i18n}}</label>
+            <input id="description" formControlName="description" type="text" class="form-control"
+                   (input)="resetError('descriptionRequired')">
+            <div class="error-msg text-danger" *ngIf="errors.descriptionRequired">{{'validator.required' | i18n}}</div>
+          </div>
+
+          <div class="form-group">
+            <label for="orderNumber">{{'entity.emitent.order_number' | i18n}}</label>
+            <input id="orderNumber" formControlName="orderNumber" type="text" class="form-control"
+                   (input)="resetError('orderNumberRequired', 'orderNumberFormat')">
+            <div class="error-msg text-danger" *ngIf="errors.orderNumberRequired">{{'validator.required' | i18n}}</div>
+            <div class="error-msg" *ngIf="errors.orderNumberFormat">Incorrect format</div>
+          </div>
+
+          <div class="form-group">
+            <label for="orderQuote">{{'entity.emitent.order_quote' | i18n}}</label>
+            <input id="orderQuote" formControlName="orderQuote" type="text" class="form-control"
+                   (input)="resetError('orderQuoteRequired', 'orderQuoteFormat')">
+            <div class="error-msg text-danger" *ngIf="errors.orderQuoteRequired">{{'validator.required' | i18n}}</div>
+            <div class="error-msg" *ngIf="errors.orderQuoteFormat">Incorrect format</div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <button class="btn btn-primary pull-right" [appInButtonLoader]="waiting" (click)="onEdit()">
+                <span *ngIf="!waiting">{{'page.common.action.save' | i18n}}</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

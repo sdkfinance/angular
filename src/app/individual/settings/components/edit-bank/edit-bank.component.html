@@ -1,0 +1,6 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+    <app-bank-form [bank]="bank" [waiting]="waiting" [action]="'page.individual.coin.edit' | i18n"
+                   (bankDetails)="updateDetails($event)" (back)="onBack($event)"></app-bank-form>
+  </div>
+</div>

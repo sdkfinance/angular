@@ -1,0 +1,29 @@
+<a routerLink="../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+<div class="ibox" style="margin-bottom: 0;">
+  <div class="ibox-title">
+    <h5>{{'entity.transaction.redeem' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+    <div *ngIf="coin">
+      <app-cash-desks
+        *ngIf="step === steps.First"
+        [coin]="coin"
+        (selectCashDesk)="setCashDesk($event)">
+      </app-cash-desks>
+
+      <app-cash-desk-form
+        *ngIf="step === steps.Second"
+        [coin]="coin"
+        [cashDesk]="cashDesk"
+        (back)="onBack($event)"
+        (result)="setResult($event)">
+      </app-cash-desk-form>
+
+      <app-cash-desk-result
+        *ngIf="step === steps.Third"
+        [cashDesk]="cashDesk"
+        [result]="result">
+      </app-cash-desk-result>
+    </div>
+  </div>
+</div>

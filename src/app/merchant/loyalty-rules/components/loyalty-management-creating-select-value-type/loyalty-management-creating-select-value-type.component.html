@@ -1,0 +1,23 @@
+<!--<div *ngIf="!measureUnitsList">Loading...</div>-->
+<div class="btn-group" [class.open]="showItems" style="width: 100%">
+  <a class="btn btn-default dropdown-toggle" (click)="onMenuTitleClick()" data-toggle="dropdown" style="width: 100%; margin-bottom: 0;">
+    <span style="width: calc(100% - 10px); display: inline-block;  overflow: hidden; text-overflow: ellipsis;" title="{{ selectedItem.name}}">
+      {{ selectedItem.name}}
+    </span>
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" style="margin-top: 5px">
+    <li *ngFor="let item of valueTypes"><a (click)="onItemClick(item)">{{ item.name }}</a></li>
+  </ul>
+</div>
+
+<style>
+  a.dropdown-toggle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+</style>

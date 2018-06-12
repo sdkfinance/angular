@@ -1,0 +1,67 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="card">{{'entity.payment_card' | i18n}}</label>
+    <select id="card" class="form-control" formControlName="paymentCardId">
+      <option value="null">{{'page.common.payment_card.add' | i18n}}</option>
+      <option *ngFor="let card of cards" [value]="card.id">**** **** **** {{card.last4Digits}}</option>
+    </select>
+  </div>
+
+  <div formGroupName="paymentCardData" *ngIf="form.get('paymentCardId').value === 'null'">
+    <div class="form-group">
+      <label for="pan">{{'page.common.payment_card.pan' | i18n}}</label>
+      <input id="pan" type="text" inputmode="phone" class="form-control" formControlName="pan"
+             (input)="resetErrors('pan.required', 'pan.pattern')">
+      <div class="error-msg" *ngIf="errors['pan.required']">{{'validator.required' | i18n}}</div>
+      <div class="error-msg" *ngIf="errors['pan.pattern']">{{'validator.general.invalid' | i18n}}</div>
+    </div>
+
+    <div class="form-group">
+      <label for="expirationMonth">{{'page.common.payment_card.expiration_month' | i18n}}</label>
+      <input id="expirationMonth" type="text" inputmode="phone" class="form-control" formControlName="expirationMonth"
+             (input)="resetErrors('expirationMonth.required', 'expirationMonth.pattern')">
+      <div class="error-msg" *ngIf="errors['expirationMonth.required']">{{'validator.required' | i18n}}/div>
+        <div class="error-msg" *ngIf="errors['expirationMonth.pattern']">{{'validator.payment_card.month' | i18n}}</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="expirationYear">{{'page.common.payment_card.expiration_year' | i18n }}</label>
+      <input id="expirationYear" type="text" inputmode="phone" class="form-control" formControlName="expirationYear"
+             (input)="resetErrors('expirationYear.required', 'expirationYear.pattern')">
+      <div class="error-msg" *ngIf="errors['expirationYear.required']">{{'validator.required' | i18n}}</div>
+      <div class="error-msg" *ngIf="errors['expirationYear.pattern']">{{'validator.payment_card.year' | i18n: {'0':
+        year, '1': '99'} }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cardholderName">{{'page.common.payment_card.cardholder_name' | i18n}}</label>
+      <input id="cardholderName" type="text" class="form-control" formControlName="cardholderName"
+             (input)="resetErrors('cardholderName.required')">
+      <div class="error-msg" *ngIf="errors['cardholderName.required']">{{'validator.required' | i18n}}</div>
+    </div>
+
+    <div class="form-group">
+      <label for="cvv">{{'page.common.payment_card.cvv' | i18n}}</label>
+      <input id="cvv" type="text" inputmode="numeric" pattern="\d*" class="form-control" formControlName="cvv"
+             (input)="resetErrors('cvv.required', 'cvv.pattern')">
+      <div class="error-msg" *ngIf="errors['cvv.required']">{{'validator.required' | i18n}}</div>
+      <div class="error-msg" *ngIf="errors['cvv.pattern']">{{'validator.payment_card.cvv' | i18n}}</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="providerAccountId">{{'entity.provider' | i18n}}</label>
+    <select id="providerAccountId" class="form-control" formControlName="providerAccountId">
+      <option *ngFor="let provider of providers" [value]="provider.accountId">{{provider.account.provider.name}}
+      </option>
+    </select>
+  </div>
+
+  <div class="action-btns one-action-btn">
+    <button type="submit" class="btn btn-primary" [appInButtonLoader]="waiting">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>

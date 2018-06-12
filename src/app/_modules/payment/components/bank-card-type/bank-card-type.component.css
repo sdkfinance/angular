@@ -1,0 +1,42 @@
+@import '../../../../../assets/styles/validation.css';
+
+.ico.ico_lock {
+  background: url("../../../../../assets/images/lock.svg") no-repeat 0 0;
+  -moz-background-size: 20px 24px;
+  -o-background-size: 20px 24px;
+  -webkit-background-size: 20px 24px;
+  background-size: 20px 24px;
+  width: 20px;
+  height: 24px;
+  display: inline-block;
+}
+
+.title {
+  font-size: 24px;
+  color: #4a4a4a;
+  line-height: 35px;
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 450px) {
+  .title {
+    text-align: center;
+    font-size: 17px;
+    line-height: 25px;
+  }
+
+  .title .ico {
+    display: none;
+  }
+}
+
+.title .ico {
+  margin: 6px 12px 0 0;
+}
+
+@media only screen and (max-width: 668px) {
+  .title-big {
+    font-size: 22px;
+    line-height: 32px;
+  }
+}

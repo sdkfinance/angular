@@ -1,0 +1,28 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+    <a routerLink="attach" class="btn btn-primary m-b-15"><b>{{'page.individual.settings.payment_cards.add' | i18n}}</b></a>
+
+    <div *ngIf="cards">
+      <div class="cards">
+        <div class="card" *ngFor="let card of cards">
+          <h3> **** **** **** {{card.last4Digits}}</h3>
+          <h4>{{(card.active ? 'entity.status.active' : 'entity.status.inactive') | i18n }}</h4>
+          <div class="card__id">
+            <b>{{'page.common.id' | i18n}}</b>: {{card.id}}
+          </div>
+          <button class="btn-white btn btn-xs" (click)="onDelete(card)">
+            {{'page.common.action.delete' | i18n}}
+          </button>
+        </div>
+      </div>
+
+      <div class="not-found-msg" *ngIf="!cards.length">
+        {{'page.individual.settings.payment_cards.not_found' | i18n}}
+      </div>
+    </div>
+
+    <div *ngIf="!cards" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+</div>

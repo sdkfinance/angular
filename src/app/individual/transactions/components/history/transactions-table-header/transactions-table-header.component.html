@@ -1,0 +1,36 @@
+<div class="table-cell text date" (click)="onSort('date')">
+  {{'entity.date' | i18n}}
+  <div class="sort-btns">
+    <div class="arrow-left" [class.dark-left]="sort.date == 'asc'"></div>
+    <div class="arrow-right" [class.dark-right]="sort.date == 'desc'"></div>
+  </div>
+</div>
+
+<div class="table-cell text operation">
+  <span (click)="onFilter(showTypes, 'showTypes')">{{'entity.transaction.operation' | i18n}}</span>
+  <div class="sort-btns" (click)="onSort('type')">
+    <div class="arrow-left" [class.dark-left]="sort.type == 'asc'"></div>
+    <div class="arrow-right" [class.dark-right]="sort.type == 'desc'"></div>
+  </div>
+
+  <div *ngIf="showTypes" class="list-filter">
+    <app-list-filter [items]="transactionsTypes" (close)="setFilter($event, 'types', 'transactionsTypes', 'showTypes')">
+    </app-list-filter>
+  </div>
+</div>
+
+<div class="table-cell text">{{'entity.coin.amount' | i18n}}</div>
+<div class="table-cell text">{{'entity.commission' | i18n}}</div>
+<div class="table-cell text">{{'entity.commission.direction' | i18n}}</div>
+<div class="table-cell status">
+  <span (click)="onFilter(showStatuses, 'showStatuses')">{{'entity.status' | i18n}}</span>
+  <div class="sort-btns" (click)="onSort('status')">
+    <div class="arrow-left" [class.dark-left]="sort.status == 'asc'"></div>
+    <div class="arrow-right" [class.dark-right]="sort.status == 'desc'"></div>
+  </div>
+
+  <div *ngIf="showStatuses" class="list-filter">
+    <app-list-filter [items]="transactionsStatuses" (close)="setFilter($event, 'statuses', 'transactionsStatuses', 'showStatuses')">
+    </app-list-filter>
+  </div>
+</div>

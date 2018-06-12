@@ -1,0 +1,52 @@
+.title-panel {
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-out {
+  color: #999c9e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.title {
+  overflow: hidden;
+
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.title-panel-left {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menu-button {
+  display: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.fa-sign-out {
+  margin-right: 6px
+}
+
+@media (max-width: 768px) {
+  .menu-button {
+    display: block;
+  }
+}
+
+h1 {
+  line-height: normal;
+}

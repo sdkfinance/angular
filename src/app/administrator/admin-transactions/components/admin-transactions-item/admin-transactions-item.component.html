@@ -1,0 +1,36 @@
+<div class="table-row" >
+  <div class="wrapper text-4">
+    <div class="wrapper text-2">
+      <div class="text">
+        {{transactionItem.createdAt | date:"dd-MM-yyyy H:mm:ss"}}
+      </div>
+      <div class="text">
+        {{transactionItem.posId}}
+      </div>
+    </div>
+    <div class="wrapper text-2">
+      <div class="text">
+        {{transactionItem.identifier}}
+      </div>
+      <div class="text">
+        {{transactionItem.parameters.invoiceAmount}} {{transactionItem.issuer.currency}}
+
+      </div>
+    </div>
+    <div class="wrapper text-2">
+      <div class="text">
+        <span class="label" [ngClass]="{'label-primary': transactionItem.status == 'paid', 'label-warning': transactionItem.status == 'pending'}">
+
+        {{transactionItem.status}}
+        </span>
+      </div>
+      <div class="text">
+        <!--<a (click)="toogleCheck()">
+          <span *ngIf="!isCheckShown">Показать чек</span>
+          <span *ngIf="isCheckShown" style="color: #ed5565;">Скрыть чек</span>
+        </a>-->
+      </div>
+    </div>
+
+  </div>
+</div>

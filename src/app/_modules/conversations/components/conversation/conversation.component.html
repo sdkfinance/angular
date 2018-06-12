@@ -1,0 +1,35 @@
+<div class="wrapper">
+
+  <div class="conversation-header">
+    <button class="btn btn-white btn-sm close-btn" (click)="onClose()">{{'page.common.action.close' | i18n}}</button>
+    <h3>{{conversation.name}}</h3>
+    <div></div>
+  </div>
+
+  <div *ngIf="!messages" class="loader-container is-divtable">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <div *ngIf="messages">
+
+    <div class="messages-list">
+      <div *ngFor="let message of messages">
+        <div class="message" [ngClass]="message.sender.entityId == userId ? 'right-message' : 'left-message'">
+          <div><b>{{message.sender.entityId}}</b></div>
+          <div>{{message.text}}</div>
+          <div style="text-align: end">{{message.createdAt | date: 'dd.MM.yyyy HH:mm'}}</div>
+        </div>
+      </div>
+      <div class="more-btn" *ngIf="totalPages > page + 1" (click)="onNextPage()">
+        <i class="fa fa-long-arrow-up" aria-hidden="true"></i> Show more
+      </div>
+    </div>
+
+    <div *ngIf="!conversation.broadcast">
+      <textarea [(ngModel)]="message" class="form-control" rows="2" (keydown.enter)="sendMessage();false"></textarea>
+      <div class="send-btn">
+        <button class="btn btn-primary" (click)="sendMessage()"><b>{{'page.common.action.send' | i18n}}</b></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <app-vouchers-table></app-vouchers-table>
+  </div>
+
+  <div class="col-lg-4" *ngIf="coins">
+    <app-voucher-create [coins]="coins"></app-voucher-create>
+    <app-voucher-redeem [coins]="coins"></app-voucher-redeem>
+  </div>
+</div>

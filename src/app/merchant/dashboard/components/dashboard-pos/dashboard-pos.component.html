@@ -1,0 +1,39 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5 routerLink="/merchant/pos">POS</h5>
+  </div>
+
+  <div class="ibox-content">
+
+    <div *ngIf="!pointsOfSale" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="pointsOfSale">
+      <h4
+        *ngFor="let pos of pointsOfSale; let i = index"
+        [routerLink]="['/merchant/pos/details/', pos.id]"
+        class="text-center">
+        POS {{i + 1}} - {{pos.name}}
+      </h4>
+      <div style="text-align: center" *ngIf="!pointsOfSale.length">No POS</div>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  h5:hover, h4:hover {
+    cursor: pointer;
+    outline: none;
+  }
+
+  h4:hover {
+    color: #999999;
+  }
+
+  h5:hover {
+    color: #555555;
+  }
+</style>

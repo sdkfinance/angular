@@ -1,0 +1,15 @@
+<div class="app-content__footer border-top">
+  <div class="app-content__footer--left">
+    <!--<b>2018 © SDK.Finance</b>-->
+  </div>
+
+  <div class="app-content__footer--right">
+    <div class="locales label-item">
+      <div class="locales-list" *ngIf="listIsShown">
+        <div *ngFor="let locale of locales" (click)="onChangeLocale(locale)">{{locale.name}}</div>
+      </div>
+      <div class="locale" (click)="onToggle()">{{currentLocale.name}}</div>
+    </div>
+    <div class="label-item"><a routerLink="/common/terms-and-conditions">Terms of use</a></div>
+  </div>
+</div>

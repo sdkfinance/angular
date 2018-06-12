@@ -1,0 +1,36 @@
+
+<div>
+  <h5 style="font-size: 15px; text-align: center">List of loyalty groups</h5>
+
+  <div class="ibox">
+    <div class="ibox-content" style="border: none">
+      <div class="table-content">
+
+        <div class="table-header">
+          <div class="table-cell" style="width: 15%">Number</div>
+          <div class="table-cell">ID</div>
+          <div class="table-cell">Name</div>
+          <div class="table-cell">Condition</div>
+          <div class="table-cell" style="width: 10%"> </div>
+        </div>
+
+        <div *ngIf="loyaltyGroups">
+          <div *ngFor="let loyaltyGroup of loyaltyGroups; let i = index;">
+            <app-loyalty-groups-table-item
+              [loyaltyGroup]="loyaltyGroup"
+              [number]="i">
+            </app-loyalty-groups-table-item>
+          </div>
+
+          <p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="!loyaltyGroups.length">There is no loyalty groups</p>
+        </div>
+
+        <div *ngIf="!loyaltyGroups" class="loader-container is-divtable" style="margin: 25px">
+          <div class="loading-spinner"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

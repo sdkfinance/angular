@@ -1,0 +1,161 @@
+/*
+ * Define the widths: play around with these to get a best fit.
+ */
+@margin: 50px;
+@text-width: 80px;
+@num-width: 40px;
+
+.ibox-content {
+  border-width: 0px;
+}
+
+/*
+ * Basic styles, good for a large display. Everything fits in
+ * one row, no wrapping. All text based cells grow equally.
+ */
+
+// Main container: initialize the flex, direction is row, no wrapping. width 100%
+.table-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-flex-wrap: nowrap;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+  border-collapse: collapse;
+  padding: 8px 15px;
+
+}
+
+// Wrappers around cells and other wrappers: flex, row
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  -webkit-flex-grow: 0;
+  padding: 0;
+  width: 100%;
+}
+
+// Text cells and wrappers: grow equally when there is extra space
+.text-4, .text-2, .text {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -webkit-flex-grow: 1;
+}
+
+// Text cells: truncate and show ellipsis when not enough space
+.text {
+  //overflow: hidden;
+  //white-space: nowrap;
+  //text-overflow: ellipsis;
+  padding-right: 20px;
+  width: 33%;
+}
+
+.text.last {
+  padding-right: 0px;
+  text-align: right;
+  width: 80px;
+}
+
+/*
+ * General good-look styles, not mandatory.
+ */
+
+.table-row.header {
+  font-size: 13px;
+  font-weight: bold;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.wrapper.wrapper-content {
+  background: white;
+}
+
+.container-fluid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background: white;
+  padding: 0;
+}
+
+.num-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: @num-width*2;
+}
+
+.text-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: 100%;
+}
+
+.num {
+  width: @num-width;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.nav-btns {
+  margin-top: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.page-number {
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}

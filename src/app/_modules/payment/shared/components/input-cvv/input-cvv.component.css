@@ -1,0 +1,17 @@
+.cvv {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 32px;
+  background: url(../../../../../../assets/images/wink.svg) no-repeat 0;
+  cursor: pointer;
+}
+
+.eye-icon--closed {
+  background-position: -25px 2px;
+}

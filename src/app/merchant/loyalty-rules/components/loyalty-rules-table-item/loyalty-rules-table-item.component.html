@@ -1,0 +1,27 @@
+<div class="table-row">
+  <div class="wrapper text-4">
+    <div class="wrapper text-2">
+      <div class="num">
+        {{(number+1)}}
+      </div>
+      <div class="text">{{loyaltyRule.name}}</div>
+    </div>
+    <div class="wrapper text-2">
+      <div class="text">{{loyaltyRule.startsAt | date: 'dd/MM/y'}}
+        <span *ngIf="loyaltyRule.endsAt"> - {{ loyaltyRule.endsAt | date: 'dd/MM/y' }}</span>
+      </div>
+      <div class="num-2">
+        <span style="line-height: 13px;" class="label label-primary" *ngIf="loyaltyRule.active">Active</span>
+        <span style="line-height: 13px;" class="label label-warning" *ngIf="!loyaltyRule.active">Inactive</span>
+      </div>
+      <div class="text" style="text-align: right; display:flex; flex-direction: column; align-items: flex-end">
+        <button class="btn-white btn btn-xs" style="margin-bottom: 5px" (click)="onToggle()">{{ showDetails ? "Hide" : "Show"}}</button>
+        <button class="btn-white btn btn-xs" (click)="openDialog()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-row" *ngIf="showDetails">
+  <app-loyalty-rules-table-item-details [loyaltyRule]="loyaltyRule"></app-loyalty-rules-table-item-details>
+</div>

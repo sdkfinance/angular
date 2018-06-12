@@ -1,0 +1,67 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.administrator.i18n' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <form [formGroup]="filters" style="display: flex; align-items: flex-end">
+      <div style="margin-right: 25px">
+        <label for="keyFilter">{{'page.administrator.i18n.search_by_key' | i18n}}</label>
+        <input id="keyFilter" class="form-control" type="text" formControlName="key">
+      </div>
+
+      <div style="margin-right: 25px">
+        <label for="valueFilter">{{'page.administrator.i18n.search_by_value' | i18n}}</label>
+        <input id="valueFilter" class="form-control" type="text" formControlName="value">
+      </div>
+      <button style="margin-right: 25px" class="btn btn-primary" (click)="onSearch()">{{'page.common.action.search' | i18n}}</button>
+      <button style="margin-right: 25px" class="btn btn-primary" (click)="onReset()">{{'page.common.action.reset' | i18n}}</button>
+
+      <button class="btn btn-primary" (click)="onSave()">{{'page.common.action.save' | i18n}}</button>
+    </form>
+
+    <div class="table" *ngIf="bundles" style="margin-top: 10px">
+
+      <div class="table-header">
+        <div class="table-cell text" (click)="onSort()" style="cursor: pointer">
+          {{'page.administrator.i18n.key' | i18n}}
+          <div class="sort-btns" style="display: inline-block; font-size: 8px;">
+            <div style="display: inline-block;" class="arrow-left" [class.dark-left]="sort && sort.key == 'asc'"></div>
+            <div style="display: inline-block;" class="arrow-right" [class.dark-right]="sort && sort.key == 'desc'"></div>
+          </div>
+        </div>
+
+        <div class="table-cell text">{{'page.common.languages.en' | i18n}}</div>
+        <div class="table-cell text">{{'page.common.languages.ru' | i18n}}</div>
+        <div class="table-cell text">{{'page.common.languages.uk' | i18n}}</div>
+        <div class="table-cell" style="width: 110px; text-align: end">{{'page.common.action.actions' | i18n}}</div>
+      </div>
+
+      <div class="table-row" *ngFor="let bundle of bundles">
+        <div class="table-cell text">{{ bundle.key }}</div>
+        <!--title="{{ bundle.key }}"-->
+        <div class="table-cell text">{{ bundle.values[2]?.value }}</div>
+        <div class="table-cell text">{{ bundle.values[0]?.value }}</div>
+        <div class="table-cell text">{{ bundle.values[1]?.value }}</div>
+        <div class="table-cell"
+             style="width: 110px; text-align: end; display: flex; align-items: center; justify-content: flex-end">
+          <a class="btn-white btn btn-xs" style="margin-right: 5px" [routerLink]="[bundle.id]">Edit</a>
+          <button class="btn-white btn btn-xs" (click)="onDelete(bundle)">Delete</button>
+        </div>
+      </div>
+
+      <p *ngIf="!bundles.length" class="not-found-msg">{{'page.administrator.i18n.not_found' | i18n}}</p>
+
+    </div>
+
+    <div *ngIf="!bundles" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div class="pagination-btns" *ngIf="totalPages > 1">
+      <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)">
+      </app-pagination-buttons>
+    </div>
+
+  </div>
+</div>

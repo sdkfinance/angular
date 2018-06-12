@@ -1,0 +1,21 @@
+<div *ngIf="!graphSeted" class="loader-container is-divtable" style="padding-top: 20px; padding-bottom: 20px;">
+  <div class="loading-spinner"></div>
+</div>
+
+
+<div *ngIf="graphSeted">
+  <div class="round-chart" style="padding: 18.5px 0;">
+    <chart [type]="type" [data]="dataV" [options]="options" style="width: 200px; height: 200px;"></chart>
+    <div class="summary-cont" style="position: absolute;font-size: 36px;margin-top: 0;">
+      {{summary}}
+    </div>
+  </div>
+  <div class="graph-labels">
+    <div class="graph-label" style="margin: 10px;">
+      <p><span style="background-color:#3692d8;"></span>Mobile app</p>
+    </div>
+    <div class="graph-label">
+      <p><span style="background-color:#1ab394;"></span>Web interface</p>
+    </div>
+  </div>
+</div>

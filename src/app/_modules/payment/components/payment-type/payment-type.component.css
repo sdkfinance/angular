@@ -1,0 +1,26 @@
+.container.is_active {
+  display: block;
+}
+
+.container {
+  padding: 22px 30px 30px;
+  background: white;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  overflow: hidden;
+  max-width: 700px;
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    padding: 10px 15px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .tabs .container {
+    max-width: 100%;
+  }
+}

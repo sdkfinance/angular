@@ -1,0 +1,5 @@
+<div class="conversation" [class.selected]="selected">
+  <div class="user">{{'User'}}</div>
+  <div class="theme">{{conversation.name}}</div>
+  <div class="date">{{conversation.lastMessageCreatedAt | date: 'dd.MM.yyyy HH:mm'}}</div>
+</div>

@@ -1,0 +1,133 @@
+body {
+  background-color: #f3f3f4;
+}
+
+@media (max-width: 768px) {
+  body:not(.mini-navbar) {
+    background-color: #f3f3f4;
+  }
+}
+
+.ibox-title {
+  border-color: #e7eaec;
+  background-color: #003938;
+  color: white;
+}
+
+.login-wrapper {
+  background-color: #f3f3f4;
+}
+
+.reset-wrapper {
+  background-color: #f3f3f4;
+}
+
+.form-control:focus {
+  border-color: #1ab394;
+}
+
+
+/** NAV MENU */
+.app-menu {
+  background-color: #003938;
+}
+
+.nav > li > a {
+  color: white;
+}
+
+.navbar-default .nav > li > a:active {
+  background-color: #293846;
+  color: white;
+}
+
+.activeMenuItem {
+  background-color: #f4e704;
+  color: black !important;
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus, .navbar-default .nav > li > a:active {
+  background-color: #f4e704;
+  color: black;
+}
+
+.nav-header {
+  padding: 33px 25px;
+  background-color: #080f0f;
+  background-image: none;
+}
+/** NAV MENU END */
+
+
+/** BUTTONS */
+.btn-primary {
+  background-color: #1ab394;
+  border-color: #1ab394;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.btn-primary.active:focus {
+  background-color: #1ab394;
+  border-color: #1ab394;
+  color: #FFFFFF;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary.disabled:hover,
+.btn-primary.disabled:focus,
+.btn-primary.disabled:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus,
+.btn-primary[disabled]:active,
+.btn-primary.active[disabled],
+fieldset[disabled] .btn-primary,
+fieldset[disabled] .btn-primary:hover,
+fieldset[disabled] .btn-primary:focus,
+fieldset[disabled] .btn-primary:active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #1ab394;
+  border-color: #1ab394;
+}
+/** BUTTONS END */
+
+
+/** LOADERS */
+.loader-container.is-app .loading-spinner,
+.loader-container.is-divtable .loading-spinner,
+.loader-container.is-item .loading-spinner,
+.loader-container.is-company-profile .loading-spinner,
+.loader-container.is-your-profile .loading-spinner {
+  border-color: #1ab394;
+}
+
+.loader-container.is-in-button .loading-spinner,
+.loader-container.is-in-sm-button .loading-spinner {
+  border-color: #ffffff;
+}
+/** LOADERS END */
+
+/** BS DATEPICKER */
+.bs-datepicker-head {
+  background-color: #1ab394 !important;
+}
+
+.theme-green .bs-datepicker-body table td.week span {
+  color: #1ab394 !important;
+}
+/** BS DATEPICKER END*/

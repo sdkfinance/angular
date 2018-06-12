@@ -1,0 +1,61 @@
+.sort-btns {
+  transform: rotate(90deg);
+  font-stretch: ultra-condensed;
+  display: inline-block;
+  font-size: 8px;
+
+  div {
+    display: inline-block;
+  }
+}
+.table-cell.text {
+  flex: 1;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // word-wrap: break-word;
+}
+
+.table-cell {
+  padding: 8px;
+}
+
+.date {
+  cursor: pointer;
+}
+
+.status {
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+  position: relative;
+
+  span {
+    cursor: pointer;
+    border-bottom: 1px dotted #dddddd;
+  }
+
+  .list-filter {
+    position: absolute;
+    z-index: 10;
+    text-align: start;
+  }
+}
+
+.operation {
+  cursor: pointer;
+  position: relative;
+  overflow: visible !important;
+
+  span {
+    cursor: pointer;
+    border-bottom: 1px dotted #dddddd;
+  }
+
+  .list-filter {
+    position: absolute;
+    z-index: 10;
+    text-align: start;
+    min-width: 180px;
+  }
+}

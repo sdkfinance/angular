@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://sandbox.sdk.finance/api/v1",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/api": ""}
+  }
+}

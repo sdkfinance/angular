@@ -1,0 +1,26 @@
+<div style="padding: 0 15px">
+  <div class="row border-bottom">
+    <div class="title-panel col-md-12">
+
+      <div class="title-panel-left">
+        <div class="menu-button">
+          <button class="btn btn-sm btn-primary" (click)="showMenu()">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <div class="title">
+          <h1>{{ title | i18n}}</h1>
+        </div>
+      </div>
+
+      <div class="log-out" style="cursor: pointer">
+        <div (click)="onLogout()">
+          <i class="fa fa-sign-out"></i> {{'page.individual.sidebar.exit' | i18n}}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

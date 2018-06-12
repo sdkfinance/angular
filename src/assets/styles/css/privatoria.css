@@ -1,0 +1,23 @@
+.fa-laptop{
+	font-size: 18px;
+}
+.count-info .label {
+    right: 2px;
+    top: 10px;
+}
+
+.devices-label.m-r-sm{
+	margin-right: 5px;
+} 
+
+.navbar-top-links .dropdown-messages .dropdown-messages-box>a{
+	font-size: 18px;
+	width: 60px;
+	text-align: center;
+}
+
+.navbar-top-links .static-links-wrapper{
+	display: inline-block;
+}
+
+

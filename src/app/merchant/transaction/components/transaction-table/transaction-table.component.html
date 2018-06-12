@@ -1,0 +1,138 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>Transaction list</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="container-fluid">
+
+      <app-transactions-search (onSearch)="searchTransaction($event)" ></app-transactions-search>
+
+      <div class="table-row header">
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text" (click)="onSortDate()" style="cursor: pointer">
+              Date
+              <div class="sort-btns" style="display: inline-block; font-size: 8px">
+                <div *ngIf="sortInfo.sortDate">
+
+                  <div *ngIf="!sortInfo.sortDateAsc">
+                    <div style="display: inline-block;" class="arrow-left light-left"></div>
+                    <div style="display: inline-block;" class="arrow-right dark-right"></div>
+                  </div>
+
+                  <div *ngIf="sortInfo.sortDateAsc">
+                    <div style="display: inline-block;" class="arrow-left dark-left"></div>
+                    <div style="display: inline-block;" class="arrow-right light-right"></div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="sortInfo.sortAmount">
+                  <div style="display: inline-block;" class="arrow-left"></div>
+                  <div style="display: inline-block;" class="arrow-right"></div>
+                </div>
+
+              </div>
+            </div>
+            <div class="text">POS ID</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">Name of POS</div>
+            <div class="text">Order number</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text" (click)="onSortAmount()" style="cursor: pointer">
+              Amount
+              <div class="sort-btns" style="display: inline-block; font-size: 8px">
+                <div *ngIf="sortInfo.sortAmount">
+
+                  <div *ngIf="!sortInfo.sortAmountAsc">
+                    <div style="display: inline-block;" class="arrow-left light-left"></div>
+                    <div style="display: inline-block;" class="arrow-right dark-right"></div>
+                  </div>
+
+                  <div *ngIf="sortInfo.sortAmountAsc">
+                    <div style="display: inline-block;" class="arrow-left dark-left"></div>
+                    <div style="display: inline-block;" class="arrow-right light-right"></div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="sortInfo.sortDate">
+                  <div style="display: inline-block;" class="arrow-left"></div>
+                  <div style="display: inline-block;" class="arrow-right"></div>
+                </div>
+
+              </div>
+            </div>
+            <div class="text">Status</div>
+            <div class="text">Actions</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div *ngIf="!transactionList" class="loader-container is-divtable" style="margin: 25px">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <div *ngIf="transactionList">
+        <app-transaction-table-item *ngFor="let transactionElement of transactionList"
+                                    [transactionItem]="transactionElement">
+        </app-transaction-table-item>
+
+        <div class="table-row" *ngIf="transactionList.length < 1">
+          <div class="wrapper text-4" style="display: flex; justify-content: center; font-size: 14px">
+            Transactions not found
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="padding-right: 20px; background: white; display: inline-block; width: 100%;" *ngIf="totalPages > 1">
+      <ul class="pagination pull-right" style="margin-bottom: 0">
+        <li *ngIf="currentPage != 0" class="footable-page-arrow"><a (click)="onPreviousPage()">‹</a></li>
+        <li *ngIf="currentPage != (totalPages - 1)" class="footable-page-arrow"><a (click)="onNextPage()">›</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sort-btns {
+    transform: rotate(90deg);
+    font-stretch: ultra-condensed;
+  }
+
+  .arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #aaaaaa;
+  }
+
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right:5px solid #aaaaaa;
+  }
+
+  .light-right {
+    border-left-color: #aaaaaa;
+  }
+
+  .dark-right {
+    border-left-color: #676a6c;
+  }
+
+  .light-left {
+    border-right-color: #aaaaaa;
+  }
+
+  .dark-left {
+    border-right-color: #676a6c;
+  }
+</style>

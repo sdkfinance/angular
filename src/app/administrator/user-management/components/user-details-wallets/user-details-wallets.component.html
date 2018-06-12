@@ -1,0 +1,29 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <div *ngIf="!wallets" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="wallets">
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let wallet of wallets">
+          <div class="coin">
+            <div><h4>{{wallet.serial}}</h4></div>
+            <div><b>{{'entity.type' | i18n}}: </b>{{wallet.type}}</div>
+            <div><b>{{'entity.coin.amount' | i18n}}: </b>{{wallet.amount|number:'1.2-2'}} {{wallet.issuer.currency}}
+            </div>
+            <div><b>{{'entity.coin.locket' | i18n}}: </b>{{ (wallet.amount - wallet.availableAmount) | number:'1.2-2'}}
+              {{wallet.issuer.currency}}
+            </div>
+            <div *ngIf="wallet.active"><b>{{'entity.status' | i18n}}: </b>{{'entity.status.active' | i18n}}</div>
+            <div *ngIf="!wallet.active"><b>{{'entity.status' | i18n}}:</b>{{'entity.status.inactive' | i18n}}</div>
+          </div>
+        </div>
+        <div *ngIf="!wallets.length" class="col-sm-12 not-found-msg">The user has no wallets</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

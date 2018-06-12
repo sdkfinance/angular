@@ -1,0 +1,9 @@
+<div>
+  {{'page.cashier.top_up.success' | i18n: {
+  '0': findCoin().name,
+  '1': result.cashAmount.toFixed(2),
+  '2': result.clientCoin.issuer.currency
+  } }}
+</div>
+
+<a routerLink="../">{{'page.cashier.withdraw_cash.btn.back_to_cass_day' | i18n}}</a>

@@ -1,0 +1,27 @@
+<div class="table-row">
+  <div class="table-cell text">{{gateProvider.provider.name}}</div>
+  <div class="commission-profiles">
+    <div class="item" *ngFor="let commission of gateCommissionProfiles">
+
+      <div class="table-cell text">
+        {{commission.providerCurrency.code}}
+      </div>
+
+      <div>
+        <app-gate-commissions [commissionProfile]="commission" [gateProvider]="gateProvider"></app-gate-commissions>
+      </div>
+
+      <div>
+        <div class="table-cell text limit">
+          <app-gate-limit [commissionProfile]="commission" [txTypes]="gateProvider.supportedTransactionTypes"></app-gate-limit>
+        </div>
+      </div>
+
+    </div>
+    <div class="item" *ngIf="canAddCommission">
+      <div class="table-cell text">
+        <a [routerLink]="['add', gateProvider.id]">{{'page.cfo.crud_req.view.add_currency' | i18n}}</a>
+      </div>
+    </div>
+  </div>
+</div>

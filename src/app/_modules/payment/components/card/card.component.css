@@ -1,0 +1,22 @@
+.form {
+  margin: 20px 0;
+  font-size: 0;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.form_in {
+  padding: 16px 0 0 20px;
+  width: 346px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 570px) {
+  .form.form_card {
+    height: auto;
+  }
+}

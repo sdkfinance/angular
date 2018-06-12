@@ -1,0 +1,11 @@
+<mat-dialog-content>
+  <p class="text-center">
+    Are you sure you want to delete {{data.nameToDelete}}?
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <!--<button mat-button mat-dialog-close class="no-modal-btn">No</button>-->
+  <!--<button mat-button (click)="confirmDelete()" style="margin-right: 10px">Yes</button>-->
+  <button class="btn btn-sm btn-primary m-r-15" mat-dialog-close><b>No</b></button>
+  <button class="btn btn-sm btn-primary" (click)="confirmDelete()"><b>Yes</b></button>
+</mat-dialog-actions>

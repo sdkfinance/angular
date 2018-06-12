@@ -1,0 +1,12 @@
+<app-base-form
+  *ngIf="paymentMethod === paymentMethods.BaseForm"
+  [fields]="fields"
+  [serverErrors]="serverErrors"
+  [waiting]="waiting"
+  (back)="onBack()"
+  (onSubmit)="makeTransaction($event)">
+</app-base-form>
+
+<div *ngIf="!fields && !selectedOption " class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

@@ -1,0 +1,10 @@
+<!--<div *ngIf="!measureUnitsList">Loading...</div>-->
+<div class="btn-group" [class.open]="showItems" style="width: 100%">
+  <a class="btn btn-default dropdown-toggle" (click)="onMenuTitleClick()" data-toggle="dropdown" style="width: 100%">
+    {{ selectedItem.name}}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" style="margin-top: 5px">
+    <li *ngFor="let item of activationPolicies"><a (click)="onItemClick(item)">{{ item.name }}</a></li>
+  </ul>
+</div>

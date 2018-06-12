@@ -1,0 +1,45 @@
+<div>
+  <div *ngIf="stepOne">
+    <form [formGroup]="transferForm">
+      <div class="m-b-15">
+        <label for="senderCoin">{{'entity.coin' | i18n}}</label>
+        <select id="senderCoin" formControlName="senderCoin" class="form-control">
+          <option *ngFor="let coin of coins" value="{{coin.serial}}">{{coin.name + " (" + coin.amount + " " +
+            coin.issuer.currency + ")"}}
+          </option>
+        </select>
+      </div>
+
+      <div class="m-b-15">
+        <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+        <input id="amount" class="form-control" type="text" formControlName="amount">
+        <div *ngIf="errors.number" class=" error-msg text-danger">{{'validator.amount.format' | i18n: {'0': '12345.67'} }}
+        </div>
+        <div *ngIf="errors.amount" class="error-msg text-danger">
+          {{'validator.amount.max_value' | i18n: { '0' : selectedCoin.availableAmount} }},
+          {{'validator.amount.min_value' | i18n: {'0': '0.01'} }}
+        </div>
+        <div *ngIf="errors.amountIsEmpty" class="error-msg text-danger">{{'validator.required' | i18n}}</div>
+      </div>
+    </form>
+
+    <div>
+      <div class="action-btns one-action-btn">
+        <button class="btn btn-primary btn-sm action-btn" (click)="onNext()">
+          <span>{{'page.common.action.next' | i18n}}</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="!stepOne">
+    <app-transfer-form-recipient
+      [selectedCoin]="selectedCoin"
+      [amount]="transferForm.get('amount').value"
+      (result)="setResult($event)"
+      (goBack)="stepOne = true"></app-transfer-form-recipient>
+  </div>
+
+</div>
+

@@ -1,0 +1,39 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <a routerLink="../../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.common.charge' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+
+        <app-top-up-amount
+          *ngIf="amountFormIsShown"
+          [coin]="coin"
+          [providerId]="providerId"
+          [serial]="serial"
+          [way]="way"
+          (transaction)="setTransaction($event)">
+        </app-top-up-amount>
+
+        <app-top-up-form
+          *ngIf="paymentFormIsShown"
+          [provider]="provider"
+          [transaction]="transaction"
+          (result)="setResult($event)"
+          (back)="back($event)">
+        </app-top-up-form>
+
+        <app-top-up-result
+          *ngIf="resultIsShown"
+          [result]="result">
+        </app-top-up-result>
+
+        <div *ngIf="!paymentFormIsShown && !amountFormIsShown && !resultIsShown" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

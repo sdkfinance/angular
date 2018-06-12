@@ -1,0 +1,8 @@
+<a routerLink="../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+<div>
+  <a class="settings-nav" routerLink="view" routerLinkActive="active-item">{{'page.common.action.view' | i18n}}</a>
+  <a class="settings-nav" routerLink="edit" routerLinkActive="active-item">{{'page.common.action.edit' | i18n}}</a>
+  <a class="settings-nav" *ngIf="hasWallets" routerLink="wallets" routerLinkActive="active-item">{{'entity.coin.coins' | i18n}}</a>
+  <a class="settings-nav" *ngIf="hasSmartCards" routerLink="smart-cards" routerLinkActive="active-item">{{'page.support.tickets.actions.cards_control' | i18n}}</a>
+</div>
+<router-outlet></router-outlet>

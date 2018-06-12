@@ -1,0 +1,9 @@
+<div class="btn-group" [class.open]="showCoins" style="width: 100%">
+  <a class="btn btn-default dropdown-toggle" (click)="onMenuTitleClick()" data-toggle="dropdown" style="width: 100%">
+    {{ menuTitle}}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" style="margin-top: 5px" *ngIf="coins">
+    <li *ngFor="let coin of coins"><a (click)="onItemClick(coin)">{{ coin.name}}</a></li>
+  </ul>
+</div>

@@ -1,0 +1,36 @@
+<form [formGroup]="settingsForm" action="">
+  <div class="row white-bg dashboard-header" style="margin-left: 0; margin-right: 0;">
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <label>Surname</label>
+        <input type="text" placeholder="" class="form-control" formControlName="profileNameLast"
+               [readonly]="profile.profile.status=='approved'"
+               [(ngModel)]="profile.profile.person.namePlain.last">
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" placeholder="" class="form-control" formControlName="profileNameFirst"
+               [readonly]="profile.profile.status=='approved'"
+               [(ngModel)]="profile.profile.person.namePlain.first">
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <label>Middle name</label>
+        <input type="text" placeholder="" class="form-control" formControlName="profileNameMiddle"
+               [readonly]="profile.profile.status=='approved'"
+               [(ngModel)]="profile.profile.person.namePlain.middle">
+      </div>
+    </div>
+
+    <div class="col-lg-2">
+      <button  *ngIf="profileNameIsChange()" (click)="onSaveNameChanges()" class="btn btn-primary btn-rounded" style="margin-top: 24px">Save</button>
+    </div>
+
+  </div>
+</form>

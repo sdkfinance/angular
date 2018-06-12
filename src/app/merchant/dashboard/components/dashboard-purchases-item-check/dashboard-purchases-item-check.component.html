@@ -1,0 +1,25 @@
+<div *ngIf="!purchaseItems" class="loader-container is-divtable" style="margin: 21px">
+  <div class="loading-spinner"></div>
+</div>
+
+<div *ngIf="purchaseItems" style="width: 100%">
+  <div class="table-content" *ngIf="purchaseItems.length">
+    <div class="table-header">
+      <div class="table-cell">Number</div>
+      <div class="table-cell">Title</div>
+      <div class="table-cell">Price</div>
+      <div class="table-cell">Quantity</div>
+      <div class="table-cell" style="text-align: center">Unit of measurement</div>
+    </div>
+
+    <div class="table-body-row" *ngFor="let item of purchaseItems; let i = index">
+      <div class="table-cell">{{ i + 1 }}</div>
+      <div class="table-cell" title="{{item.product.description}}">{{ item.product.name }}</div>
+      <div class="table-cell">{{ item.price }}</div>
+      <div class="table-cell">{{ item.quantity }}</div>
+      <div class="table-cell">{{ item.product.measureUnit.code }}</div>
+    </div>
+  </div>
+
+  <div class="table-content" style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="!purchaseItems.length">There is no check</div>
+</div>

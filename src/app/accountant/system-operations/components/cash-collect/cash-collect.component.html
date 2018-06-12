@@ -1,0 +1,23 @@
+<app-operation-form #form *ngIf="!result"
+                    [organizations]="organizations"
+                    [coins]="coins"
+                    [operationName]="'entity.transaction.cash_collect.make'"
+                    [operationType]="'cash_collect'"
+                    (makeOperation)="createCollect($event)">
+</app-operation-form>
+
+<div *ngIf="result">
+  <h3>{{'entity.transaction.cash_collect' | i18n}}</h3>
+  <p>{{'page.accountant.cash_collect.requested' | i18n}}</p>
+
+  <div [innerHTML]="'page.accountant.system_request_info' | i18n: {
+    '0': result['requestIdentifier'],
+    '1': result['receiver'].name,
+    '2': result['amount'] | number: '.2',
+    '3': result['coin'].issuer.currency,
+    '4': result['coin'].serial
+    }">
+  </div>
+
+  <button class="btn btn-sm btn-primary" (click)="onClose()"><b>{{'page.common.action.close' | i18n}}</b></button>
+</div>

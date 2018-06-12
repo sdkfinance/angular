@@ -1,0 +1,30 @@
+<div class="table-row">
+  <div class="table-cell text">{{ invoice.identifier }}</div>
+
+  <div class="table-cell date">
+    <div>{{ invoice.createdAt | date: 'dd.MM.yyyy' }}</div>
+    <div>{{ invoice.createdAt | date: 'HH:mm' }}</div>
+  </div>
+
+  <div class="table-cell text">
+    <div><b>{{'page.merchant.invoice.service' | i18n}}:</b> {{ invoice.name }}</div>
+    <div *ngIf="invoice.data">
+      <div><b>{{'page.individual.invoices.print.product_code' | i18n}}:</b> {{ invoice.data.productCode }}</div>
+      <div><b>{{'page.merchant.invoice.product_count' | i18n}}:</b> {{ invoice.data.count }}</div>
+    </div>
+    <div><b>{{'page.individual.invoices.from' | i18n}}:</b> {{ invoice.merchantName }}</div>
+  </div>
+
+  <div class="table-cell text">{{ invoice.totalPrice.toFixed(2) }} {{ invoice.issuer.currency }}</div>
+
+  <div class="table-cell status">
+    {{ invoice.status | firstIsUpper}}
+    <div *ngIf="invoice.status == 'pending' && direction !== 'OUTGOING'"><a (click)="onPay(invoice)">{{'page.common.action.pay' | i18n}}</a></div>
+    <div *ngIf="invoice.status == 'pending' && direction !== 'OUTGOING'"><a [routerLink]="['./hold', invoice.identifier]">{{'page.individual.invoices.pay_with_card' | i18n}}</a></div>
+    <div><a [routerLink]="['./view', direction, invoice.identifier]">{{'page.common.action.view' | i18n}}</a></div>
+    <div *ngIf="invoice.status == 'pending'">
+      <a (click)="onDelete(invoice.identifier)" *ngIf="!waiting">{{'page.common.action.delete' | i18n}}</a>
+      <span *ngIf="waiting">{{'page.common.action.deleting' | i18n}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="document"
+     [class.pending]="document?.status == 'PENDING'"
+     [class.confirmed]="document?.status == 'APPROVED'"
+     [class.declined]="document?.status == 'DECLINED'">
+
+  <input *ngIf="!document || document.status == 'DECLINED'"
+         type="file" accept="image/*,application/pdf" (change)="onUpload($event)">
+
+  <h3>{{title}}</h3>
+
+  <div class="text" *ngIf="!document && !files">{{'page.individual.docs.hint_doc_upload' | i18n}}ges</div>
+  <div class="text" *ngIf="document && !files">{{document.status | documentStatus | i18n}}</div>
+
+  <div class="text" *ngIf="files">
+    <div *ngIf="!waiting">
+      <div *ngFor="let file of files" class="file-name">{{ file.name }}</div>
+    </div>
+
+    <div *ngIf="waiting">
+      {{'validator.ui.file' | i18n}}...
+    </div>
+  </div>
+
+  <div *ngIf="!document && !files" class="upload"><b>{{'page.common.action.upload' | i18n}}</b></div>
+  <div *ngIf="document?.status == 'DECLINED' && !files" class="upload"><b>{{'page.common.action.change' | i18n}}</b></div>
+  <div *ngIf="files" (click)="sendFile()" class="send"><b>{{'page.common.action.send' | i18n}}</b></div>
+</div>

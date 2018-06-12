@@ -1,0 +1,81 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <div *ngIf="!profile" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="profile">
+      <form [formGroup]="userNameForm">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{'entity.profile.name.last.plain' | i18n}}</label>
+              <input type="text" placeholder="" [readonly]="profile.profile.status=='approved'" class="form-control"
+                     [class.hasError]="errors.lastNameRequired" formControlName="lastName"
+                     (blur)="transliterate('last')">
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{'entity.profile.name.first.plain' | i18n}}</label>
+              <input type="text" placeholder="" [readonly]="profile.profile.status=='approved'" class="form-control"
+                     [class.hasError]="errors.firstNameRequired" formControlName="firstName"
+                     (blur)="transliterate('first')">
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{'entity.profile.name.middle.plain' | i18n}}</label>
+              <input type="text" placeholder="" [readonly]="profile.profile.status=='approved'" class="form-control"
+                     formControlName="middleName" (blur)="transliterate('middle')">
+            </div>
+          </div>
+        </div>
+
+        <h4>{{'entity.profile.name_intl' | i18n}}</h4>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{'entity.profile.name.last.intl' | i18n}}</label>
+              <input type="text" placeholder="" [readonly]="profile.profile.status=='approved'" class="form-control"
+                     [class.hasError]="errors.lastIntlRequired" formControlName="lastIntlName">
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{'entity.profile.name.first.intl' | i18n}}</label>
+              <input type="text" placeholder="" [readonly]="profile.profile.status=='approved'" class="form-control"
+                     [class.hasError]="errors.firstIntlRequired" formControlName="firstIntlName">
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>{{'entity.profile.name.middle.intl' | i18n}}</label>
+              <input type="text" placeholder="" [readonly]="profile.profile.status=='approved'" class="form-control"
+                     formControlName="middleIntlName">
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="profile.profile.status !=='approved'">
+          <div class="col-md-12">
+            <button class="btn btn-primary pull-right" [appInButtonLoader]="waiting" (click)="saveNameChanges()">
+              <span>{{'page.common.action.save_changes' | i18n}}</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <h4>{{'entity.contact.email' | i18n}}</h4>
+
+      <div style="font-size: 14px">{{profile.profile.contact.email}}</div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="login-wrapper">
+  <div class="middle-box text-center loginscreen animated fadeInDown">
+    <div>
+      <a class="logo-link" target="_blank" [href]="logoLink">
+        <img [src]="logoUrl" alt="Logo" width="100%">
+      </a>
+
+      <h3 style="margin: 15px 0;">{{'page.anonym.welcome' | i18n}}</h3>
+
+      <form class="m-t" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="{{'page.anonym.signup.email_or_phone' | i18n}}" required
+                 formControlName="login"
+                 (input)="resetErrors('login.required', 'incorrect')">
+          <p class="error-msg" *ngIf="errors['login.required']">{{'validator.required' | i18n}}</p>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="{{'page.anonym.signin.password' | i18n}}" required
+                 formControlName="pass"
+                 (input)="resetErrors('pass.required', 'incorrect')">
+          <p class="error-msg" *ngIf="errors['pass.required']">{{'validator.required' | i18n}}</p>
+          <p class="error-msg" *ngIf="errors['incorrect']">{{'exception.invalid_login_or_pass' | i18n}}</p>
+        </div>
+
+        <div class="lon-in-buttons">
+          <button type="submit" class="btn btn-primary block full-width m-b" style=" margin-top: 0"
+                  [appInButtonLoader]="waiting">
+            <span>{{'page.anonym.signin' | i18n}}</span>
+          </button>
+          <a routerLink="../reset-password">
+            <small>{{'page.anonym.signin.restore_password' | i18n}}</small>
+          </a>
+          <div>
+            <a routerLink="../sign-up">
+              <small>{{'page.anonym.signin.have_not_account' | i18n }} {{'page.anonym.signup.registration' | i18n}}
+              </small>
+            </a>
+          </div>
+        </div>
+
+        <div class="lon-in-buttons-v2">
+          <a routerLink="../reset-password" class="reset-password-link">{{'page.anonym.signin.restore_password' | i18n}}</a>
+          <div class="auth-buttons m-b">
+            <a routerLink="../sign-up">{{'page.anonym.signup.registration' | i18n}}</a>
+            <button type="submit" class="btn btn-primary block"
+                    [appInButtonLoader]="waiting">
+              <span>{{'page.anonym.signin' | i18n}}</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <p class="m-t copyrighted">
+        <small>Made by SDK.finance © 2017</small>
+      </p>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>
+

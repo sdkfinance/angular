@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>{{'page.fin_spec.limit.creation.title' | i18n}}</h3>
+
+    <div *ngIf="profile">
+      <p>{{'entity.limit.process_type' | i18n}} ‹{{profile.flow.processType}} / {{profile.issuer.currency}}›</p>
+
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label for="timeUnit">{{'entity.limit.time_unit' | i18n}}</label>
+          <select formControlName="timeUnit" id="timeUnit" class="form-control">
+            <option *ngFor="let key of timeUnitKeys()" value="{{key}}">{{timeUnits[key] | i18n}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="timeUnit">{{'entity.limit.qualifier' | i18n}}</label>
+          <select formControlName="qualifier" id="qualifier" class="form-control">
+            <option value="amount">{{'entity.limit.qualifier.amount' | i18n}}</option>
+            <option *ngIf="form.controls['timeUnit'].value != 'per_transaction'" value="quantity">{{'entity.limit.qualifier.quantity' | i18n}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="value">{{'entity.limit.value' | i18n}}</label>
+          <input id="value" type="text" formControlName="value" class="form-control"
+                 (input)="resetError('valueRequired', 'valueFormat')">
+          <div class="error-msg text-danger" *ngIf="errors.valueRequired">{{'validator.required' | i18n}}</div>
+          <div class="error-msg text-danger" *ngIf="errors.valueFormat">{{'validator.amount.format' | i18n: {'0':
+            form.controls.qualifier.value === 'amount' ? '123.45' : '12345'} }}</div>
+        </div>
+
+        <div class="action-btns two-action-btns">
+          <a routerLink="../../../" class="btn btn-primary action-btn"><b>{{'page.common.action.back' | i18n}}</b></a>
+
+          <button class="btn btn-primary action-btn" [appInButtonLoader]="waiting" (click)="onAdd()">
+            <span>{{'page.common.action.create' | i18n}}</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

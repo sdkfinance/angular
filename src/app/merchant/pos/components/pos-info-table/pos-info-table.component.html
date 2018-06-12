@@ -1,0 +1,98 @@
+<div class="ibox">
+
+  <div class="ibox-content">
+    <div class="container-fluid">
+      <div class="table-row header">
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text">{{'entity.transaction.code' | i18n}}</div>
+            <div class="text" (click)="onSortDate()" style="cursor: pointer">
+              {{'entity.date' | i18n}}
+              <div class="sort-btns" style="display: inline-block; font-size: 8px">
+                <div *ngIf="sortInfo.sortDate">
+
+                  <div *ngIf="!sortInfo.sortDateAsc">
+                    <div style="display: inline-block;" class="arrow-left light-left"></div>
+                    <div style="display: inline-block;" class="arrow-right dark-right"></div>
+                  </div>
+
+                  <div *ngIf="sortInfo.sortDateAsc">
+                    <div style="display: inline-block;" class="arrow-left dark-left"></div>
+                    <div style="display: inline-block;" class="arrow-right light-right"></div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="sortInfo.sortStatus">
+                  <div style="display: inline-block;" class="arrow-left"></div>
+                  <div style="display: inline-block;" class="arrow-right"></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">{{'entity.coin.amount' | i18n}}</div>
+            <div class="text" (click)="onSortStatus()" style="cursor: pointer">
+              {{'entity.status' | i18n}}
+              <div class="sort-btns" style="display: inline-block; font-size: 8px">
+                <div *ngIf="sortInfo.sortStatus">
+
+                  <div *ngIf="!sortInfo.sortStatusAsc">
+                    <div style="display: inline-block;" class="arrow-left light-left"></div>
+                    <div style="display: inline-block;" class="arrow-right dark-right"></div>
+                  </div>
+
+                  <div *ngIf="sortInfo.sortStatusAsc">
+                    <div style="display: inline-block;" class="arrow-left dark-left"></div>
+                    <div style="display: inline-block;" class="arrow-right light-right"></div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="sortInfo.sortDate">
+                  <div style="display: inline-block;" class="arrow-left"></div>
+                  <div style="display: inline-block;" class="arrow-right"></div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="detailsInfo">
+        <div class="table-row" *ngFor="let pos of detailsInfo; let i = index;">
+          <div class="wrapper text-4">
+            <div class="wrapper text-2">
+              <div class="text">
+                {{pos.id}}</div>
+              <div class="text">{{pos.createdAt | date:"dd-MM-yyyy H:mm:ss"}}</div>
+            </div>
+            <div class="wrapper text-2">
+              <div class="text" title="{{pos.invoiceAmount}}">{{pos.invoiceAmount}}</div>
+              <div class="text">
+                {{pos.status}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!detailsInfo" class="loader-container is-divtable" style="margin: 25px 0px">
+        <div class="loading-spinner"></div>
+      </div>
+
+    </div>
+    <div style="padding-right: 20px; background: white; display: inline-block; width: 100%;" *ngIf="totalPages > 1">
+      <ul class="pagination pull-right" style="margin-bottom: 0">
+        <li *ngIf="currentPage != 0" class="footable-page-arrow"><a (click)="onPreviousPage()">‹</a></li>
+        <li *ngIf="currentPage != (totalPages - 1)" class="footable-page-arrow"><a (click)="onNextPage()">›</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="isDetailsInfoEmpty">{{'page.merchant.pos.no_info' | i18n}}</p>
+
+

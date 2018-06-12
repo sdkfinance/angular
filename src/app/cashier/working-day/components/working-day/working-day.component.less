@@ -1,0 +1,23 @@
+.operations {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 15px;
+
+  div:first-child {
+    font-size: 14px;
+  }
+
+  a {
+    margin-left: 15px;
+  }
+
+  @media screen and (max-width: 768px) {
+    justify-content: flex-start;flex-direction: column;
+
+    a {
+      margin-left: 15px;
+      margin-top: 10px;
+    }
+  }
+}

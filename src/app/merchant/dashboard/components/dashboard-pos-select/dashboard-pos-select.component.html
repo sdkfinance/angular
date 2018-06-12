@@ -1,0 +1,8 @@
+<form [formGroup]="posSelectForm" novalidate>
+  <select max-size="10" formControlName="posItem" (change)="onItemChange(posSelectForm)" class="form-control m-b" id="select-type-graph"style="margin: 0;width: 100%;">
+
+    <option value="{{pos.id}}" *ngFor="let pos of posListItems">
+      {{pos.name}}
+    </option>
+  </select>
+</form>

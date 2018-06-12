@@ -1,0 +1,50 @@
+<div class="form-group">
+  <h5>Choose category product</h5>
+  <div *ngFor="let category of selectedCategories; let i = index" style="margin-bottom: 10px;">
+
+    <div style="margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between">
+      <app-loyalty-rules-creating-select [class.can-delete]="canDelete()" [class.cannot-delete]="!canDelete()"
+                                         [menuTitle]="category.category ? category.category.name : categoriesTitle"
+                                         [items]="categories"
+                                         [doNotChangeMenuTitle]="true"
+                                         (selectedItemUpdate)="updateSelectedCategory($event, i)">
+      </app-loyalty-rules-creating-select>
+
+      <button *ngIf="canDelete()" class="btn btn-default" style="margin-bottom: 0; margin-left: 5px;"
+              (click)="onDelete(i)">
+        <span class="text-danger">x</span>
+      </button>
+    </div>
+
+    <div style="margin-bottom: 5px;" *ngIf="category.category">
+      <app-loyalty-rules-creating-select style="width: 100%"
+                                         [menuTitle]="category.valueType.name"
+                                         [items]="valueTypes"
+                                         [doNotChangeMenuTitle]="true"
+                                         (selectedItemUpdate)="updateSelectedCategoryValueType($event, i)">
+      </app-loyalty-rules-creating-select>
+    </div>
+
+    <input
+      *ngIf="category.category"
+      type="text" placeholder="Value"
+      class="form-control"
+      style="margin-bottom: 5px;"
+      [(ngModel)]="category.value">
+
+  </div>
+
+  <div style="display: flex; justify-content: flex-end">
+    <button class="btn btn-primary btn-sm" (click)="onAddCategory()">Add</button>
+  </div>
+</div>
+
+<style>
+  .can-delete {
+    width: calc(100% - 40px);
+  }
+
+  .cannot-delete {
+    width: 100%;
+  }
+</style>

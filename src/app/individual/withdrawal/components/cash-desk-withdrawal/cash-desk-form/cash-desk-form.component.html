@@ -1,0 +1,53 @@
+<p [innerHTML]="'page.individual.tx.ways.cashbox.confirmation' | i18n: {'0': coin.serial, '1': coin.issuer.currency, '2': cashDesk.name}"></p>
+
+<form [formGroup]="form" (submit)="onSubmit()">
+  <div class="form-group">
+    <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+    <input id="amount" type="text" formControlName="amount" class="form-control"
+           (input)="resetErrors('amount.required', 'amount.pattern', 'amount.insufficient')">
+    <div class="error-msg" *ngIf="errors['amount.required']">
+      {{'validator.required' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="errors['amount.pattern']">
+      {{'validator.amount.format' | i18n: {'0': '12345.67'} }}
+    </div>
+    <div class="error-msg" *ngIf="errors['amount.max']">
+      {{'validator.amount.max_value' | i18n: {'0': coin.availableAmount.toFixed(2)} }}
+    </div>
+    <div class="error-msg" *ngIf="errors['amount.insufficient']">
+      {{'exception.coin.amount_dest_pust_le_zero_in_commission' | i18n}}
+    </div>
+  </div>
+
+  <div class="form-group commission" *ngIf="commission">
+    <div [innerHTML]="'page.common.commission.commission_param' | i18n: {
+      '0': commission.commissionAmountPush.toFixed(2),
+      '1': commission.issuer.currency}">
+    </div>
+
+    <div>
+      {{'page.common.commission.amount_without_commission' | i18n}}: <b>{{commission.recipientAmountPush.toFixed(2)}} {{commission.issuer.currency}}</b>
+    </div>
+
+    <div [innerHTML]="'page.common.commission.amount_with_commission_param' | i18n: {
+      '0': (-commission.senderAmountPush).toFixed(2),
+      '1': commission.issuer.currency}">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="receiverName">{{'page.individual.tx.withdraw.receiver_fio' | i18n}}</label>
+    <input id="receiverName" type="text" formControlName="receiverName" class="form-control" (input)="resetErrors('receiverName.required')">
+    <div class="error-msg" *ngIf="errors['receiverName.required']">{{'validator.required' | i18n}}</div>
+  </div>
+
+  <div class="action-btns two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" type="button" (click)="onBack()">
+      <b>{{'page.common.action.back' | i18n}}</b>
+    </button>
+
+    <button class="btn btn-primary btn-sm action-btn" type="submit" [appInButtonLoader]="waiting">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>

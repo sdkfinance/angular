@@ -1,0 +1,58 @@
+.ibox-content {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-content {
+  display: flex;
+  flex-direction: column;
+  border-collapse: collapse;
+  min-width: 400px;
+}
+
+.table-header, .table-body-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-cell, .body-cell {
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  width: 20%;
+  border: solid #e7eaec;
+  border-width: 0 0 1px 1px;
+  padding: 8px;
+  word-wrap: break-word;
+}
+
+.header-cell {
+  border-top-width: 1px;
+  font-size: 13px;
+  font-weight: bold;
+  background-color: #F5F5F6;
+}
+
+.header-cell:last-child, .body-cell:last-child {
+  border-right-width: 1px;
+}
+
+.status {
+  width: 17%;
+}
+
+.amount {
+  width: 14%;
+}
+
+.details {
+  width: 25%;
+}
+
+.id {
+  width: 24%;
+}
+
+.check {
+  width: 100%;
+}

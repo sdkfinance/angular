@@ -1,0 +1,27 @@
+<div class="ibox">
+  <div class="ibox-content" *ngIf="transactions">
+    <div class="container-fluid">
+
+      <div class="table-row header">
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text">Дата</div>
+            <div class="text">POS ID</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">Номер заказа</div>
+            <div class="text">Сума</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text">Статус</div>
+            <div class="text">Действие</div>
+          </div>
+
+        </div>
+      </div>
+     <!-- <app-transaction-table-item *ngFor="let transactionElement of transactionList"
+                                  [transactionItem]="transactionElement"></app-transaction-table-item>-->
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+.commission {
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+
+  .table-cell {
+    padding: 8px;
+  }
+
+  .table-cell.text {
+    flex: 1 1 100px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+
+  &:last-child {
+    border: none;
+  }
+}

@@ -1,0 +1,22 @@
+<div *ngIf="!gateCommissionProfiles || !gateProviders || !currencies" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>
+<div *ngIf="gateCommissionProfiles && gateProviders && currencies">
+  <div class="table-wrapper">
+    <div class="table">
+      <div class="table-header">
+        <div class="table-cell text">{{'entity.provider' | i18n}}</div>
+        <div class="table-cell text">{{'entity.provider.currency' | i18n}}</div>
+        <div class="table-cell text">{{'entity.tx_type' | i18n}}</div>
+        <div class="table-cell text">{{'entity.provider.commission' | i18n}}</div>
+        <div class="table-cell text">{{'entity.commission.total' | i18n}}</div>
+        <div class="table-cell text limit">{{'entity.limit' | i18n}}</div>
+      </div>
+
+      <app-gates-item *ngFor="let provider of gateProviders" [gateProvider]="provider" [currencies]="currencies"
+                      [gateCommissionProfiles]="getCommissionProfilesForProvider(provider)">
+      </app-gates-item>
+
+    </div>
+  </div>
+</div>

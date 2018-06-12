@@ -1,0 +1,20 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.voucher.buttons.create_voucher' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <div *ngIf="coins.length && !result">
+      <app-voucher-create-form [coins]="coins" (result)="getResult($event)"></app-voucher-create-form>
+    </div>
+
+    <div *ngIf="result">
+      <app-voucher-create-result [result]="result" (close)="onClose($event)"></app-voucher-create-result>
+    </div>
+
+    <div *ngIf="!coins.length">
+      <div [innerHTML]="'page.individual.coin.first_visit' | i18n"></div>
+    </div>
+
+  </div>
+</div>

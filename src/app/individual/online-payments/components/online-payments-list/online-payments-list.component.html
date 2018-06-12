@@ -1,0 +1,33 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <a routerLink="../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{ serviceCategory ? (serviceCategory.name | i18n) : 'Services'}}</h5>
+      </div>
+      <div class="ibox-content">
+        <div class="row" *ngIf="services">
+          <div *ngFor="let service of services" class="col-sm-3">
+            <a [routerLink]="['pay', service.name]">
+              <div class="category">
+                <img [src]="service.icon" alt="">
+                <div>{{service.name}}</div>
+              </div>
+            </a>
+          </div>
+
+          <p *ngIf="!services.length" class="not-found-msg">{{'page.individual.product.not_found' | i18n}}</p>
+        </div>
+
+        <div *ngIf="!services" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <div class="pagination-btns" *ngIf="totalPages > 1">
+          <app-pagination-buttons [page]="page" [totalPage]="totalPages"
+                                  (changePage)="onPagination($event)"></app-pagination-buttons>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

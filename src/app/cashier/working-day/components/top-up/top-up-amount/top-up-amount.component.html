@@ -1,0 +1,49 @@
+<form [formGroup]="form" (submit)="onNext()">
+  <div class="form-group">
+    <label for="serial">{{'entity.coin' | i18n}}</label>
+    <select id="serial" class="form-control" formControlName="serial">
+      <option *ngFor="let coin of coins" [value]="coin.serial">{{coin.name}} ({{coin.issuer.currency}})</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+    <input id="amount" type="text" class="form-control" formControlName="amount"
+           (input)="resetErrors('amount.required', 'amount.pattern')">
+    <div class="error-msg" *ngIf="errors['amount.required']">
+      {{'validator.required' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="errors['amount.insufficient']">
+      {{'exception.coin.amount_dest_pust_le_zero_in_commission' | i18n}}
+    </div>
+    <div class="error-msg" *ngIf="form.get('amount').hasError('pattern')">
+      {{'validator.amount.format' | i18n: {'0': '12345.67'} }}
+    </div>
+  </div>
+
+  <div class="form-group commission" *ngIf="commission">
+    <div [innerHTML]="'page.common.commission.commission_param' | i18n: {
+      '0': commission.commissionAmountPush.toFixed(2),
+      '1': commission.issuer.currency}">
+    </div>
+
+    <div>
+      {{'page.common.commission.amount_without_commission' | i18n}}: <b>{{commission.recipientAmountPush.toFixed(2)}} {{commission.issuer.currency}}</b>
+    </div>
+
+    <div [innerHTML]="'page.common.commission.amount_with_commission_param' | i18n: {
+      '0': (-commission.senderAmountPush).toFixed(2),
+      '1': commission.issuer.currency}">
+    </div>
+  </div>
+
+  <div class="action-btns two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <b>{{'page.common.action.back' | i18n}}</b>
+    </button>
+
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" type="submit">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>

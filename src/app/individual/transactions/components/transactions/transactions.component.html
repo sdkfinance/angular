@@ -1,0 +1,11 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <app-transactions-table [coins]="coins" [tableName]="'history'" [allowedTypes]="historyTypes"></app-transactions-table>
+  </div>
+
+  <div class="col-lg-4">
+    <app-transfers [coins]="coins"></app-transfers>
+
+    <app-exchange-currency [coins]="coins"></app-exchange-currency>
+  </div>
+</div>

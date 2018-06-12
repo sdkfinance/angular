@@ -1,0 +1,133 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>Promotions list</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="container-fluid">
+
+      <form [formGroup]="filters">
+        Show:
+        <select formControlName="filter" class="" style="cursor: pointer;">
+          <option value="all">All</option>
+          <option value="active" >Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </form>
+
+      <div class="table-row header">
+        <div class="wrapper text-4">
+
+          <div class="wrapper text-2">
+            <div class="num">№</div>
+            <div class="text">Title</div>
+          </div>
+
+          <div class="wrapper text-2">
+            <div class="text" (click)="onSortDate()" style="cursor: pointer">
+              Date
+              <div class="sort-btns" style="display: inline-block; font-size: 8px">
+                <div *ngIf="sortInfo.sortDate">
+
+                  <div *ngIf="!sortInfo.sortDateAsc">
+                    <div style="display: inline-block;" class="arrow-left light-left"></div>
+                    <div style="display: inline-block;" class="arrow-right dark-right"></div>
+                  </div>
+
+                  <div *ngIf="sortInfo.sortDateAsc">
+                    <div style="display: inline-block;" class="arrow-left dark-left"></div>
+                    <div style="display: inline-block;" class="arrow-right light-right"></div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="num-2">
+              Status
+            </div>
+            <div class="text" style="
+    text-align: right;
+">Action
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="loyaltyRules">
+        <div *ngFor="let loyaltyRule of loyaltyRules; let i = index;">
+          <app-loyalty-rules-table-item
+            (loyaltyRuleUpdate)="updateRules($event)"
+            [loyaltyRule]="loyaltyRule"
+            [number]="i + (currentPage * pageSize)">
+          </app-loyalty-rules-table-item>
+        </div>
+        <p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="!loyaltyRules.length">There is no loyalty rules</p>
+      </div>
+
+      <div *ngIf="!loyaltyRules" class="loader-container is-divtable">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <div style="padding-right: 20px; background: white; display: inline-block; width: 100%;" *ngIf="totalPages > 1">
+        <ul class="pagination pull-right" style="margin-bottom: 0">
+          <li *ngIf="currentPage != 0" class="footable-page-arrow"><a (click)="onPreviousPage()">‹</a></li>
+          <li *ngIf="currentPage != (totalPages - 1)" class="footable-page-arrow"><a (click)="onNextPage()">›</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .sort-btns {
+    transform: rotate(90deg);
+    font-stretch: ultra-condensed;
+  }
+
+  .arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #aaaaaa;
+  }
+
+  .arrow-left {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right:5px solid #aaaaaa;
+  }
+
+  .light-right {
+    border-left-color: #aaaaaa;
+  }
+
+  .dark-right {
+    border-left-color: #676a6c;
+  }
+
+  .light-left {
+    border-right-color: #aaaaaa;
+  }
+
+  .dark-left {
+    border-right-color: #676a6c;
+  }
+
+  select {
+    background-color: #FFFFFF;
+    border: 1px solid #e5e6e7;
+    border-radius: 1px;
+    color: inherit;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    font-size: 14px;
+    outline: none;
+  }
+
+  select:focus {
+    border-color: #1ab394;
+  }
+</style>

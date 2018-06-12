@@ -1,0 +1,23 @@
+.operations {
+  display: inline-flex;
+  border-radius: 5px;
+  border: 1px solid #e5e6e7;
+  margin: auto;
+
+  div {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  div:not(:last-child) {
+    border-right: 1px solid #e5e6e7;
+  }
+
+  div.active {
+    color: #1ab394;
+  }
+}
+
+.operations-wrapper {
+  text-align: center;
+}

@@ -1,0 +1,28 @@
+<div *ngIf="fields">
+  <div class="m-b-15">
+    <div><b>{{'page.individual.product.extern_fields.amount_to_send' | i18n}}</b> {{transaction.amountToSend.toFixed(2)}} {{transaction.coin.issuer.currency}}</div>
+    <div><b>{{'page.individual.product.extern_fields.amount_for_substract' | i18n}}</b> {{transaction.sourceAmount.toFixed(2)}} {{transaction.coin.issuer.currency}}</div>
+  </div>
+
+  <form>
+    <div *ngFor="let field of fields" class="m-b-15">
+      <label [for]="field.name">{{field.label}}</label> <span *ngIf="field.optional">(optional)</span>
+      <input type="text" [id]="field.name" [name]="field.name" class="form-control" [(ngModel)]="values[field.name]">
+      <div *ngIf="errors[field.name].length" class="text-danger error-msg">{{errors[field.name]}}</div>
+    </div>
+  </form>
+
+  <div class="btns">
+    <button class="btn btn-primary btn-sm" (click)="onBack()">
+      <span>{{'page.common.action.back' | i18n}}</span>
+    </button>
+    <button class="btn btn-primary btn-sm" [appInButtonLoader]="waiting" (click)="makeTransaction()">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+
+</div>
+
+<div *ngIf="!fields" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

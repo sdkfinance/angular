@@ -1,0 +1,16 @@
+<div class="form_col">
+  <label *ngIf="label" class="form_label">{{ label }}</label>
+  <div class="form_field">
+    <input
+      [(ngModel)]="val"
+      [name]="name"
+      [type]="'text'"
+      (change)="onValInput()"
+      [required]="required"
+      [pattern]="pattern"
+      [placeholder]="placeholder"
+      [maxlength]="maxLength || 30"
+    >
+  </div>
+  <app-info [message]="description"></app-info>
+</div>

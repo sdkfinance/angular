@@ -1,0 +1,18 @@
+<div class="col-lg-3 notification" style="margin-bottom: -100px">
+  <div class="widget style1 navy-bg" [ngClass]="{'navy-bg': action === 'create', 'red-bg': action === 'delete'}">
+    <div class="row">
+      <div class="col-xs-4">
+        <i class="fa fa-check fa-5x"></i>
+      </div>
+      <div class="col-xs-8 text-left" style=" margin-top: 15px;padding-left: 0;">
+        <span style="font-size: 15px;margin-left: 10px;">{{message | i18n}}</span>
+
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .cdk-global-overlay-wrapper{
+    background: none;
+  }
+</style>

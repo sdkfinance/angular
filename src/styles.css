@@ -1,0 +1,473 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=latin,cyrillic-ext');
+@import 'assets/styles/validation.css';
+
+textarea {
+  max-width: 100%;
+}
+
+html, body {
+  height: 100%;
+  display: block;
+  /*overflow: hidden;*/
+}
+
+app-root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  /*background-color: #003938;*/
+  background-color: #f3f3f4;
+}
+
+.btn-primary:disabled {
+  cursor: default;
+  background: #18a689;
+  opacity: 1;
+}
+
+.app-menu {
+  background-color: #003938;
+}
+
+.nav > li > a {
+  color: white;
+}
+
+.navbar-default .nav > li > a:active {
+  background-color: #293846;
+  color: white;
+}
+
+.activeMenuItem {
+  background-color: #f4e704;
+  color: black !important;
+}
+
+.navbar-default .nav > li > a:hover, .navbar-default .nav > li > a:focus, .navbar-default .nav > li > a:active {
+  background-color: #f4e704;
+  color: black;
+}
+
+.nav-header {
+  padding: 33px 25px;
+  background-color: #080f0f;
+  background-image: none;
+}
+
+.nav > li > a {
+  color: white;
+}
+
+.m-b-15 {
+  margin-bottom: 15px;
+}
+
+.m-t-25 {
+  margin-top: 25px;
+}
+
+.m-r-15 {
+  margin-right: 15px;
+}
+
+.margin-top-first.row {
+  margin-top: 25px;
+}
+
+
+.role-description ul {
+  padding: 0;
+}
+
+.action-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 25px;
+}
+
+.action-btns.one-action-btn {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.action-btns.two-action-btns {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.action-btn {
+  min-width: 80px;
+}
+
+input[readonly] {
+  background-color: #ffffff !important;
+}
+
+.ibox-content.no-border {
+  border: none;
+}
+
+input.hasError {
+  border-color: #f23d43;
+}
+
+textarea.hasError {
+  border-color: #f23d43;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.error-msg {
+  margin-top: 5px;
+  color: #ed5565;
+}
+
+.error {
+  color: #ed5565;
+  margin-top: 10px;
+  display: block;
+}
+
+button.btn-primary span {
+  font-weight: 700;
+}
+
+.form-input {
+  margin-bottom: 15px;
+}
+
+.not-found-msg {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+/** FORMS */
+.form-control,
+.single-line {
+  background-color: #FFFFFF;
+  background-image: none;
+  border: 1px solid #e5e6e7;
+  border-radius: 1px;
+  color: inherit;
+  display: block;
+  padding: 6px 12px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  width: 100%;
+  font-size: 14px;
+}
+
+.form-control:focus,
+.single-line:focus {
+  border-color: #1ab394;
+}
+
+.has-success .form-control,
+.has-success .form-control:focus {
+  border-color: #1ab394;
+}
+
+.has-warning .form-control,
+.has-warning .form-control:focus {
+  border-color: #f8ac59;
+}
+
+.has-error .form-control,
+.has-error .form-control:focus {
+  border-color: #ed5565;
+}
+
+.has-success .control-label {
+  color: #1ab394;
+}
+
+.has-warning .control-label {
+  color: #f8ac59;
+}
+
+.has-error .control-label {
+  color: #ed5565;
+}
+/** FORMS END */
+
+#page-wrapper {
+  /*background: url(../../img/body-bg.png) center center no-repeat fixed;
+  background: url('../../img/body-bg.png') center center no-repeat;
+  background-size: cover;*/
+}
+
+.cdk-global-overlay-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  background: rgba(51, 51, 51, 0.7);
+  z-index: 3000;
+}
+
+.cdk-global-scrollblock {
+  overflow: hidden;
+}
+
+.mat-button.no-modal-btn {
+  margin-right: 10px;
+}
+
+.cdk-overlay-pane {
+  margin-top: -100px;
+  position: fixed !important;
+}
+
+.cdk-global-overlay-wrapper {
+  background: none;
+}
+
+._nghost-c2 {
+  background: none !important;
+}
+
+.notification {
+  padding: 0;
+}
+
+.notification .widget {
+  margin: 0 5px 5px 0;
+}
+
+.mat-dialog-container {
+  background: white;
+}
+
+/*.cdk-global-overlay-wrapper {*/
+/*justify-content: flex-end !important;*/
+/*}*/
+
+/*.mat-dialog-container {*/
+/*position: fixed !important;*/
+/*right: 0 !important;*/
+/*left: 0 !important;*/
+/*width: 350px !important;*/
+/*height: 120px !important;*/
+/*margin: auto !important;*/
+/*overflow: inherit !important;*/
+/*border-radius: 5px !important;*/
+/*}*/
+
+/*#cdk-overlay-2 {*/
+/*position: fixed !important;*/
+/*right: 0;*/
+/*}*/
+
+.mat-dialog-actions {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.app-office {
+  height: 100%;
+}
+
+.app-menu {
+  width: 220px;
+  height: 100%;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-content {
+  width: calc(100vw - 220px);
+  height: 100%;
+  overflow-y: auto;
+  margin-left: 220px;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-content__wrapper {
+  position: relative;
+  min-height: calc(100% - 86px);
+}
+
+.app-content__board {
+  padding: 0 15px;
+  padding-bottom: 39px;
+}
+
+.app-content__footer {
+  position: absolute;
+  bottom: 0 !important;
+  left: 0;
+  padding: 10px 20px;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .app-menu {
+    display: none;
+    z-index: 10;
+  }
+
+  .app-content {
+    margin-left: 0;
+    width: 100vw;
+  }
+}
+
+.app-content::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+  border-left: 1px solid #e7eaec;
+}
+
+.app-content::-webkit-scrollbar-thumb {
+  background: #cccccc;
+}
+
+.app-menu::-webkit-scrollbar {
+  width: 5px;
+  background: transparent;
+}
+
+.app-menu::-webkit-scrollbar-thumb {
+  background: #cccccc;
+}
+
+.app-menu-is-shown {
+  display: block;
+}
+
+.ibox-title {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #e7eaec;
+  margin-bottom: 0;
+  padding: 14px 15px;
+  background-color: #003938;
+  color: white;
+  border: none !important;
+  font-size: 16px;
+}
+
+.ibox-title h5 {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  line-height: normal !important;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.pagination-btns {
+  padding-right: 20px;
+  background: white;
+  display: inline-block;
+  width: 100%;
+}
+
+.bs-datepicker {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.bs-datepicker-body {
+  background-color: #ffffff;
+}
+
+.loader-container.is-app .loading-spinner,
+.loader-container.is-divtable .loading-spinner,
+.loader-container.is-item .loading-spinner,
+.loader-container.is-company-profile .loading-spinner,
+.loader-container.is-your-profile .loading-spinner {
+  border-color: #1ab394;
+}
+
+.loader-container.is-in-button .loading-spinner,
+.loader-container.is-in-sm-button .loading-spinner {
+  border-color: #ffffff;
+}
+
+.loader-container.is-divtable .loading-spinner {
+  margin: 25px 0;
+}
+
+.margin-top-first.row {
+  margin-top: 25px;
+}
+
+.border-top {
+  border-top: 1px solid #e7eaec;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #e7eaec;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.loader-in-button {
+  position: absolute;
+  margin-left: auto;
+  top: 0;
+  left: 0;
+}
+
+/* SORT BUTTONS */
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #aaaaaa;
+}
+
+.arrow-left {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #aaaaaa;
+  margin-right: 2px;
+}
+
+.dark-right {
+  border-left-color: #676a6c;
+}
+
+.dark-left {
+  border-right-color: #676a6c;
+}
+
+.login-wrapper{
+  height:100%;
+  position: relative;
+}
+
+.loginscreen.middle-box {
+  width: 335px;
+}

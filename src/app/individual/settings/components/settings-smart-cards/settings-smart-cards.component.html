@@ -1,0 +1,23 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <div *ngIf="!smartCards" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="smartCards">
+      <div class="row">
+        <div class="col-sm-6" *ngFor="let card of smartCards">
+          <div class="smart-card">
+            <div>{{'page.supervisor.card.name' | i18n}}: {{card.name}}</div>
+            <div>{{'page.supervisor.card.card_number' | i18n}}: {{card.cardNumber}}</div>
+            <div>{{'entity.status' | i18n}}: {{card.active ? ('entity.status.active' | i18n): ('entity.status.inactive' | i18n)}}</div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 not-found-msg">You don't have smart cards</div>
+      </div>
+    </div>
+
+  </div>
+</div>

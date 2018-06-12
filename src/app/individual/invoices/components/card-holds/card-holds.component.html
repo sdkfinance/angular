@@ -1,0 +1,70 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <a class="btn btn-primary m-b-15" routerLink="../">{{'page.common.action.back' | i18n}}</a>
+  </div>
+
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.individual.holds' | i18n}}</h5>
+      </div>
+
+      <div class="ibox-content">
+
+        <div *ngIf="!holds" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+
+
+        <div *ngIf="holds">
+          <div class="table-wrapper">
+            <div class="table">
+
+              <div class="table-header">
+
+                <div class="table-cell text id">{{'page.common.id' | i18n}}</div>
+
+                <div class="table-cell date" (click)="onSort('date')">
+                  {{'entity.date' | i18n}}
+                  <div class="sort-btns">
+                    <div class="arrow-left" [class.dark-left]="sort?.date == 'asc'"></div>
+                    <div class="arrow-right" [class.dark-right]="sort?.date == 'desc'"></div>
+                  </div>
+                </div>
+
+                <div class="table-cell text">{{'page.individual.invoices.singl_invoice' | i18n}}</div>
+
+                <div class="table-cell status">
+                  <span (click)="onFilterStatus(showStatuses)">{{'entity.status' | i18n}}</span>
+
+                  <div *ngIf="showStatuses">
+                    <app-list-filter [items]="statuses" (close)="setStatusFilter($event)"></app-list-filter>
+                  </div>
+
+                  <!--<div class="sort-btns" (click)="onSort('status')">-->
+                  <!--<div class="arrow-left" [class.dark-left]="sort?.status == 'asc'"></div>-->
+                  <!--<div class="arrow-right" [class.dark-right]="sort?.status == 'desc'"></div>-->
+                  <!--</div>-->
+                </div>
+
+                <div class="table-cell actions">{{'page.common.action.actions' | i18n}}</div>
+
+              </div>
+
+              <app-card-hold-item *ngFor="let hold of holds" [hold]="hold"></app-card-hold-item>
+
+              <div class="not-found-msg" *ngIf="!holds.length">{{'page.individual.holds.not_found' | i18n}}</div>
+
+            </div>
+          </div>
+
+          <div class="pagination-btns" *ngIf="totalPages > 1">
+            <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="onPagination($event)">
+            </app-pagination-buttons>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

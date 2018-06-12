@@ -1,0 +1,51 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.compliance.identification_and_blocking' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <div *ngIf="!users" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="users">
+      <div class="filters">
+        <div class="user-roles">
+          <select (change)="onChange($event.target.value)" class="form-control" [(ngModel)]="selectedRole">
+            <option value="">{{'page.supervisor.user.all_roles' | i18n}}</option>
+            <option value="{{role}}" *ngFor="let role of getRoleKeys()">{{roles[role] | i18n}}</option>
+          </select>
+        </div>
+
+        <div>
+          <input name="text" class="form-control" [placeholder]="'page.supervisor.user.search.placeholder' | i18n"
+                 (keydown.enter)="onSearch()" [(ngModel)]="textFilter">
+        </div>
+
+        <div>
+          <button class="btn btn-primary" (click)="onSearch()">{{'page.common.action.search' | i18n}}</button>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table identification-table">
+          <div class="table-header">
+            <div class="table-cell text">{{'entity.user' | i18n}}</div>
+            <div class="table-cell text">{{'page.common.identification' | i18n}}</div>
+            <div class="table-cell text">{{'page.common.action' | i18n}}</div>
+          </div>
+
+          <app-users-table-item *ngFor="let user of users" [user]="user" ></app-users-table-item>
+        </div>
+      </div>
+
+      <p *ngIf="!users.length" class="not-found-msg">{{'page.supervisor.user.not_found' | i18n}}</p>
+    </div>
+
+    <div class="pagination-btns" *ngIf="totalPages > 1">
+      <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)">
+      </app-pagination-buttons>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="table-body-row">
+  <div class="table-cell" style="width: 15%">{{(number+1)}}</div>
+  <div class="table-cell">{{ loyaltyGroup.id }}</div>
+  <div class="table-cell">{{ loyaltyGroup.name }}</div>
+  <div class="table-cell">
+    <a (click)="onToggle()">
+      <span *ngIf="!showConditions">View</span>
+      <span *ngIf="showConditions" style="color: #ed5565;">Hide</span>
+    </a>
+  </div>
+  <div class="table-cell" style="width: 10%"><a (click)="openDialog()" class=" text-danger">x</a></div>
+</div>
+
+<div class="table-body-row" *ngIf="showConditions">
+  <div class="table-cell" style="width: 100%">{{ conditionsToString() }}</div>
+</div>

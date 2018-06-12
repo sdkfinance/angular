@@ -1,0 +1,16 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.cashier.system' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+        <app-system-operations-form (operation)="setOperation($event)" *ngIf="!operation"></app-system-operations-form>
+        <div *ngIf="operation">
+          <app-cash-operation-details [operation]="operation" (resetOperation)="setOperation($event)">
+          </app-cash-operation-details>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<form [formGroup]="form" (submit)="submitForm()">
+  <div class="form-group">
+    <label for="requestNumber">{{'page.cashier.system.request_number' | i18n}}</label>
+    <input id="requestNumber" type="text" class="form-control" formControlName="requestNumber"
+           (input)="resetErrors('requestNumber.required', 'requestNumber.not_found')">
+    <div class="error-msg" *ngIf="errors['requestNumber.required']">{{'validator.required' | i18n}}</div>
+    <div class="error-msg" *ngIf="errors['requestNumber.not_found']">{{'validator.request.invalid' | i18n}}</div>
+  </div>
+
+  <div class="action-btns one-action-btn">
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" type="submit">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>

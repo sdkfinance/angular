@@ -1,0 +1,7 @@
+<router-outlet *ngIf="localesIsLoaded"></router-outlet>
+
+<div *ngIf="!localesIsLoaded" style="height: 100%">
+  <div class="loader-container is-app">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

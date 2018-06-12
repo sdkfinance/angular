@@ -1,0 +1,65 @@
+<form *ngIf="!result" [formGroup]="form" (submit)="onSubmit()">
+
+  <div class="form-input">
+    <label for="fullName">{{'entity.bank.receiver_name' | i18n}}</label>
+    <input id="fullName" type="text" class="form-control" formControlName="fullName"
+           (focus)="errors.fullName = false">
+    <div *ngIf="errors.fullName" class="error-msg text-danger">
+      {{'validator.required' | i18n}}
+    </div>
+  </div>
+
+  <div class="form-input">
+    <label for="account">{{'entity.bank.account_number' | i18n}}</label>
+    <input id="account" type="text" class="form-control" formControlName="account">
+  </div>
+
+  <div class="form-input">
+    <label for="iban">{{'entity.bank.iban' | i18n}}</label>
+    <input id="iban" type="text" class="form-control" formControlName="iban"
+           (focus)="errors.iban = false">
+    <div *ngIf="errors.iban" class="error-msg text-danger">
+      {{'page.individual.tx.ways.bank.application.invalid_format' | i18n}}
+    </div>
+  </div>
+
+  <div class="form-input">
+    <label for="bic">{{'entity.bank.bic' | i18n}}</label>
+    <input id="bic" type="text" class="form-control" formControlName="bic"
+           (focus)="errors.bic = false">
+    <div *ngIf="errors.bic" class="error-msg text-danger">
+      {{'page.individual.tx.ways.bank.application.invalid_format' | i18n}}
+    </div>
+  </div>
+
+  <div class="form-input">
+    <label for="swift">{{'entity.bank.swift' | i18n}}</label>
+    <input id="swift" type="text" class="form-control" formControlName="swift"
+           (focus)="errors.swift = false">
+    <div *ngIf="errors.swift" class="error-msg text-danger">
+      {{'page.individual.tx.ways.bank.application.invalid_format' | i18n}}
+    </div>
+  </div>
+
+  <div class="form-input">
+    <label for="name">{{'entity.bank.bank_name' | i18n}}</label>
+    <input id="name" type="text" class="form-control" formControlName="name">
+  </div>
+
+  <div class="form-input">
+    <label for="address">{{'entity.bank.bank_addres' | i18n}}</label>
+    <input id="address" type="text" class="form-control" formControlName="address">
+  </div>
+
+  <div class="action-btns two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <span><b>{{'page.common.action.back' | i18n}}</b></span>
+    </button>
+    <button type="submit" class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting">
+      <span>{{'page.common.action.next' | i18n}}</span>
+    </button>
+  </div>
+</form>
+
+<app-bank-withdrawal-result *ngIf="result" [result]="result.process"></app-bank-withdrawal-result>
+

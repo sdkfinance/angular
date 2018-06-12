@@ -1,0 +1,18 @@
+<div>
+
+  <div *ngIf="status == 'EXCEPTION' || status == 'FAILURE'" class="m-b-15">
+    <span [innerHTML]="'page.individual.product.failure_title' | i18n: {'0': service.name}"></span>
+  </div>
+
+  <div *ngIf="status != 'EXCEPTION' && status != 'FAILURE'">
+    <div [innerHTML]="'page.individual.product.success_title' | i18n: {
+    '0': result.transaction.amountToSend,
+    '1': result.transaction.coin.issuer.currency,
+    '2': result.transaction.coin.serial,
+    '3': service.name
+    }"></div>
+  </div>
+
+  <a routerLink="../../../" class="btn btn-primary btn-sm"><b>{{'page.individual.product.one_more' | i18n}}</b></a>
+
+</div>

@@ -1,0 +1,33 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <a routerLink="../../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+    <div class="ibox" style="margin-bottom: 0;">
+      <div class="ibox-title">
+        <h5>{{'page.common.charge' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+
+        <div *ngIf="providers">
+          <div class="row">
+            <div class="col-sm-3" *ngFor="let provider of providers">
+              <a [routerLink]="[provider.way, provider.accountId]" class="provider">
+                <img *ngIf="provider.way == 'CARD'" src="../../../../../../assets/img/ic-visa_2x.png" alt="Card">
+                <img *ngIf="provider.way == 'BANK'" src="../../../../../../assets/img/bank-icon-5.png" alt="Bank">
+                <img *ngIf="provider.way == 'EMONEY'" src="../../../../../../assets/img/ic-wallet_2x.png" alt="E-money">
+                <div>{{provider.account.provider.name}}</div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p *ngIf="providers && !providers.length" class="not-found-msg">{{'page.common.charge.providers.not_found' | i18n}}</p>
+        </div>
+
+        <div *ngIf="!providers" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

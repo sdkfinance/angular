@@ -1,0 +1,21 @@
+<div class="btn-group">
+  <a [routerLink]="[client.id]" style="color: inherit;"><button сlass="btn-white btn btn-xs" style="
+    color: inherit;
+    background: white;
+    border: 1px solid #e7eaec;">Go to</button></a>
+  <button сlass="btn-white btn btn-xs" style="
+    color: inherit;
+    background: white;
+    border: 1px solid #e7eaec;
+" *ngIf="!client.active" (click)="onActivate()">Activate</button>
+  <button сlass="btn-white btn btn-xs" style="
+    color: inherit;
+    background: white;
+    border: 1px solid #e7eaec;
+" *ngIf="client.active" (click)="onDeactivate()">Deactivate</button>
+
+<!--  <button class="btn-white btn btn-xs">Редактировать</button>
+  &lt;!&ndash;<button class="btn-white btn btn-xs">Актив</button>&ndash;&gt;
+  <button class="btn-white btn btn-xs">Удалить</button>-->
+
+</div>

@@ -1,0 +1,49 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <div class="ibox">
+
+      <a routerLink="../" class="btn btn-primary  right" style="margin-bottom: 20px;">{{'page.common.action.back' | i18n}}</a>
+      <div class="ibox-title">
+        <h5>{{'page.common.action.edit' | i18n}}</h5>
+      </div>
+
+      <div class="ibox-content">
+        <form *ngIf="bundle" [formGroup]="bundleForm">
+          <!--<div class="m-b-15">-->
+            <!--<label for="key">Key</label>-->
+            <!--<input readonly id="key" class="form-control" type="text" formControlName="key">-->
+          <!--</div>-->
+
+          <h3 style="margin-bottom: 20px">{{ bundle.key }}</h3>
+
+          <div class="m-b-15">
+            <label for="valueEn">{{'page.common.languages.en' | i18n}}</label>
+            <input id="valueEn" class="form-control" type="text" formControlName="valueEn">
+          </div>
+
+          <div class="m-b-15">
+            <label for="valueRu">{{'page.common.languages.ru' | i18n}}</label>
+            <input id="valueRu" class="form-control" type="text" formControlName="valueRu">
+          </div>
+
+          <div class="m-b-15">
+            <label for="valueUk">{{'page.common.languages.uk' | i18n}}</label>
+            <input id="valueUk" class="form-control" type="text" formControlName="valueUk">
+          </div>
+
+          <div style="display: flex; justify-content: flex-end">
+            <button class="btn btn-primary" [appInButtonLoader]="waiting" (click)="onCreate()">
+              <span>{{'page.common.action.edit' | i18n}}</span>
+            </button>
+          </div>
+        </form>
+
+        <div *ngIf="!bundle" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.ibox-content {
+
+}
+
+.logo-link {
+  width: 160px;
+  display: inline-block;
+  padding: 11px 0 14px 0;
+}
+
+.lon-in-buttons-v2, .sign-up-buttons-v2, .reset-buttons-v2 {
+  display: none;
+}
+

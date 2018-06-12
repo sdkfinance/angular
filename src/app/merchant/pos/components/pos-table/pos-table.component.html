@@ -1,0 +1,43 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.merchant.pos.my_pos' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+
+    <div class="table-row header">
+      <div class="wrapper text-4">
+        <div class="wrapper text-2">
+          <div class="text">{{'page.common.id' | i18n}}</div>
+          <div class="text">{{'page.merchant.pos.pos' | i18n}}</div>
+        </div>
+        <div class="wrapper text-2">
+          <div class="text">{{'page.common.description' | i18n}}</div>
+          <div class="text">{{'page.common.action' | i18n}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="posList">
+      <div class="table-row" *ngFor="let pos of posList; let i = index;">
+        <div class="wrapper text-4">
+          <div class="wrapper text-2">
+            <div class="text">
+              {{(i+1) | zerobefore:4}}
+            </div>
+            <div class="text">{{pos.name}}</div>
+          </div>
+          <div class="wrapper text-2">
+            <div class="text" title="{{pos.description}}">{{pos.description}}</div>
+            <div class="text actions-column">
+              <app-pos-actions [pos]="pos"></app-pos-actions>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!posList" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+</div>

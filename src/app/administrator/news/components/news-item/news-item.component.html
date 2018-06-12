@@ -1,0 +1,46 @@
+<div class="table-responsive">
+  <div style="display: flex; flex-direction: row; justify-content: space-between">
+    <div style="display: flex; flex-direction: row">
+      <div style="width: 96px; height: 100%; padding: 8px">
+
+        <div *ngIf="pictureIsExist && !smallPictureUrl" class="loader-container is-your-profile" style="width: 80px; height: 100%">
+          <div class="loading-spinner"></div>
+        </div>
+
+        <img *ngIf="smallPictureUrl && pictureIsExist" [src]="smallPictureUrl" alt="" width="80px">
+      </div>
+
+      <div style="padding: 8px">
+        <h3>
+          <a [routerLink]="[newsItem.name, newsItem.id]" class="text-navy">
+            {{ newsItem.name }}
+          </a>
+        </h3>
+
+        <div *ngIf="messageOfNews">
+          <p class="small" style="text-overflow: ellipsis; overflow: hidden; max-height: 75px">
+            {{ messageOfNews.text }}
+          </p>
+          <!--<dl class="small m-b-none">-->
+          <!--<dt>{{ messageOfNews.id }}</dt>-->
+          <!--<dd>{{ messageOfNews.text }}</dd>-->
+          <!--</dl>-->
+        </div>
+        <!--<div *ngIf="!messageOfNews" class="loader-container is-your-profile">-->
+        <!--<div class="loading-spinner"></div>-->
+        <!--</div>-->
+
+        <div class="m-t-sm">
+          <a [routerLink]="[newsItem.name, newsItem.id]" class="text-muted"><i class="fa fa-newspaper-o"></i> Read news</a>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 8px;">
+      <h4>
+        {{ newsItem.createdAt | date: 'dd/MM/y' }}
+      </h4>
+    </div>
+  </div>
+</div>
+

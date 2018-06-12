@@ -1,0 +1,44 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'entity.transaction.choose_operation' | i18n}}</h5>
+      </div>
+
+      <div class="ibox-content">
+        <div *ngIf="getAvailableOrganization()">
+          <div class="operations-wrapper">
+            <div class="operations">
+              <div (click)="selectOperation(systemOperationTypes.Input)"
+                   [class.active]="selectedOperation == systemOperationTypes.Input">
+                {{'entity.transaction.cash_input' | i18n}}
+              </div>
+              <div (click)="selectOperation(systemOperationTypes.Collect)"
+                   [class.active]="selectedOperation == systemOperationTypes.Collect">
+                {{'entity.transaction.cash_collect' | i18n}}
+              </div>
+              <div (click)="selectOperation(systemOperationTypes.Investment)"
+                   [class.active]="selectedOperation == systemOperationTypes.Investment">
+                {{'entity.transaction.investment' | i18n}}
+              </div>
+            </div>
+          </div>
+
+          <app-cash-input *ngIf="selectedOperation == systemOperationTypes.Input"
+                          [organizations]="getAvailableOrganization()" [coins]="coins"
+                          [organizationId]="organizationId"></app-cash-input>
+          <app-cash-collect *ngIf="selectedOperation == systemOperationTypes.Collect"
+                            [organizations]="getAvailableOrganization()" [coins]="coins"
+                            [organizationId]="organizationId"></app-cash-collect>
+          <app-investment *ngIf="selectedOperation == systemOperationTypes.Investment"
+                          [organizations]="getAvailableOrganization()" [coins]="coins"
+                          [organizationId]="organizationId"></app-investment>
+        </div>
+
+        <div *ngIf="!getAvailableOrganization()" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

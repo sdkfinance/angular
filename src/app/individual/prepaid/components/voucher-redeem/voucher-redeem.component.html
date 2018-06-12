@@ -1,0 +1,46 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.voucher.activation.activation_noun' | i18n}}</h5>
+  </div>
+  <div class="ibox-content" *ngIf="!commission">
+
+    <div *ngIf="coins.length">
+      <form [formGroup]="form">
+        <div class="m-b-15">
+          <label for="wallet">{{'entity.coin' | i18n}}</label>
+          <select class="form-control" id="wallet" formControlName="wallet">
+            <option *ngFor="let coin of coins" [value]="coin.serial">{{coin.name}} ({{coin.amount}}
+              {{coin.issuer.currency}})
+            </option>
+          </select>
+        </div>
+
+        <div class="m-b-15">
+          <label for="number">{{'page.individual.voucher.activation.serial' | i18n}}</label>
+          <input type="text" class="form-control" id="number" formControlName="number">
+        </div>
+
+        <div class="m-b-15">
+          <label for="pin">{{'page.individual.voucher.activation.pin' | i18n}}</label>
+          <input type="text" class="form-control" id="pin" formControlName="pin">
+          <div class="text-danger error-msg">{{errorMsg | i18n}}</div>
+        </div>
+      </form>
+
+      <div class="action-btns one-action-btn">
+        <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" (click)="calculateCommission()">
+          <span>{{'page.common.action.next' | i18n}}</span>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!coins.length">
+      <div [innerHTML]="'page.individual.coin.first_visit' | i18n"></div>
+    </div>
+
+  </div>
+
+  <app-voucher-redeem-amount *ngIf="commission" [commission]="commission" [coins]="coins"
+                             [number]="form.controls['number'].value" [pin]="form.controls['pin'].value"
+                             (back)="back($event)" (close)="close()"></app-voucher-redeem-amount>
+</div>

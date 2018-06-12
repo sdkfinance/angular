@@ -1,0 +1,17 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.product.choose_service' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div *ngFor="let service of services" class="col-sm-3" style="margin-bottom: 20px;">
+        <a [routerLink]="[service.category.toLowerCase()]">
+          <div class="category">
+            <img src="../../../../../../assets/img/ic-cashbox_2x.png" alt="">
+            <div>{{service.name | i18n}}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

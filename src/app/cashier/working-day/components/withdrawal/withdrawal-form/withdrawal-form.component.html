@@ -1,0 +1,4 @@
+<app-withdrawal-number *ngIf="step === steps.First" (getDetails)="setDetails($event)"></app-withdrawal-number>
+<app-withdrawal-details *ngIf="step === steps.Second" [details]="details" (back)="onBack()" (checked)="setResult($event)"></app-withdrawal-details>
+<app-withdrawal-result *ngIf="step === steps.Third" [result]="result"></app-withdrawal-result>
+

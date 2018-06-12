@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-md-6">
+    <h3>{{isCreateMode ? ('page.cfo.crud_req.view.comm_sett_create' | i18n ) : ('page.cfo.crud_req.view.comm_sett_update' | i18n)}}</h3>
+    <div *ngIf="commission || txTypes">
+
+      <form [formGroup]="form">
+        <div *ngIf="isCreateMode" class="form-group">
+          <select select id="txType" type="text" formControlName="txType" class="form-control">
+            <option *ngFor="let type of txTypes" value="{{type}}">{{type}}</option>
+          </select>
+        </div>
+
+        <div *ngIf="!isCreateMode" class="form-group">
+          <p>{{commission['TOTAL'].txType}}</p>
+        </div>
+
+        <h4>{{'entity.provider.commission' | i18n}}</h4>
+        <div formGroupName="provider">
+          <div class="form-group">
+            <label for="typeProvider">{{'entity.commission.type' | i18n}}</label>
+            <select id="typeProvider" type="text" formControlName="type" class="form-control">
+              <option *ngFor="let key of commissionTypesKeys()" value="{{key}}">{{commissionTypes[key].name | i18n}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" *ngIf="commissionTypes[form.controls['provider'].controls.type.value].percent">
+            <label for="valuePercentProvider">{{'entity.commission.value_percent' | i18n}}</label>
+            <input id="valuePercentProvider" type="text" formControlName="valuePercent" class="form-control"
+                   (input)="resetError('provider', 'valuePercentRequired', 'valuePercentFormat')">
+            <div class="error-msg text-danger" *ngIf="errors.provider.valuePercentRequired">{{'validator.required' | i18n}}</div>
+            <div class="error-msg text-danger" *ngIf="errors.provider.valuePercentFormat">{{'validator.amount.format' | i18n: {'0': '12.34'} }}</div>
+          </div>
+
+          <div class="form-group" *ngIf="commissionTypes[form.controls['provider'].controls.type.value].fixed">
+            <label for="valueFixedProvider">{{'entity.commission.value_fixed' | i18n}}</label>
+            <input id="valueFixedProvider" type="text" formControlName="valueFixed" class="form-control"
+                   (input)="resetError('provider', 'valueFixedRequired', 'valueFixedFormat')">
+            <div class="error-msg text-danger" *ngIf="errors.provider.valueFixedRequired">{{'validator.required' | i18n}}</div>
+            <div class="error-msg text-danger" *ngIf="errors.provider.valueFixedFormat">{{'validator.amount.format' | i18n: {'0': '123.45'} }}</div>
+          </div>
+
+        </div>
+        <h4>{{'entity.commission.total' | i18n}}</h4>
+        <div formGroupName="total">
+          <div class="form-group">
+            <label for="typeTotal">{{'entity.commission.type' | i18n}}</label>
+            <select id="typeTotal" type="text" formControlName="type" class="form-control">
+              <option *ngFor="let key of commissionTypesKeys()" value="{{key}}">{{commissionTypes[key].name | i18n}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" *ngIf="commissionTypes[form.controls['total'].controls.type.value].percent">
+            <label for="valuePercentTotal">{{'entity.commission.value_percent' | i18n}}</label>
+            <input id="valuePercentTotal" type="text" formControlName="valuePercent" class="form-control"
+                   (input)="resetError('total', 'valuePercentRequired', 'valuePercentFormat')">
+            <div class="error-msg text-danger" *ngIf="errors.total.valuePercentRequired">{{'validator.required' | i18n}}</div>
+            <div class="error-msg text-danger" *ngIf="errors.total.valuePercentFormat">{{'validator.amount.format' | i18n: {'0': '12.34'} }}</div>
+          </div>
+
+          <div class="form-group" *ngIf="commissionTypes[form.controls['total'].controls.type.value].fixed">
+            <label for="valueFixedTotal">{{'entity.commission.value_fixed' | i18n}}</label>
+            <input id="valueFixedTotal" type="text" formControlName="valueFixed" class="form-control"
+                   (input)="resetError('total', 'valueFixedRequired', 'valueFixedFormat')">
+            <div class="error-msg text-danger" *ngIf="errors.total.valueFixedRequired">{{'validator.required' | i18n}}</div>
+            <div class="error-msg text-danger" *ngIf="errors.total.valueFixedFormat">{{'validator.amount.format' | i18n: {'0': '123.45'} }}</div>
+          </div>
+
+        </div>
+      </form>
+
+      <div class="action-btns two-action-btns">
+        <a routerLink="../../" class="btn btn-primary action-btn"><b>{{'page.common.action.back' | i18n}}</b></a>
+
+        <button class="btn btn-primary action-btn" [appInButtonLoader]="waiting" (click)="onEdit()">
+          <span>{{'page.common.action.save' | i18n}}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

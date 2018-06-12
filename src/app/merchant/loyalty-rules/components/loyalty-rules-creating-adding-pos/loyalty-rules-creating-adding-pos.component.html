@@ -1,0 +1,16 @@
+<div class="form-group">
+  <h5>Choose POS</h5>
+
+  <div *ngIf="!posList">
+    Loading...
+  </div>
+
+  <div *ngIf="posList">
+    <div *ngFor="let pos of posList; let i = index">
+      <input type="checkbox" style="width: 14px" [(ngModel)]="pos.selected">
+      <span>{{pos.pos.name}}</span>
+    </div>
+  </div>
+
+
+</div>

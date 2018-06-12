@@ -1,0 +1,75 @@
+<!--
+<div class="form-group">
+  <h5>Выбрать продукты</h5>
+  <div *ngFor="let product of selectedProducts; let i = index"
+       style="margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between">
+
+    <app-loyalty-rules-creating-select style="width: 100%"
+                                       [menuTitle]="product ? product.name : productsTitle"
+                                       [items]="products"
+                                       [doNotChangeMenuTitle]="true"
+                                       (selectedItemUpdate)="updateSelectedProducts($event, i)">
+    </app-loyalty-rules-creating-select>
+
+    <button *ngIf="canDelete()" class="btn btn-default" style="margin-bottom: 0; margin-left: 5px;" (click)="onDelete(i)">
+      <span class="text-danger">x</span>
+    </button>
+  </div>
+  <div style="display: flex; justify-content: flex-end">
+    <button class="btn btn-primary btn-sm" (click)="onAddProduct()">Добавить</button>
+  </div>
+</div>
+-->
+
+
+<div class="form-group">
+  <h5>Choose products</h5>
+  <div *ngFor="let product of selectedProducts; let i = index" style="margin-bottom: 10px;">
+
+    <div style="margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between">
+      <app-loyalty-rules-creating-select [class.can-delete]="canDelete()" [class.cannot-delete]="!canDelete()"
+                                         [menuTitle]="product.product ? product.product.name : productsTitle"
+                                         [items]="products"
+                                         [doNotChangeMenuTitle]="true"
+                                         (selectedItemUpdate)="updateSelectedProducts($event, i)">
+      </app-loyalty-rules-creating-select>
+
+      <button *ngIf="canDelete()" class="btn btn-default" style="margin-bottom: 0; margin-left: 5px;"
+              (click)="onDelete(i)">
+        <span class="text-danger">x</span>
+      </button>
+    </div>
+
+    <div style="margin-bottom: 5px;" *ngIf="product.product">
+      <app-loyalty-rules-creating-select style="width: 100%"
+                                         [menuTitle]="product.valueType.name"
+                                         [items]="valueTypes"
+                                         [doNotChangeMenuTitle]="true"
+                                         (selectedItemUpdate)="updateSelectedProductValueType($event, i)">
+      </app-loyalty-rules-creating-select>
+    </div>
+
+
+    <input
+      *ngIf="product.product"
+      type="text" placeholder="Value"
+      class="form-control"
+      style="margin-bottom: 5px;"
+      [(ngModel)]="product.value">
+
+  </div>
+
+  <div style="display: flex; justify-content: flex-end">
+    <button class="btn btn-primary btn-sm" (click)="onAddProduct()">Add</button>
+  </div>
+</div>
+
+<style>
+  .can-delete {
+    width: calc(100% - 40px);
+  }
+
+  .cannot-delete {
+    width: 100%;
+  }
+</style>

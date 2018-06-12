@@ -1,0 +1,22 @@
+<form [formGroup]="form" (submit)="onCreate()">
+  <div class="form-group">
+    <label for="number">{{'page.common.number' | i18n}}</label>
+    <input id="number" type="text" class="form-control" formControlName="number">
+    <div class="error-msg text-danger">{{errorMessages.number}}</div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">{{'page.common.name' | i18n}}</label>
+    <input id="name" type="text" class="form-control" formControlName="name">
+    <div class="error-msg text-danger">{{errorMessages.name}}</div>
+  </div>
+
+  <div class="action-btns two-action-btns">
+    <a routerLink="../" class="btn btn-primary btn-sm action-btn">
+      <b>{{'page.common.action.back' | i18n}}</b>
+    </a>
+    <button type="submit" class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting">
+      <span>{{'page.common.action.create' | i18n}}</span>
+    </button>
+  </div>
+</form>

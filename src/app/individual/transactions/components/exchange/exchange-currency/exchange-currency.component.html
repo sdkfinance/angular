@@ -1,0 +1,31 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.exchange' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content">
+
+    <div *ngIf="!coins" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="coins && coins.length >= 2">
+      <app-exchange-form *ngIf="step == steps.First" [coins]="coins"
+                         (exchange)="viewExchangeRates($event)"></app-exchange-form>
+
+      <app-exchangers-list *ngIf="step == steps.Second" [issuersIsd]="issuersIsd"
+                           (back)="onBack($event)" (selectExchanger)="inputAmount($event)"></app-exchangers-list>
+
+      <app-exchange-amount *ngIf="step == steps.Third" [coins]="coins" [issuersIsd]="issuersIsd" [exchanger]="exchanger"
+                           (back)="onBack($event)" (next)="toConfirm($event)"></app-exchange-amount>
+
+      <app-exchange-confirm *ngIf="step == steps.Fourth" [exchanger]="exchanger" [coins]="usedCoins"
+                            (back)="onBack($event)" (close)="onClose($event)"></app-exchange-confirm>
+    </div>
+
+    <div *ngIf="coins && coins.length < 2">
+      {{'page.individual.exchange.exception.one_coin' | i18n}}
+    </div>
+
+  </div>
+</div>

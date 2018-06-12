@@ -1,0 +1,34 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+    <a routerLink="add" class="btn btn-primary m-b-15"><b>Add bank account</b></a>
+
+    <div *ngIf="!bankAccounts" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="bankAccounts">
+      <div class="row">
+        <div class="col-sm-6" *ngFor="let bank of bankAccounts">
+          <div class="bank">
+            <h3>{{bank.details.fullName}}</h3>
+            <div *ngIf="bank.details.account"><b>{{'entity.bank.account_number' | i18n}}: </b> {{bank.details.account}}</div>
+            <div *ngIf="bank.details.iban"><b>{{'entity.bank.iban' | i18n}}: </b> {{bank.details.iban}}</div>
+            <div *ngIf="bank.details.bic"><b>{{'entity.bank.bic' | i18n}}: </b> {{bank.details.bic}}</div>
+            <div *ngIf="bank.details.swift"><b>{{'entity.bank.swift' | i18n}}: </b> {{bank.details.swift}}</div>
+            <div *ngIf="bank.details.name"><b>{{'entity.bank.bank_name' | i18n}}: </b> {{bank.details.name}}</div>
+            <div *ngIf="bank.details.address"><b>{{'entity.bank.bank_addres' | i18n}}: </b> {{bank.details.address}}</div>
+
+            <div class="bank-action-btns">
+              <button class="btn-white btn btn-xs" (click)="onEdit(bank)">{{'page.common.action.edit' | i18n}}</button>
+              <button class="btn-white btn btn-xs" (click)="onDelete(bank)">{{'page.common.action.delete' | i18n}}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 not-found-msg" *ngIf="!bankAccounts.length">
+          You don't have bank accounts
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

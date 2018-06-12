@@ -1,0 +1,25 @@
+<div class="table-row">
+  <div>
+    {{profile.issuer.currency}}
+    <i>{{profile.destParticipantSpecification.value || profile.srcParticipantSpecification.value}}</i>
+  </div>
+  <div>
+    {{commissionTypes[profile.value.type].format | i18n: {
+    '0': profile.value.valuePercent * 100 + '%',
+    '1': profile.value.valueFixed,
+    '2': profile.issuer.currency} }}
+    (<a (click)="onEditCommission(profile.id)">{{'page.common.action.edit' | i18n}}</a>)
+  </div>
+  <div>
+    <div *ngIf="!limitProfiles">
+      Loading...
+    </div>
+    <div *ngIf="limitProfiles">
+      <div *ngFor="let limit of limitProfiles">{{limit.value}} {{limit.qualifier === 'amount' ? profile.issuer.currency
+        : 'operations'}} {{limitTypes[limit.timeUnit] | i18n}}
+        (<a (click)="onEditLimit(profile.id, limit)">{{'page.common.action.edit' | i18n}}</a>)
+      </div>
+      <div><a (click)="onAddLimit(profile.id)">{{'page.cfo.crud_req.view.add_limit' | i18n}}</a></div>
+    </div>
+  </div>
+</div>

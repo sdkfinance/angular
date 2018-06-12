@@ -1,0 +1,49 @@
+<form [formGroup]="form" class="filter-form">
+  <div class="code">
+    <div>
+      <label for="code">{{'page.common.action.search_by_id' | i18n}}</label>
+      <input id="code" class="form-control" type="text" formControlName="code">
+    </div>
+  </div>
+
+  <div>
+    <div class="filter-date">
+
+      <div class="date-from">
+        <label for="from">{{'page.common.filter.from' | i18n}}</label>
+        <input
+          id="from"
+          type="text"
+          readonly
+          class="form-control"
+          #dp="bsDatepicker"
+          bsDatepicker
+          [maxDate]="today"
+          formControlName="dateFrom"
+          [bsConfig]="bsConfig">
+      </div>
+
+      <div class="date-to">
+        <label for="to">{{'page.common.filter.to' | i18n}}</label>
+        <input
+          id="to"
+          type="text"
+          readonly
+          class="form-control"
+          #dp="bsDatepicker"
+          bsDatepicker
+          [maxDate]="today"
+          formControlName="dateTo"
+          [bsConfig]="bsConfig">
+      </div>
+
+    </div>
+
+    <div class="filter-btns">
+      <button class="btn btn-primary" (click)="onSearch()">{{'page.common.action.search' | i18n}}</button>
+
+      <button class="btn btn-primary" (click)="onReset()">{{'page.common.action.reset' | i18n}}</button>
+    </div>
+  </div>
+
+</form>

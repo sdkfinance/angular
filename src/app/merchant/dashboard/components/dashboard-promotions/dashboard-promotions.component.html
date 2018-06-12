@@ -1,0 +1,25 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5 routerLink="/merchant/loyalty-rules" style="outline: none; cursor: pointer">Promotions</h5>
+  </div>
+
+  <div *ngIf="!loyaltyRules" class="loader-container is-divtable ibox-content">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <div *ngIf="loyaltyRules">
+    <div class="ibox-content" *ngFor="let loyaltyRule of loyaltyRules">
+      <app-dashboard-promotions-item [promotion]="loyaltyRule"></app-dashboard-promotions-item>
+    </div>
+
+    <div *ngIf="!loyaltyRules.length" class="ibox-content" style="text-align: center">
+      No promotions
+    </div>
+  </div>
+
+</div>
+<style>
+  h5:hover {
+    color: #555555;
+  }
+</style>

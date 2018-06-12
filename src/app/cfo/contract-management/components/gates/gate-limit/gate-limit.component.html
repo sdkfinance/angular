@@ -1,0 +1,11 @@
+<div *ngIf="!limitProfiles">{{'page.common.action.loading' | i18n}}</div>
+<div *ngIf="limitProfiles">
+  <div *ngFor="let limit of limitProfiles">
+    {{limit.value}} {{limit.qualifier === 'amount' ? commissionProfile.providerCurrency.code : 'operations'}}
+    {{limitTypes[limit.timeUnit] | i18n}}
+   (<a (click)="onEdit(limit)">{{'page.common.action.edit' | i18n}}</a>)
+  </div>
+  <div>
+    <a (click)="onAdd()">{{'page.cfo.crud_req.view.add_limit' | i18n}}</a>
+  </div>
+</div>

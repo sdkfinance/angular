@@ -1,0 +1,10 @@
+<div class="checkout">
+  <div class="checkout_left">
+    <span class="checkout_text">Amount with commission:</span>
+    <div class="price">
+      {{ transaction.sourceAmount | number: '.2'}} {{transaction.coin.issuer.currency}}
+    </div>
+
+  </div>
+  <button class="btn btn_green" type="button" (click)="checkout()" [appInButtonLoader]="waiting"><span>Pay by card</span></button>
+</div>

@@ -1,0 +1,50 @@
+<div *ngIf="fields && fields.length">
+  <div class="m-b-15">
+    {{'page.individual.tx.fill_fields' | i18n}}
+  </div>
+
+  <form (submit)="makeTransaction()">
+    <div *ngFor="let field of fields" class="m-b-15">
+      <label [for]="field.name">{{field.label || field.name}}</label> <span *ngIf="field.optional">({{'hints.optional' | i18n}})</span>
+
+      <input
+        (input)="this.errors[field.name] = ''"
+        *ngIf="!(field.constraints && field.constraints[0]?.options?.length)"
+        type="text"
+        [id]="field.name"
+        [name]="field.name"
+        class="form-control"
+        [(ngModel)]="values[field.name]">
+
+      <select
+        *ngIf="field.constraints && field.constraints[0]?.options?.length"
+        [id]="field.name"
+        [name]="field.name"
+        class="form-control"
+        [(ngModel)]="values[field.name]">
+        <option
+          *ngFor="let option of field.constraints[0].options"
+          [value]="option.value">
+          {{option.label}}
+        </option>
+      </select>
+
+      <div *ngIf="errors[field.name].length" class="text-danger error-msg">{{errors[field.name]}}</div>
+    </div>
+
+    <div class="action-btns two-action-btns m-b-15">
+      <button class="btn btn-primary btn-sm action-btn" type="button" (click)="onBack()" >
+        <span>{{'page.common.action.back' | i18n}}</span>
+      </button>
+      <button class="btn btn-primary btn-sm action-btn" type="submit" [appInButtonLoader]="waiting">
+        <span>{{'page.common.action.next' | i18n}}</span>
+      </button>
+    </div>
+  </form>
+
+
+</div>
+
+<div *ngIf="!fields || !fields.length" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

@@ -1,0 +1,44 @@
+<form [formGroup]="transferForm">
+  <div class="m-b-15">
+    <label for="recipientCoin">{{'page.individual.transfer.status.second_step' | i18n}}</label>
+    <input id="recipientCoin" class="form-control" type="text" formControlName="recipientCoin">
+    <div *ngIf="errors.recipientCoin" class="text-danger error-msg">{{'validator.coin.not_found' | i18n}}</div>
+    <div *ngIf="errors.currency" class="text-danger error-msg">{{'validator.transfer.emitent_not_equal' | i18n}}</div>
+    <div *ngIf="errors.senderCoin" class="text-danger error-msg">{{'validator.transfer.org_is_equal' | i18n}}</div>
+  </div>
+
+  <div *ngIf="recipientCoin && !errors.currency && !errors.recipientCoin" class="m-b-15">
+    <div style="margin-top: -5px">
+      <span>{{'entity.user' | i18n}}: </span>{{ recipientCoin.owner.name }}
+    </div>
+
+    <div *ngIf="commission">
+      <span>{{'page.credit.create_request.system_commission' | i18n}}:</span> {{commission.commissionAmountPush}} {{commission.issuer.currency}}
+    </div>
+
+    <div *ngIf="commission">
+      <span>{{'page.common.commission.amount_with_commission' | i18n}}: </span> {{(-commission.senderAmountPush).toFixed(2)}}
+      {{commission.issuer.currency}}
+    </div>
+
+    <div *ngIf="errors.amount" class="text-danger" style="margin-top: 10px; font-size: 16px">
+      {{'exception.coin.negative_amount' | i18n}}
+    </div>
+  </div>
+
+  <div class="m-b-15">
+    <label for="description">{{'page.common.description' | i18n}}</label>
+    <textarea id="description" class="form-control" type="text" formControlName="description"></textarea>
+  </div>
+</form>
+
+<div>
+  <div class="action-btns two-action-btns">
+    <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+      <span>{{'page.common.action.back' | i18n}}</span>
+    </button>
+    <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" (click)="onTransfer()">
+      <span>{{'page.individual.transfer.transfer' | i18n}}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <div class="row" *ngIf="!result">
+      <div class="col-md-8">
+        <form [formGroup]="form" (submit)="onSubmit()" novalidate>
+
+          <div class="input-row">
+            <label for="pan">PAN</label>
+            <input id="pan" type="text" inputmode="numeric" pattern="\d*" class="form-control" formControlName="pan">
+            <div class="error-msg text-danger">{{errorMessages.pan}}</div>
+          </div>
+
+          <div class="input-row">
+            <label for="expirationMonth">Expiration month</label>
+            <input id="expirationMonth" type="text" inputmode="numeric" pattern="\d*" class="form-control"
+                   formControlName="expirationMonth">
+            <div class="error-msg text-danger">{{errorMessages.expirationMonth}}</div>
+          </div>
+
+          <div class="input-row">
+            <label for="expirationYear">Expiration year</label>
+            <input id="expirationYear" type="text" inputmode="numeric" pattern="\d*" class="form-control"
+                   formControlName="expirationYear">
+            <div class="error-msg text-danger">{{errorMessages.expirationYear}}</div>
+          </div>
+
+          <div class="input-row">
+            <label for="cardholderName">Cardholder name</label>
+            <input id="cardholderName" type="text" class="form-control" formControlName="cardholderName">
+            <div class="error-msg text-danger">{{errorMessages.cardholderName}}</div>
+          </div>
+
+          <div class="input-row">
+            <label for="cvv">CVV/CVC</label>
+            <input id="cvv" type="text" inputmode="numeric" pattern="\d*" class="form-control" formControlName="cvv">
+            <div class="error-msg text-danger">{{errorMessages.cvv}}</div>
+          </div>
+
+          <div class="action-btns two-action-btns">
+            <a class="btn btn-primary action-btn" routerLink="../">
+              <span><b>Back</b></span>
+            </a>
+
+            <button type="submit" class="btn btn-primary action-btn" [appInButtonLoader]="waiting">
+              <span>Next</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <app-adding-card-confirm *ngIf="result" [confirmInfo]="result"></app-adding-card-confirm>
+
+  </div>
+</div>

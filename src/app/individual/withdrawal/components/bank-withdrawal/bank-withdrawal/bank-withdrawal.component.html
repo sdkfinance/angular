@@ -1,0 +1,36 @@
+<a routerLink="../" class="btn btn-primary m-b-15">{{'page.common.action.back' | i18n}}</a>
+<div class="ibox" style="margin-bottom: 0;">
+  <div class="ibox-title">
+    <h5>{{'entity.transaction.redeem' | i18n}}</h5>
+  </div>
+  <div class="ibox-content" *ngIf="!showFields">
+    <div *ngIf="coin">
+      <div class="m-b-15">
+        <span>{{'page.individual.tx.ways.bank.application.title' | i18n: {'0': coin.serial, '1': coin.issuer.currency} }}</span>
+      </div>
+
+      <form [formGroup]="form">
+        <div class="m-b-15">
+          <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+          <input id="amount" type="text" class="form-control" formControlName="amount">
+          <div *ngIf="errorMsg.length" class="text-danger error-msg">{{errorMsg}}</div>
+        </div>
+      </form>
+
+      <div *ngIf="commission" class="m-b-15">
+        <div>{{'page.credit.create_request.system_commission' | i18n}}: <b>{{commission.commissionAmountPush.toFixed(2)}} {{ commission.issuer.currency }}</b></div>
+        <div>{{'page.common.commission.amount_with_commission' | i18n}}: <b>{{(-commission.senderAmountPush).toFixed(2)}} {{          commission.issuer.currency }}</b></div>
+      </div>
+
+      <div class="action-btns one-action-btn m-t-25">
+        <button class="btn btn-primary btn-sm action-btn" (click)="onNext()">
+          <span><b>{{'page.common.action.next' | i18n}}</b></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="ibox-content" *ngIf="showFields">
+    <app-bank-withdrawal-form [commission]="commission" [serial]="serial" (back)="back()"></app-bank-withdrawal-form>
+  </div>
+</div>

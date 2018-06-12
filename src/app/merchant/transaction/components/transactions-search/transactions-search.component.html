@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="searchTransaction" novalidate>
+      <h4>Search</h4>
+      <div class="form-wrapper">
+        <div class="form-group " style=" width: 20%;margin-right: 10px;">
+          <select style="cursor: pointer;" class="form-control" formControlName="filter" >
+            <option value="null">Not selected</option>
+            <option value="posId">POS ID</option>
+            <option value="identifier">Order number</option>
+            <option value="invoiceAmount">Amount</option>
+            <option value="statuses">Status</option>
+          </select>
+        </div>
+        <div class="form-group" style="width: 20%" *ngIf="searchTransaction.controls.filter.value !== 'null'">
+          <input *ngIf="searchTransaction.controls.filter.value !== 'statuses'" type="text" class="form-control" formControlName="value" >
+          <select *ngIf="searchTransaction.controls.filter.value == 'statuses'" style="cursor: pointer;" class="form-control" formControlName="status">
+            <option value="paid">Paid</option>
+            <option value="pending">Pending</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="searchTransaction.controls.filter.value !== 'null'" style="margin-left: 10px;">
+          <button class="btn-primary btn" (click)="onSearchTransaction(searchTransaction)">Search</button>
+        </div>
+        <div class="form-group" *ngIf="lastFilter" style="margin-left: 10px;">
+          <button class="btn-primary btn" (click)="onReset()">Reset results</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

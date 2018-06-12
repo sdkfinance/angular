@@ -1,0 +1,16 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.individual.tx.top_up.status_line.fourth_step' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+        <app-transaction-state *ngIf="transaction" [transaction]="transaction"></app-transaction-state>
+
+        <div *ngIf="!transaction" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

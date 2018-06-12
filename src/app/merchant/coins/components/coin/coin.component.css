@@ -1,0 +1,10 @@
+.coin {
+  display: flex;
+  background: #ffffff;
+  padding: 15px;
+  margin: 20px;
+  border: 1px solid #e7eaec;
+  /*border-radius: 4px;*/
+  flex-direction: column;
+
+}

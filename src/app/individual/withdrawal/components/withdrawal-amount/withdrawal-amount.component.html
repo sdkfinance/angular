@@ -1,0 +1,28 @@
+<div *ngIf="coin">
+  <div class="m-b-15">
+    <span>{{'page.individual.tx.ways.bank.application.title' | i18n: {'0': coin.serial, '1': coin.issuer.currency} }}</span>
+  </div>
+
+  <form [formGroup]="form" autocomplete="off" (submit)="createTransaction()">
+    <div class="m-b-15">
+      <label for="amount">Amount</label>
+      <input id="amount" type="text" class="form-control" formControlName="amount">
+      <div *ngIf="errorMsg.length" class="text-danger error-msg">{{errorMsg}}</div>
+    </div>
+
+    <div *ngIf="commission" class="m-b-15">
+      <div>{{'page.credit.create_request.system_commission' | i18n}}:
+        <b>{{commission.commissionAmount.toFixed(2)}} {{ commission.currency.code }}</b>
+      </div>
+      <div>{{'page.common.commission.amount_with_commission' | i18n}}:
+        <b>{{(commission.amountToSend).toFixed(2)}} {{commission.currency.code }}</b>
+      </div>
+    </div>
+
+    <div class="action-btns one-action-btn m-t-25">
+      <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting" type="submit">
+        <span>{{'page.common.action.next' | i18n}}</span>
+      </button>
+    </div>
+  </form>
+</div>

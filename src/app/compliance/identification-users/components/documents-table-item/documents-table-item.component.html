@@ -1,0 +1,18 @@
+<div class="table-row">
+  <div class="table-cell date">
+    <div>{{document.file.createdAt | date: 'dd/MM/yyyy'}}</div>
+    <div>{{document.file.createdAt | date: 'HH:mm'}}</div>
+  </div>
+  <div class="table-cell text">{{'entity.user' | i18n}}</div>
+  <div class="table-cell text">
+    <div>{{document.label}}</div>
+    <div><a target="_blank" href="{{document.file.url}}">{{'page.common.action.view' | i18n}}</a></div>
+  </div>
+  <div class="table-cell text">{{document.status}}</div>
+  <div class="table-cell text">
+    <div *ngIf="document.status == 'PENDING'">
+      <div><a (click)="onApprove()">{{'page.common.action.approve' | i18n}}</a></div>
+      <div><a (click)="onDecline()">{{'page.common.action.decline' | i18n}}</a></div>
+    </div>
+  </div>
+</div>

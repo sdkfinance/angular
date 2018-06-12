@@ -1,0 +1,34 @@
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5 routerLink="/merchant/transactions" style="outline: none; cursor: pointer">Purchases</h5>
+  </div>
+  <div class="ibox-content">
+    <div class="loader-container is-divtable" *ngIf="!transactions">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div class="table-content" *ngIf="transactions">
+
+      <div class="table-header">
+        <div class="header-cell date">Date</div>
+        <div class="header-cell id">Order number</div>
+        <div class="header-cell amount">Amount</div>
+        <div class="header-cell status">Status</div>
+        <div class="header-cell details">Details</div>
+      </div>
+
+      <app-dashboard-purchases-item [purchase]="transaction" *ngFor="let transaction of transactions"></app-dashboard-purchases-item>
+
+      <div *ngIf="!transactions.length" class="body-cell" style="width: 100%; justify-content: center">
+        No transactions
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  h5:hover {
+    color: #555555;
+  }
+</style>

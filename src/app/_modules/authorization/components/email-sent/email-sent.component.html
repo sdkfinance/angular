@@ -1,0 +1,9 @@
+<div>
+  <span [innerHTML]="'page.anonym.signup.resend_desc' | i18n: {'0': email}"></span>
+  {{'page.anonym.signup.resend_code.not_come_email' | i18n}}
+  <a (click)="resendEmail()">{{'page.anonym.signup.resend_code' | i18n}}</a>.
+
+  <div *ngIf="emailResent" style="color: #3ab549; margin-bottom: 15px">
+   {{'page.anonym.signup.resend_code.success' | i18n}}
+  </div>
+</div>

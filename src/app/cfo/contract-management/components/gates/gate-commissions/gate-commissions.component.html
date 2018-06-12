@@ -1,0 +1,23 @@
+<div *ngIf="!commissions" class="commission">
+  <div class="table-cell text">{{'page.common.action.loading' | i18n}}</div>
+</div>
+<div *ngIf="commissions">
+  <div class="commission" *ngFor="let commission of getCommissionsTypes()">
+    <div class="table-cell text">{{commission}} (<a (click)="onEdit(commission)">{{'page.common.action.edit' | i18n}}</a>)</div>
+    <div class="table-cell text">
+      {{commissionTypes[commissions[commission].PROVIDER.value.type].format | i18n: {
+      '0': commissions[commission].PROVIDER.value.valuePercent * 100 + '%',
+      '1': commissions[commission].PROVIDER.value.valueFixed,
+      '2': commissionProfile.providerCurrency.code} }}
+    </div>
+    <div class="table-cell text">
+      {{commissionTypes[commissions[commission].TOTAL.value.type].format | i18n: {
+      '0': commissions[commission].TOTAL.value.valuePercent * 100 + '%',
+      '1': commissions[commission].TOTAL.value.valueFixed,
+      '2': commissionProfile.providerCurrency.code} }}
+    </div>
+  </div>
+  <div class="commission" *ngIf="canAddOperation()">
+    <div class="table-cell text"><a (click)="onAdd()">{{'page.cfo.crud_req.view.add_commission' | i18n}}</a></div>
+  </div>
+</div>

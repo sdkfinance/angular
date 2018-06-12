@@ -1,0 +1,20 @@
+<div>
+  <div>
+    {{'page.individual.voucher.creation.success_title' | i18n: {'0': result.coin.amount, '1': result.coin.issuer.currency} }}
+  </div>
+
+  <div>
+    {{'page.individual.voucher.creation.nomer' | i18n}}: {{result.coin.serial}}
+  </div>
+
+  <div>
+    {{'page.individual.voucher.creation.pin_code' | i18n}}: {{result.pin}}
+  </div>
+
+</div>
+
+<div class="btns">
+  <button class="btn btn-primary btn-sm" (click)="onClose()">
+    <b>{{'page.common.action.close' | i18n}}</b>
+  </button>
+</div>

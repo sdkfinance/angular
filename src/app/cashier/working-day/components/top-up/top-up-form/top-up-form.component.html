@@ -1,0 +1,3 @@
+<app-top-up-user *ngIf="step === steps.First" [form]="form" (setCoins)="setCoins($event)"></app-top-up-user>
+<app-top-up-amount *ngIf="step === steps.Second" [form]="form" [coins]="coins" (back)="onBack()" (setResult)="setResult($event)"></app-top-up-amount>
+<app-top-up-result *ngIf="step === steps.Third" [result]="result" [coins]="coins"></app-top-up-result>

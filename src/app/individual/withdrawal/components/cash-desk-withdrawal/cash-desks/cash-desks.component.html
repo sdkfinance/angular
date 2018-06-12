@@ -1,0 +1,22 @@
+<div *ngIf="cashDesks" class="row">
+  <div class="col-sm-12"><h3>{{'page.individual.tx.ways.cashbox.choose_item' | i18n}}</h3></div>
+  <div class="col-sm-4" *ngFor="let cashDesk of cashDesks">
+    <div class="cash-desk" (click)="onCashDesk(cashDesk)">
+      <h4>{{cashDesk.name}}</h4>
+      <div>
+        <b>{{'entity.coin.currency.currencyes' | i18n}}:</b>
+        <span *ngFor="let issuer of cashDesk.issuers"> {{issuer.currency.code}}</span>
+      </div>
+
+      <div>
+        <b>{{'entity.profile.address' | i18n}}:</b> {{cashDesk.address}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 not-found-msg" *ngIf="!cashDesks.length">{{'page.individual.withdrawal.cash_desk.not_found' | i18n}}</div>
+</div>
+
+<div *ngIf="!cashDesks" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

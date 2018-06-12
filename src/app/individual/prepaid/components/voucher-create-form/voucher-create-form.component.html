@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <div class="m-b-15">
+    <label for="wallet">{{'entity.coin' | i18n}}</label>
+    <select class="form-control" id="wallet" formControlName="wallet">
+      <option *ngFor="let coin of coins" [value]="coin.serial">{{coin.name}} ({{coin.amount}}
+        {{coin.issuer.currency}})
+      </option>
+    </select>
+  </div>
+
+  <div class="m-b-15">
+    <label for="amount">{{'entity.coin.amount' | i18n}}</label>
+    <input type="text" class="form-control" id="amount" formControlName="amount">
+    <div class="text-danger error-msg">{{amountErrorMsg}}</div>
+  </div>
+
+  <div *ngIf="commission" class="m-b-15">
+    <div>
+      {{'page.credit.create_request.system_commission' | i18n}}: {{ commission.commissionAmountPush }} {{ commission.issuer.currency }}
+    </div>
+    <div>
+      {{'page.common.commission.amount_with_commission' | i18n}}: {{ -commission.senderAmountPush }} {{ commission.issuer.currency }}
+    </div>
+  </div>
+</form>
+
+<div class="btns">
+  <button class="btn btn-primary btn-sm" [appInButtonLoader]="waiting"  (click)="onCreate()">
+    <span>{{'page.common.action.create' | i18n}}</span>
+  </button>
+</div>

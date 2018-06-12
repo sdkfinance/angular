@@ -1,0 +1,40 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <span *ngIf="newsList" class="pull-right">(<strong>{{ totalRecords}}</strong>) news</span>
+    <h5>Company news</h5>
+  </div>
+
+  <div *ngIf="newsList">
+    <div class="ibox-content" *ngFor="let newsItem of newsList">
+
+      <app-news-item [newsItem]="newsItem"></app-news-item>
+
+    </div>
+
+    <div class="ibox-content">
+      <p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;" *ngIf="!newsList.length">There is no news</p>
+    </div>
+  </div>
+
+  <div class="ibox-content" *ngIf="!newsList">
+    <div class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+  </div>
+
+
+  <div class="ibox-content" *ngIf="totalPages > 1">
+    <!--<div class="row nav-btns">-->
+    <!--<button class="btn btn-primary" [disabled]="currentPage == 0" (click)="onPreviousPage()"><</button>-->
+    <!--<div class="page-number">{{(currentPage + 1) + "/" + totalPages }}</div>-->
+    <!--<button class="btn btn-primary" [disabled]="currentPage == (totalPages - 1)" (click)="onNextPage()">></button>-->
+    <!--</div>-->
+    <div style="padding-right: 20px; background: white; display: inline-block; width: 100%;">
+      <ul class="pagination pull-right" style="margin-bottom: 0">
+        <li *ngIf="currentPage != 0" class="footable-page-arrow"><a (click)="onPreviousPage()">‹</a></li>
+        <li *ngIf="currentPage != (totalPages - 1)" class="footable-page-arrow"><a (click)="onNextPage()">›</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

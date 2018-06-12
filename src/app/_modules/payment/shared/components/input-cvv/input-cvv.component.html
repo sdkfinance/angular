@@ -1,0 +1,18 @@
+<div class="form_col form_col_cvv" [formGroup]="parent">
+  <label *ngIf="label" class="form_label">{{ label }}</label>
+  <div class="form_field cvv">
+    <input
+      autocomplete="off"
+      [formControlName]="name"
+      [mask]="'000'"
+      class="cvv-control"
+      [name]="name"
+      [type]="hidden ? 'password' : 'text'"
+      [placeholder]="placeholder">
+    <div class="eye-icon"
+      [ngClass]="{ 'eye-icon--closed': !hidden }"
+      (click)="switchVisibility()">
+    </div>
+  </div>
+  <app-info [message]="description"></app-info>
+</div>

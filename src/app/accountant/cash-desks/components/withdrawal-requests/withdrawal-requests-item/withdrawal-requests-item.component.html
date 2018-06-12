@@ -1,0 +1,13 @@
+<div class="table-row">
+  <div class="table-cell text">
+    <div>{{request.requestId}}</div>
+  </div>
+  <div class="table-cell text">
+    <div>{{request.amount | number: '.2'}} {{request.currency.code}}</div>
+  </div>
+  <div class="table-cell text">
+    <div *ngIf="!waiting"><a (click)="onApprove()">{{'page.common.action.approve' | i18n}}</a></div>
+    <div *ngIf="!waiting"><a (click)="onDecline()">{{'page.common.action.decline' | i18n}}</a></div>
+    <div *ngIf="waiting">{{'page.common.action.processing' | i18n}}</div>
+  </div>
+</div>

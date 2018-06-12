@@ -1,0 +1,24 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <a class="btn btn-primary m-b-15" routerLink="../../">{{'page.common.action.back' | i18n}}</a>
+  </div>
+  <div class="col-lg-12">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.individual.holds.title' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+        <app-create-hold-form *ngIf="providers && providers.length && !createdHold" [invoice]="invoice" [cards]="cards"
+                              [providers]="providers" (result)="setCreatedHold($event)"></app-create-hold-form>
+
+        <app-create-hold-result *ngIf="createdHold" [hold]="createdHold"></app-create-hold-result>
+
+        <div *ngIf="providers && !providers.length" class="not-found-msg">{{'page.individual.holds.providers.not_found' | i18n}}</div>
+
+        <div *ngIf="!providers" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="form-group">
+  <h5>Choose loyalty group</h5>
+  <div *ngFor="let lg of selectedLoyaltyGroups; let i = index"
+       style="margin-bottom: 5px; display: flex; flex-direction: row; justify-content: space-between">
+
+    <app-loyalty-rules-creating-select [class.can-delete]="canDelete()" [class.cannot-delete]="!canDelete()"
+      [menuTitle]="lg ? lg.name : loyaltyGroupsTitle"
+      [items]="loyaltyGroups"
+      [doNotChangeMenuTitle]="true"
+      (selectedItemUpdate)="updateSelectedLoyaltyGroup($event, i)">
+    </app-loyalty-rules-creating-select>
+
+    <button *ngIf="canDelete()" class="btn btn-default" style="margin-bottom: 0; margin-left: 5px;" (click)="onDelete(i)">
+      <span class="text-danger">x</span>
+    </button>
+  </div>
+  <div style="display: flex; justify-content: flex-end">
+    <button class="btn btn-primary btn-sm" (click)="onAddLoyaltyGroup()">Add</button>
+  </div>
+</div>
+
+
+<style>
+  .can-delete {
+    width: calc(100% - 40px);
+  }
+
+  .cannot-delete {
+    width: 100%;
+  }
+</style>

@@ -1,0 +1,48 @@
+<form [formGroup]="settingsForm" action="">
+
+  <div class="row white-bg dashboard-header" style="margin: 0">
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="text" placeholder="" class="form-control" formControlName="profileEmail"
+               [(ngModel)]="profile.profile.contact.email">
+        <button class="btn btn-info btn-circle" type="button" style="
+                      position: absolute;
+                      right: -25px;
+                      top: 25px;
+                  " *ngIf="profile.profile.contact.emailVerified"><i class="fa fa-check"></i>
+        </button>
+        <a class="btn btn-warning btn-rounded" href="#" style="
+                      position: absolute;
+                      right: -135px;
+                      top: 23px;
+                  " *ngIf="!profile.profile.contact.emailVerified">Не подтвержден</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row white-bg dashboard-header" style="margin: 0">
+
+    <div class="col-lg-2">
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="text" placeholder="" class="form-control" formControlName="profilePhoneNumber"
+               [(ngModel)]="profile.profile.contact.phoneNumber">
+        <button class="btn btn-info btn-circle" type="button" style="
+                      position: absolute;
+                      right: -25px;
+                      top: 25px;
+                  " *ngIf="profile.profile.contact.phoneVerified"><i class="fa fa-check"></i>
+        </button>
+        <a class="btn btn-warning btn-rounded" href="#" style="
+                      position: absolute;
+                      right: -135px;
+                      top: 23px;
+                  " *ngIf="!profile.profile.contact.phoneVerified">Not verified</a>
+      </div>
+    </div>
+
+  </div>
+</form>

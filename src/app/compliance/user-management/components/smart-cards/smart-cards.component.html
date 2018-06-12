@@ -1,0 +1,34 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <div *ngIf="!smartCards" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="smartCards">
+      <a routerLink="add" class="btn btn-primary">Create smart card</a>
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let card of smartCards">
+          <div class="smart-card">
+            <div><b>{{'page.common.name' | i18n}}: </b>{{card.name}}</div>
+            <div><b>{{'page.common.number' | i18n}}: </b>{{card.cardNumber}}</div>
+            <div><b>{{'entity.status' | i18n}}: </b>{{card.active ? 'Active' : 'Inactive'}}</div>
+            <div>
+              <button class="btn btn-white btn-xs" (click)="onActivate(card)">{{card.active ? 'Deactivate' : 'Activate'}}</button>
+              <button class="btn btn-white btn-xs" (click)="onDelete(card)">Delete</button>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!smartCards.length" class="col-sm-12 not-found-msg">{{'page.supervisor.user.smart_cards.not_found' | i18n}}</div>
+      </div>
+
+      <div class="pagination-btns" *ngIf="totalPages > 1">
+        <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="changePage($event)">
+        </app-pagination-buttons>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div *ngIf="transaction.type === 'TOPUP'">
+  <div *ngIf="transaction.status === 'FAILURE' || transaction.status === 'EXCEPTION'">
+    <div [innerHTML]="'page.individual.tx.top_up.status.error' | i18n: {
+        '0': transaction.finalAmount || transaction.amountToSend,
+        '1': transaction.coin.issuer.currency,
+        '2': transaction.coin.serial,
+        '3': transaction.paymentMethod.account.provider.name }">
+    </div>
+  </div>
+
+  <div *ngIf="transaction.status === 'SUCCESS'">
+    <div [innerHTML]="'page.individual.tx.top_up.status.success' | i18n: {
+        '0': transaction.finalAmount,
+        '1': transaction.coin.issuer.currency,
+        '2': transaction.coin.serial,
+        '3': transaction.paymentMethod.account.provider.name }">
+    </div>
+  </div>
+
+  <div>
+    <a [routerLink]="['/', role, 'wallets', 'top-up', transaction.coin.serial]">{{'page.individual.tx.top_up.status.error.choose_another_provider' | i18n}}</a>
+  </div>
+</div>
+
+<div *ngIf="transaction.type === 'REDEEM'">
+  <div *ngIf="transaction.status === 'FAILURE' || transaction.status === 'EXCEPTION'">
+    <div [innerHTML]="'page.individual.tx.withdraw.status.error' | i18n: {
+        '0': transaction.finalAmount || transaction.amountToSend,
+        '1': transaction.coin.issuer.currency,
+        '2': transaction.coin.serial,
+        '3': transaction.paymentMethod.account.provider.name }">
+    </div>
+  </div>
+
+  <div *ngIf="transaction.status === 'SUCCESS'">
+    <div [innerHTML]="'page.individual.tx.withdraw.status.success' | i18n: {
+        '0': transaction.finalAmount,
+        '1': transaction.coin.issuer.currency,
+        '2': transaction.coin.serial,
+        '3': transaction.paymentMethod.account.provider.name }">
+    </div>
+  </div>
+
+  <div>
+    <a [routerLink]="['/', role, 'withdrawal', transaction.coin.serial]">{{'page.individual.tx.top_up.status.error.choose_another_provider' | i18n}}</a>
+  </div>
+</div>
+
+<div *ngIf="transaction.type === 'PURCHASE'">
+
+</div>
+
+<div>
+  <a [routerLink]="['/', role, 'transactions', 'bill', transaction.processId]">{{'page.common.bill' | i18n}}</a>
+</div>

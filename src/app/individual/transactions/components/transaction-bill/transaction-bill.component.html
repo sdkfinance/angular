@@ -1,0 +1,110 @@
+<div class="row margin-top-first">
+  <div class="col-lg-8">
+    <div class="ibox">
+      <div class="ibox-title">
+        <h5>{{'page.common.bill' | i18n}}</h5>
+      </div>
+      <div class="ibox-content">
+
+        <div *ngIf="selectedTransaction">
+          <div id="print">
+            <table>
+              <tr>
+                <td>{{'entity.transaction.date' | i18n }}:</td>
+                <td>{{selectedTransaction.createdAt | date: 'HH:mm dd.MM.yyyy'}}</td>
+              </tr>
+              <tr>
+                <td>{{'entity.transaction.operation' | i18n}}:</td>
+                <td>
+                  <div>{{selectedTransaction.type | transactionType | i18n}} <span
+                    *ngIf="selectedTransaction.type == 'client_transaction_transfer'">{{'page.common.bill.transfer_descr' | i18n}} </span></div>
+                  <div *ngIf="toCoin && selectedTransaction.type !='exchange_transaction'">{{toCoin.serial}}</div>
+                  <div *ngIf="clientCoin
+                  && selectedTransaction.type !='cash_desk_redeem'
+                  && selectedTransaction.type != 'bank_redeem'
+                  && selectedTransaction.type != 'gate_purchase'">
+                    {{clientCoin.serial}}
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="selectedTransaction.type !='exchange_transaction'">
+                <td>{{'entity.payment.payer' | i18n}}:</td>
+                <td>
+                  <div *ngIf="fromCoin">{{fromCoin.serial}}</div>
+                  <div *ngIf="selectedTransaction.charger">{{selectedTransaction.charger.name}}</div>
+                  <div *ngIf="clientCoin && selectedTransaction.type =='cash_desk_redeem'">{{clientCoin.serial}}</div>
+                  <div *ngIf="clientCoin && selectedTransaction.type =='bank_redeem'">{{clientCoin.serial}}</div>
+                  <div *ngIf="clientCoin && selectedTransaction.type =='gate_purchase'">{{clientCoin.serial}}</div>
+                </td>
+              </tr>
+              <tr *ngIf="selectedTransaction.type !='exchange_transaction'">
+                <td>{{'entity.coin.amount' | i18n}}:</td>
+                <td>
+                  {{ transaction ? transaction.amount.toFixed(2) + ' ' + transaction.issuer.currency :
+                  selectedTransaction.invoiceAmount ? selectedTransaction.invoiceAmount.toFixed(2) + ' ' + (clientCoin ?
+                  clientCoin.issuer.currency :
+                  '') :
+                  selectedTransaction.cashAmount ? selectedTransaction.cashAmount.toFixed(2) + ' ' + (clientCoin ?
+                  clientCoin.issuer.currency : '') :
+                  selectedTransaction.amount ? selectedTransaction.amount.toFixed(2) + ' ' + (clientCoin ?
+                  clientCoin.issuer.currency : '') : ''}}
+                </td>
+              </tr>
+              <tr *ngIf="selectedTransaction.type !='exchange_transaction'">
+                <td>{{'entity.commission' | i18n}}:</td>
+                <td>
+                  {{ selectedTransaction.commission ? selectedTransaction.commission : commission ?
+                  commission.amount.toFixed(2) + ' ' +
+                  commission.issuer.currency :
+                  '0.00' + ' ' + (transaction && transaction.issuer ? transaction.issuer.currency : clientCoin ?
+                  clientCoin.issuer.currency : '') }}
+                </td>
+              </tr>
+
+              <tr *ngIf="selectedTransaction.type == 'exchange_transaction'">
+                <td>{{'page.common.bill.exchange.currency_rate' | i18n}}:</td>
+                <td>
+                  {{ selectedTransaction.rate.value }} {{
+                  selectedTransaction.destClientCoin.issuer.currency}}/{{selectedTransaction.srcClientCoin.issuer.currency}}
+                </td>
+              </tr>
+
+              <tr *ngIf="selectedTransaction.type == 'exchange_transaction'">
+                <td>{{'page.common.bill.exchange.buying_currency' | i18n}}:</td>
+                <td>
+                  {{ selectedTransaction.outgoingAmount }} {{ selectedTransaction.destClientCoin.issuer.currency}}
+                </td>
+              </tr>
+
+              <tr *ngIf="selectedTransaction.type == 'exchange_transaction'">
+                <td>{{'page.common.bill.exchange.sale' | i18n}}:</td>
+                <td>
+                  {{ selectedTransaction.incomingAmount }} {{ selectedTransaction.srcClientCoin.issuer.currency}}
+                </td>
+              </tr>
+
+              <tr>
+                <td>{{'entity.transaction.code' | i18n}}:</td>
+                <td>{{ selectedTransaction.id }}</td>
+              </tr>
+              <tr>
+                <td>{{'entity.status' | i18n}}:</td>
+                <td>{{ selectedTransaction.status | transactionStatus | i18n}}</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="btns">
+            <a class="btn btn-sm btn-primary" routerLink="../">{{'page.common.action.close' | i18n}}</a>
+            <button class="btn btn-sm btn-primary" (click)="onPrint()">{{'page.common.action.print' | i18n}}</button>
+          </div>
+        </div>
+
+        <div *ngIf="!selectedTransaction" class="loader-container is-divtable">
+          <div class="loading-spinner"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

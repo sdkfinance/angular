@@ -1,0 +1,32 @@
+<div class="ibox-title">
+  <h5>{{'page.common.redeem' | i18n}}</h5>
+</div>
+<div class="ibox-content">
+
+  <div *ngIf="coins && coins.length">
+    <div>
+      <label for="wallet">{{'entity.coin' | i18n}}</label>
+      <select id="wallet" [(ngModel)]="serial" class="form-control">
+        <option [value]="coin.serial" *ngFor="let coin of coins">{{coin.name}} ({{coin.amount}}
+          {{coin.issuer.currency}})
+        </option>
+      </select>
+    </div>
+
+    <div class="action-btns one-action-btn m-t-25">
+      <a [routerLink]="[serial]" class="btn btn-primary btn-sm action-btn">
+        <span><b>{{'page.common.action.next' | i18n}}</b></span>
+      </a>
+    </div>
+
+  </div>
+
+  <div *ngIf="coins && !coins.length" class="not-found-msg">
+    {{'page.individual.withdrawal.coins_not_found' | i18n}}
+  </div>
+
+  <div *ngIf="!coins" class="loader-container is-divtable">
+    <div class="loading-spinner"></div>
+  </div>
+
+</div>

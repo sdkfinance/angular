@@ -1,0 +1,28 @@
+<div *ngIf="!items" class="loader-container is-company-profile btn btn-default dropdown-toggle">
+  <div class="loading-spinner"></div>
+</div>
+
+<div *ngIf="items" class="btn-group" [class.open]="showItems" style="width: 100%">
+  <a class="btn btn-default dropdown-toggle" (click)="onMenuTitleClick()" data-toggle="dropdown" style="width: 100%; margin-bottom: 0;">
+    <span style="width: calc(100% - 10px); display: inline-block;  overflow: hidden; text-overflow: ellipsis;" title="{{ menuTitle}}">
+      {{ menuTitle}}
+    </span>
+    <span *ngIf="!disable" class="caret"></span>
+  </a>
+
+  <ul class="dropdown-menu" style="margin-top: 5px; width: 100%; max-height: 50vh; overflow: auto">
+    <li *ngFor="let item of items"><a (click)="onItemClick(item)" style="white-space: normal">{{ item.name}}</a></li>
+  </ul>
+</div>
+
+
+<style>
+  a.dropdown-toggle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+</style>

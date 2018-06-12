@@ -1,0 +1,78 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.administrator.emitent.creation.title' | i18n}}</h5>
+  </div>
+
+  <div class="ibox-content">
+
+    <div *ngIf="!currencies" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="currencies">
+      <form [formGroup]="form" *ngIf="currencies.length">
+        <div class="form-group">
+          <label for="snPrefix">{{'entity.emitent.sn' | i18n}}</label>
+          <input id="snPrefix" formControlName="snPrefix" type="text" class="form-control"
+                 (input)="resetError('snPrefixRequired')">
+          <div class="error-msg text-danger" *ngIf="errors.snPrefixRequired">{{'validator.required' | i18n}}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="currencyCode">{{'page.common.action.choose_emitent' | i18n}}</label>
+          <select id="currencyCode" formControlName="currencyCode" class="form-control">
+            <option *ngFor="let currency of currencies" value="{{currency.code}}">{{currency.code}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="name">{{'page.common.name' | i18n}}</label>
+          <input id="name" formControlName="name" type="text" class="form-control"
+                 (input)="resetError('nameRequired')">
+          <div class="error-msg text-danger" *ngIf="errors.nameRequired">{{'validator.required' | i18n}}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">{{'page.common.description' | i18n}}</label>
+          <input id="description" formControlName="description" type="text" class="form-control"
+                 (input)="resetError('descriptionRequired')">
+          <div class="error-msg text-danger" *ngIf="errors.descriptionRequired">{{'validator.required' | i18n}}</div>
+        </div>
+
+        <div class="form-group">
+          <label for="orderNumber">{{'entity.emitent.order_number' | i18n}}</label>
+          <input id="orderNumber" formControlName="orderNumber" type="text" class="form-control"
+                 (input)="resetError('orderNumberRequired', 'orderNumberFormat')">
+          <div class="error-msg text-danger" *ngIf="errors.orderNumberRequired">{{'validator.required' | i18n}}</div>
+          <div class="error-msg" *ngIf="errors.orderNumberFormat">Incorrect format</div>
+        </div>
+
+        <div class="form-group">
+          <label for="orderQuote">{{'entity.emitent.order_quote' | i18n}}</label>
+          <input id="orderQuote" formControlName="orderQuote" type="text" class="form-control"
+                 (input)="resetError('orderQuoteRequired', 'orderQuoteFormat')">
+          <div class="error-msg text-danger" *ngIf="errors.orderQuoteRequired">{{'validator.required' | i18n}}</div>
+          <div class="error-msg" *ngIf="errors.orderQuoteFormat">Incorrect format</div>
+        </div>
+
+        <div class="form-group">
+          <input id="active" formControlName="active" type="checkbox">
+          <label for="active">{{'entity.status.active' | i18n}}</label>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary pull-right" [appInButtonLoader]="waiting" (click)="onCreate()">
+              <span>{{'page.common.action.create' | i18n}}</span>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div class="not-found-msg" *ngIf="!currencies.length">There are no available currencies</div>
+    </div>
+
+
+
+  </div>
+</div>

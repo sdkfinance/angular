@@ -1,0 +1,40 @@
+.table-wrapper {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  margin-top: 10px;
+  min-width: 500px;
+
+  .table-header, .table-row {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .table-cell {
+    padding: 8px;
+  }
+
+  .table-cell.text {
+    flex: 1 1 100px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+
+  .table-header {
+    font-size: 13px;
+    font-weight: bold;
+
+    //.text:nth-child(2) {
+    //  flex: 0.5 0.5 50px;
+    //}
+  }
+
+  .limit {
+    text-align: center;
+  }
+}
+

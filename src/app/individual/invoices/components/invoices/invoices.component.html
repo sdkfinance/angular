@@ -1,0 +1,13 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <a class="btn btn-primary m-b-15 m-r-15" *ngIf="canCreate" routerLink="create">{{'page.individual.invoices.buttons.create_invoice' | i18n}}</a>
+    <a class="btn btn-primary m-b-15" routerLink="holds">{{'page.individual.holds' | i18n}}</a>
+  </div>
+  <div class="col-lg-12" [class.col-lg-8]="invoiceToPay" [hidden]="(width < 1200 && invoiceToPay)">
+    <app-invoices-table (pay)="setInvoice($event)"></app-invoices-table>
+  </div>
+
+  <div class="col-lg-4">
+    <app-pay-invoice *ngIf="invoiceToPay" (close)="setInvoice($event)" [invoice]="invoiceToPay"></app-pay-invoice>
+  </div>
+</div>

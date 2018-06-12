@@ -1,0 +1,26 @@
+<form [formGroup]="createUser" novalidate>
+  <h3>Add user</h3>
+<div class="form-group ">
+  <label>User e-mail or phone</label>
+  <input type="text" placeholder="E-mail or phone" class="form-control" formControlName="email">
+</div>
+<div class="form-group">
+  <label>Role</label>
+  <select style="cursor: pointer;" class="form-control" formControlName="role" >
+    <option value="individual">Individual</option>
+    <option value="merchant">Merchant</option>
+  </select>
+
+</div>
+  <div class="form-group" *ngIf="createUser.controls.role.value == 'merchant'">
+    <select style="cursor: pointer;" class="form-control" formControlName="legalType" >
+      <option value="individual">Individual person</option>
+     <!-- <option value="corporation">Corporate entity</option>-->
+    </select>
+  </div>
+  <div class="pull-right">
+    <input type="submit" class="btn btn-primary block full-width m-b" value="Create"
+           (click)="onSubmitForm(createUser)"/>
+  </div>
+</form>
+

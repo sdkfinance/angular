@@ -1,0 +1,15 @@
+<div class="card-types">
+  <div class="card-types__text">Card types</div>
+  <ul class="card-types__text">
+
+    <li *ngFor="let typeKey of acceptTypeKeys">
+      <i class="ico" title="{{typeKey}}">
+        <img class="ico ico_mps"
+             src="{{acceptTypes[typeKey]}}"
+             alt="{{typeKey}}">
+      </i>
+    </li>
+
+  </ul>
+  <input type="hidden" value="VISA,VISA ELECTRON,MASTERCARD,MAESTRO" id="accepted_card_brands">
+</div>

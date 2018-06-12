@@ -1,0 +1,73 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h5>{{'page.individual.invoices' | i18n}}</h5>
+  </div>
+  <div class="ibox-content">
+    <div *ngIf="invoices">
+      <div class="search-group">
+        <div>
+          <label for="valueFilter">{{'page.common.action.search_by_id' | i18n}}</label>
+          <input id="valueFilter" class="form-control" type="text" [(ngModel)]="filter">
+        </div>
+
+        <div *ngIf="isMerchant">
+          <label for="direction">{{'page.individual.invoices.direction' | i18n}}</label>
+          <select name="direction" id="direction" class="form-control" (change)="onSearch()" [(ngModel)]="direction">
+            <option value="INCOMING">{{'page.individual.invoices.incoming' | i18n}}</option>
+            <option value="OUTGOING">{{'page.individual.invoices.outgoing' | i18n}}</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" (click)="onSearch()">{{'page.common.action.search' | i18n}}</button>
+        <button class="btn btn-primary" (click)="onReset()">{{'page.common.action.reset' | i18n}}</button>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table">
+          <div class="table-header">
+            <div class="table-cell text">{{'page.common.id' | i18n}}</div>
+
+            <div class="table-cell date" (click)="onSort('date')">
+              {{'entity.date' | i18n}}
+              <div class="sort-btns">
+                <div class="arrow-left" [class.dark-left]="sort?.date == 'asc'"></div>
+                <div class="arrow-right" [class.dark-right]="sort?.date == 'desc'"></div>
+              </div>
+            </div>
+
+            <div class="table-cell text">{{'page.individual.invoices.direction' | i18n}}</div>
+
+            <div class="table-cell amount text" (click)="onSort('totalPrice')">
+              {{'entity.coin.amount' | i18n}}
+              <div class="sort-btns">
+                <div class="arrow-left" [class.dark-left]="sort?.totalPrice == 'asc'"></div>
+                <div class="arrow-right" [class.dark-right]="sort?.totalPrice == 'desc'"></div>
+              </div>
+            </div>
+
+            <div class="table-cell status">
+              <span (click)="showStatuses = true">{{'entity.status' | i18n}}</span>
+              <div *ngIf="showStatuses">
+                <app-list-filter [items]="statuses" (close)="onFilterStatus($event)"></app-list-filter>
+              </div>
+            </div>
+
+          </div>
+
+          <app-invoice [direction]="direction" [invoice]="invoice" *ngFor="let invoice of invoices" (pay)="onPay($event)"></app-invoice>
+
+          <p *ngIf="!invoices.length" class="not-found-msg">{{'page.individual.invoices.not_found' | i18n}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!invoices" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div class="pagination-btns" *ngIf="totalPages > 1">
+      <app-pagination-buttons [page]="page" [totalPage]="totalPages" (changePage)="onPagination($event)">
+      </app-pagination-buttons>
+    </div>
+  </div>
+</div>
+

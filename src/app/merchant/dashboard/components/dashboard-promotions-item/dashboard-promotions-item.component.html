@@ -1,0 +1,7 @@
+<div>
+  <h4 class="text-center">{{ promotion.name }}</h4>
+  <!--<p><strong>Товар:</strong> {{ promotion.product }}</p>-->
+  <p><strong>Beginning:</strong> {{ promotion.startsAt | date: 'd/MM/y' }}</p>
+  <p *ngIf="promotion.endsAt"><strong>Ending:</strong> {{ promotion.endsAt | date: 'd/MM/y' }}</p>
+  <p> {{ promotion.description }}</p>
+</div>

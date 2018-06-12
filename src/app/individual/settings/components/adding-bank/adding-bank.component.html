@@ -1,0 +1,10 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <!--<a routerLink="../" class="btn btn-primary m-b-15"><b>Back</b></a>-->
+
+    <app-bank-form (bankDetails)="createAccount($event)" [waiting]="waiting" [action]="'page.common.action.create' | i18n"
+                   (back)="onBack($event)"></app-bank-form>
+  </div>
+</div>
+

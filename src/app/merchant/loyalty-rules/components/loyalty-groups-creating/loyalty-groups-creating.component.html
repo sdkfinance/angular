@@ -1,0 +1,9 @@
+<h5 style="font-size: 15px; text-align: center">Creation of loyalty group</h5>
+<form [formGroup]="loyaltyGroup">
+  <button class="btn btn-primary btn-sm" style="margin-bottom: 10px" (click)="showExample()">Show request example</button>
+  <textarea class="form-control" [(ngModel)]="requestString" formControlName="loyalty"
+            style="max-width:100%; width:100%; min-height: 60vh; resize: none; overflow: auto"></textarea>
+  <button class="btn btn-primary" [appInButtonLoader]="waiting" (click)="onAddGroup(requestString)">
+    <span>Add</span>
+  </button>
+</form>

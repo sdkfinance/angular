@@ -1,0 +1,23 @@
+<div *ngIf="cards">
+  <div class="form-group" *ngIf="cards.length">
+    <div class="existing-card__cards">
+      <div class="existing-card__payment-card" *ngFor="let card of cards" (click)="onCard(card.id)">
+        <h4>**** **** **** {{card.last4Digits}}</h4>
+
+        <div class="card-loader" *ngIf="card.id === selectedCardId && waiting">
+          <div class="loader-container is-divtable">
+            <div class="loading-spinner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!cards.length">
+    <div class="not-found-msg">{{'page.individual.payment.cards.not_found' | i18n}}</div>
+  </div>
+</div>
+
+<div *ngIf="!cards" class="loader-container is-divtable">
+  <div class="loading-spinner"></div>
+</div>

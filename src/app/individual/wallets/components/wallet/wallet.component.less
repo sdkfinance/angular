@@ -1,0 +1,47 @@
+.coin {
+  display: flex;
+  background: #ffffff;
+  padding: 15px;
+  margin: 15px;
+  border: 1px solid #e7eaec;
+  /*border-radius: 4px;*/
+  flex-direction: column;
+}
+
+input {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #999999;
+  padding: 5px;
+  font-size: 24px;
+  font-weight: 100;
+  width: calc(100% - 30px);
+}
+
+h2 {
+  overflow: hidden;
+  line-height: normal;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.coin-editor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 0;
+
+  button:first-child {
+    margin-left: 0;
+  }
+
+  a, button {
+    margin-left: 10px;
+  }
+}

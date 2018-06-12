@@ -1,0 +1,24 @@
+<form [formGroup]="form" (submit)="onCreate()">
+  <div class="form-group">
+    <label for="number">{{'page.supervisor.card.card_number' | i18n}}</label>
+    <input id="number" type="text" class="form-control" formControlName="number">
+    <div class="error-msg" *ngIf="errors.numberRequired">{{'validator.required' | i18n}}</div>
+    <div class="error-msg" *ngIf="errors.numberPattern">{{'validator.smart_card.number' | i18n}}</div>
+    <div class="error-msg" *ngIf="errors.numberExists">{{'page.supervisor.card.validation.already_exist' | i18n}}</div>
+  </div>
+
+  <div class="form-group">
+    <label for="name">{{'page.supervisor.card.name' | i18n}}</label>
+    <input id="name" type="text" class="form-control" formControlName="name">
+    <div class="error-msg" *ngIf="errors.nameRequired">{{'validator.required' | i18n}}</div>
+  </div>
+
+  <div class="action-btns two-action-btns">
+    <a routerLink="../" class="btn btn-primary btn-sm action-btn">
+      <b>{{'page.common.action.back' | i18n}}</b>
+    </a>
+    <button type="submit" class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting">
+      <span>{{'page.common.action.create' | i18n}}</span>
+    </button>
+  </div>
+</form>

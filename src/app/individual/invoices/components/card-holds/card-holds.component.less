@@ -1,0 +1,77 @@
+.table-wrapper {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  margin-top: 10px;
+  min-width: 500px;
+}
+
+.table-header,
+.table-row {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table-cell {
+  padding: 8px;
+}
+
+.table-cell.text {
+  flex: 1;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.table-header {
+  font-size: 13px;
+  font-weight: bold;
+
+  .table-cell.id {
+    flex: 0.5;
+  }
+
+  .table-cell.date {
+    cursor: pointer;
+    width: 100px;
+  }
+
+  .table-cell.actions {
+    width: 100px;
+    text-align: center;
+  }
+
+  .table-cell.status {
+    cursor: pointer;
+    width: 100px;
+    text-align: center;
+    position: relative;
+
+    span {
+      cursor: pointer;
+      border-bottom: 1px dotted #dddddd;
+    }
+
+    div {
+      position: absolute;
+      z-index: 10;
+      text-align: start;
+    }
+  }
+
+  .sort-btns {
+    transform: rotate(90deg);
+    font-stretch: ultra-condensed;
+    display: inline-block;
+    font-size: 8px;
+
+    div {
+      display: inline-block;
+    }
+  }
+
+}
+

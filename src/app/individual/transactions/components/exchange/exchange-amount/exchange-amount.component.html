@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup]="form">
+
+    <div class="m-b-15">
+      <span [innerHTML]="'page.individual.exchange.amount.title' | i18n: {'0': buyCoin.issuer.currency, '1': sellCoin.issuer.currency, '2':  exchanger.rate.toFixed(2), '3': ''}"></span>
+    </div>
+
+    <div class="m-b-15">
+      <label for="sell">{{'page.individual.exchange.currency.sell' | i18n}}</label>
+      <input id="sell" class="form-control" type="text" formControlName="sell">
+      <div *ngIf="sellErrorMsg" class="text-danger error-msg">{{ sellErrorMsg }}</div>
+    </div>
+
+    <div class="m-b-15">
+      <label for="buy">{{'page.individual.exchange.currency.buy' | i18n}}</label>
+      <input id="buy" class="form-control" type="text" formControlName="buy">
+      <div *ngIf="buyErrorMsg" class="text-danger error-msg">{{ buyErrorMsg }}</div>
+    </div>
+
+    <div *ngIf=" this.form.get('sell').value > 0" class="m-b-15">
+      <span [innerHTML]="'page.individual.exchange.amount.hint' | i18n: {'0': buyCoin.serial,
+      '1' : (this.form.get('sell').value * exchanger.rate).toFixed(2),
+      '2' : buyCoin.issuer.currency}"></span>
+    </div>
+
+  </form>
+
+
+  <div>
+    <div class="action-btns two-action-btns">
+      <button class="btn btn-primary btn-sm action-btn" (click)="onBack()">
+        <b>{{'page.common.action.back' | i18n}}</b>
+      </button>
+      <button class="btn btn-primary btn-sm action-btn" [appInButtonLoader]="waiting"  (click)="onNext()">
+        <span>{{'page.common.action.next' | i18n}}</span>
+      </button>
+    </div>
+  </div>
+</div>

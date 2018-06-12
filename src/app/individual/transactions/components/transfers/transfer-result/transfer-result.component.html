@@ -1,0 +1,10 @@
+<div style="font-size: 16px; margin-bottom: 25px" class="text-primary">
+  <span [innerHTML]="'page.individual.transfer.success' | i18n: {'0': result.process.amount, '1': currency,
+  '2': result.process.from.serial, '3' : result.process.to.serial}"></span>
+</div>
+
+<div class="action-btns one-action-btn">
+  <button class="btn btn-primary btn-sm action-btn" (click)="onClose()">
+    <span>{{'page.common.action.close' | i18n}}</span>
+  </button>
+</div>

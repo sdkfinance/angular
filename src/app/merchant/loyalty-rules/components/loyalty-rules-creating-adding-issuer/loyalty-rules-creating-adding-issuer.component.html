@@ -1,0 +1,9 @@
+<div class="form-group">
+  <app-loyalty-rules-creating-select
+    [menuTitle]="issuersTitle"
+    [items]="issuers"
+    [disable]="false"
+    [doNotChangeMenuTitle]="true"
+    (selectedItemUpdate)="updateSelectedIssuer($event)">
+  </app-loyalty-rules-creating-select>
+</div>

@@ -1,0 +1,27 @@
+<div class="check-container">
+  <div class="row margin-top-first" *ngIf="isHasCheck">
+    <div class="col-lg-9">
+      <app-transaction-check-table [checks]="transactionCheck"></app-transaction-check-table>
+      <!--<div class="isHasCheck" *ngIf="!isHasCheck">-->
+      <!--<h3 style="text-align: left;">Sorry, there is no check!</h3>-->
+      <!--</div>-->
+    </div>
+    <div class="col-lg-3" style="padding-top: 40px;">
+      <h3>Bonuses in check</h3>
+      <span *ngIf="bonusValue" style="width: 100%;display: block;font-size: 18px;font-weight: 600;">
+        {{bonusValue}}
+      </span>
+      <span style="width: 100%;display: block;" *ngIf="!bonusValue">Bonuses are not earned</span>
+      <a *ngIf="bonusValue" [routerLink]="['/merchant/transactions/bonuses-details', identifier]"> Details of bonuses</a>
+    </div>
+
+  </div>
+
+  <div class="row margin-top-first" *ngIf="transactionCheck && !isHasCheck">
+    <p style="padding: 10px 6px;background: white;font-size: 18px;text-align: center;">There is no check</p>
+  </div>
+
+  <div class="loader-container is-divtable row margin-top-first" *ngIf="!transactionCheck">
+    <div class="loading-spinner"></div>
+  </div>
+</div>

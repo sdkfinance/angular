@@ -1,0 +1,32 @@
+<div class="ibox">
+  <div class="ibox-content no-border">
+
+    <div *ngIf="!documents" class="loader-container is-divtable">
+      <div class="loading-spinner"></div>
+    </div>
+
+    <div *ngIf="documents">
+      <p style="font-size: 16px">
+        {{'page.individual.docs.hint_info' | i18n}}
+      </p>
+
+      <h2>{{'page.individual.docs.required_docs' | i18n}}</h2>
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let docType of getRequiredDocumentTypes()">
+          <app-document [docType]="docType.type" [document]="document[docType.type]"
+                        [title]="docType.label || docType.type"></app-document>
+        </div>
+
+      </div>
+
+      <h2>{{'page.individual.docs.optional_docs' | i18n}}</h2>
+      <div class="row">
+        <div class="col-sm-4" *ngFor="let docType of getOptionalDocumentTypes()">
+          <app-document [docType]="docType.type" [document]="document[docType.type]"
+                        [title]="docType.label || docType.type"></app-document>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

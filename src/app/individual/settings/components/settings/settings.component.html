@@ -1,0 +1,13 @@
+<div class="row margin-top-first">
+  <div class="col-lg-12">
+    <div>
+      <a class="settings-nav" routerLink="user" routerLinkActive="active-item">{{'entity.profile' | i18n}}</a>
+      <a class="settings-nav" routerLink="security" routerLinkActive="active-item">{{'page.common.security' | i18n}}</a>
+      <a class="settings-nav" routerLink="files" routerLinkActive="active-item">{{'page.individual.docs.title' | i18n}}</a>
+      <a class="settings-nav" routerLink="card" routerLinkActive="active-item">{{'page.supervisor.card.smart-cards' | i18n}}</a>
+      <a class="settings-nav" routerLink="payment-cards" routerLinkActive="active-item">Payment Cards</a>
+      <a class="settings-nav" routerLink="bank" routerLinkActive="active-item">{{'entity.bank' | i18n}}</a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
